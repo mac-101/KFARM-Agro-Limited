@@ -12,32 +12,33 @@ import React, { useEffect, useRef, useState } from "react";
 
 const WHATSAPP_NUMBER = "2349115380670"; // 09115380670, with Nigeria country code, no leading 0
 const DEFAULT_ORDER_MESSAGE =
-  import.meta.env.VITE_WHOLESALE_ORDER_MESSAGE ||
-  "KFARM Agro Limited, I'd like to place an order.";
+    import.meta.env.VITE_WHOLESALE_ORDER_MESSAGE ||
+    "KFARM Agro Limited, I'd like to place an order.";
 const WHATSAPP_LINK = (message = DEFAULT_ORDER_MESSAGE) =>
-  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
 
 const IMG = {
-  hero: "https://images.pexels.com/photos/15059730/pexels-photo-15059730.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  heroSmall1:
-    "https://images.pexels.com/photos/32243187/pexels-photo-32243187.jpeg?auto=compress&cs=tinysrgb&w=800",
-  heroSmall2:
-    "https://images.pexels.com/photos/8352786/pexels-photo-8352786.jpeg?auto=compress&cs=tinysrgb&w=800",
-  catfish:
-    "https://images.pexels.com/photos/32243187/pexels-photo-32243187.jpeg?auto=compress&cs=tinysrgb&w=1000",
-  tilapia:
-    "https://images.pexels.com/photos/8352786/pexels-photo-8352786.jpeg?auto=compress&cs=tinysrgb&w=1000",
-  wholesale:
-    "https://images.pexels.com/photos/14993421/pexels-photo-14993421.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  feeding:
-    "https://images.pexels.com/photos/7509423/pexels-photo-7509423.jpeg?auto=compress&cs=tinysrgb&w=900",
-  growing:
-    "https://images.pexels.com/photos/7509424/pexels-photo-7509424.jpeg?auto=compress&cs=tinysrgb&w=900",
-  harvesting:
-    "https://images.pexels.com/photos/32243195/pexels-photo-32243195.jpeg?auto=compress&cs=tinysrgb&w=900",
-  closing:
-    "https://images.pexels.com/photos/18640095/pexels-photo-18640095.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    about: "https://images.pexels.com/photos/7509424/pexels-photo-7509424.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    hero: "https://images.pexels.com/photos/15059730/pexels-photo-15059730.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    heroSmall1:
+        "https://images.pexels.com/photos/32243187/pexels-photo-32243187.jpeg?auto=compress&cs=tinysrgb&w=800",
+    heroSmall2:
+        "https://images.pexels.com/photos/8352786/pexels-photo-8352786.jpeg?auto=compress&cs=tinysrgb&w=800",
+    catfish:
+        "https://images.pexels.com/photos/32243187/pexels-photo-32243187.jpeg?auto=compress&cs=tinysrgb&w=1000",
+    tilapia:
+        "https://images.pexels.com/photos/8352786/pexels-photo-8352786.jpeg?auto=compress&cs=tinysrgb&w=1000",
+    wholesale:
+        "https://images.pexels.com/photos/14993421/pexels-photo-14993421.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    feeding:
+        "https://images.pexels.com/photos/7509423/pexels-photo-7509423.jpeg?auto=compress&cs=tinysrgb&w=900",
+    growing:
+        "https://images.pexels.com/photos/7509424/pexels-photo-7509424.jpeg?auto=compress&cs=tinysrgb&w=900",
+    harvesting:
+        "https://images.pexels.com/photos/32243195/pexels-photo-32243195.jpeg?auto=compress&cs=tinysrgb&w=900",
+    closing:
+        "https://images.pexels.com/photos/18640095/pexels-photo-18640095.jpeg?auto=compress&cs=tinysrgb&w=1600",
 };
 
 /* ---------------------------- scroll reveal --------------------------- */
@@ -182,6 +183,74 @@ function Hero() {
     );
 }
 
+// add to your existing IMG object:
+
+import { Fish, GraduationCap, Handshake } from "lucide-react";
+
+function About() {
+    const values = [
+        {
+            icon: Fish,
+            title: "Fresh, not frozen",
+            copy: "Fish comes straight from the pond to your order — no long cold storage in between.",
+        },
+        {
+            icon: GraduationCap,
+            title: "We teach, too",
+            copy: "Beyond selling fish, we train people to start and grow their own fishery.",
+        },
+        {
+            icon: Handshake,
+            title: "No middlemen",
+            copy: "You're buying directly from the farm, whether it's one crate or a standing order.",
+        },
+    ];
+    return (
+        <section id="about" className="py-24 bg-[#F6F2E9]">
+            <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-14 items-center">
+                <Reveal>
+                    <div className="rounded-2xl overflow-hidden h-80 md:h-[420px]">
+                        <img
+                            src={IMG.about}
+                            alt="Fish farm pond at Blue Harvest"
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+                </Reveal>
+
+                <Reveal delay={120}>
+                    <p className="text-[#B98A2B] text-sm mb-3">About us</p>
+                    <h2
+                        className="text-3xl md:text-4xl text-[#0E2B27] max-w-md"
+                        style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
+                    >
+                        We don't just sell fish — we build fisheries.
+                    </h2>
+                    <p className="text-[#31463F]/80 mt-5 max-w-md leading-relaxed">
+                        Blue Harvest raises catfish and tilapia the way we'd want to
+                        buy them: fresh, well-fed, and handled with care from pond to
+                        delivery. And because good fish starts with good practice, we
+                        also teach the fishery skills behind it — so anyone can learn
+                        to farm as well as we do.
+                    </p>
+
+                    <div className="grid sm:grid-cols-1 gap-6 mt-9">
+                        {values.map((v) => (
+                            <div key={v.title} className="flex items-start gap-4">
+                                <v.icon size={22} className="text-[#0E3B36] mt-0.5 shrink-0" strokeWidth={1.6} />
+                                <div>
+                                    <h3 className="text-[#0E2B27] font-medium">{v.title}</h3>
+                                    <p className="text-[#31463F]/70 text-sm mt-1 leading-relaxed">{v.copy}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </Reveal>
+            </div>
+        </section>
+    );
+}
+
 /* ----------------------------- How it works ----------------------------- */
 function HowItWorks() {
     const steps = [
@@ -229,54 +298,54 @@ function HowItWorks() {
 }
 
 function Varieties() {
-  const cards = [
-    { img: IMG.catfish, name: "Catfish", copy: "Firm, mild, and versatile — sold live or freshly dressed.", cta: "Order catfish" },
-    { img: IMG.tilapia, name: "Tilapia", copy: "Sweet, delicate flesh, farmed in clean, well-fed ponds.", cta: "Order tilapia" },
-  ];
-  return (
-    <section id="varieties" className="py-24 bg-[#F6F2E9]">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <Reveal>
-          <p className="text-[#B98A2B] text-sm mb-3">Our varieties</p>
-          <h2
-            className="text-3xl md:text-4xl text-[#0E2B27] max-w-lg"
-            style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
-          >
-            Fresh from our farm to your table.
-          </h2>
-        </Reveal>
+    const cards = [
+        { img: IMG.catfish, name: "Catfish", copy: "Firm, mild, and versatile — sold live or freshly dressed.", cta: "Order catfish" },
+        { img: IMG.tilapia, name: "Tilapia", copy: "Sweet, delicate flesh, farmed in clean, well-fed ponds.", cta: "Order tilapia" },
+    ];
+    return (
+        <section id="varieties" className="py-24 bg-[#F6F2E9]">
+            <div className="max-w-6xl mx-auto px-6 md:px-10">
+                <Reveal>
+                    <p className="text-[#B98A2B] text-sm mb-3">Our varieties</p>
+                    <h2
+                        className="text-3xl md:text-4xl text-[#0E2B27] max-w-lg"
+                        style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
+                    >
+                        Fresh from our farm to your table.
+                    </h2>
+                </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-10 md:gap-5 mt-14">
-          {cards.map((c, i) => (
-            <Reveal key={c.name} delay={i * 120}>
-              <div className="group">
-                <div className="h-[420px] md:h-[500px] rounded-2xl overflow-hidden">
-                  <img
-                    src={c.img}
-                    alt={c.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
+                <div className="grid md:grid-cols-2 gap-10 md:gap-5 mt-14">
+                    {cards.map((c, i) => (
+                        <Reveal key={c.name} delay={i * 120}>
+                            <div className="group">
+                                <div className="h-[420px] md:h-[500px] rounded-2xl overflow-hidden">
+                                    <img
+                                        src={c.img}
+                                        alt={c.name}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                    />
+                                </div>
+                                <h3
+                                    className="text-2xl text-[#0E2B27] mt-6"
+                                    style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
+                                >
+                                    {c.name}
+                                </h3>
+                                <p className="text-[#31463F]/80 mt-2 mb-5 text-[15px] max-w-sm">{c.copy}</p>
+                                <a
+                                    href={WHATSAPP_LINK(`I'd like to order ${c.name}.`)}
+                                    className="inline-flex items-center rounded-full border border-[#0E3B36]/25 text-[#0E3B36] px-5 py-2.5 text-sm hover:border-[#0E3B36]/60 transition-colors"
+                                >
+                                    {c.cta}
+                                </a>
+                            </div>
+                        </Reveal>
+                    ))}
                 </div>
-                <h3
-                  className="text-2xl text-[#0E2B27] mt-6"
-                  style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
-                >
-                  {c.name}
-                </h3>
-                <p className="text-[#31463F]/80 mt-2 mb-5 text-[15px] max-w-sm">{c.copy}</p>
-                <a
-                  href={WHATSAPP_LINK(`I'd like to order ${c.name}.`)}
-                  className="inline-flex items-center rounded-full border border-[#0E3B36]/25 text-[#0E3B36] px-5 py-2.5 text-sm hover:border-[#0E3B36]/60 transition-colors"
-                >
-                  {c.cta}
-                </a>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+            </div>
+        </section>
+    );
 }
 
 
@@ -330,79 +399,79 @@ function Wholesale() {
 
 /* ---------------------------- Fishery journey / learn --------------------- */
 function FisheryJourney() {
-  const stages = [
-    { title: "Feeding", img: IMG.feeding, copy: "Learn how to formulate and time feed for healthy, fast-growing stock." },
-    { title: "Growing", img: IMG.growing, copy: "Manage water quality, density, and health from fingerling to full size." },
-    { title: "Harvesting", img: IMG.harvesting, copy: "Time your harvest and handle fish right, from pond to market." },
-  ];
-  const scrollerRef = useRef(null);
-  const scrollBy = (dir) => {
-    scrollerRef.current?.scrollBy({ left: dir * 320, behavior: "smooth" });
-  };
-  return (
-    <section id="learn-fishery" className="py-24 bg-[#0E2B27] text-[#F6F2E9]">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <Reveal>
-          <div className="flex items-end justify-between flex-wrap gap-6">
-            <div>
-              <p className="text-[#D9A441] text-sm mb-3">Want to learn fishery?</p>
-              <h2
-                className="text-3xl md:text-4xl max-w-lg"
-                style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
-              >
-                Go beyond buying — explore our fishery courses.
-              </h2>
-            </div>
-            <div className="flex gap-3">
-              <button
-                onClick={() => scrollBy(-1)}
-                aria-label="Scroll left"
-                className="w-11 h-11 rounded-full border border-[#F6F2E9]/25 flex items-center justify-center hover:border-[#F6F2E9]/60 transition-colors"
-              >
-                ←
-              </button>
-              <button
-                onClick={() => scrollBy(1)}
-                aria-label="Scroll right"
-                className="w-11 h-11 rounded-full border border-[#F6F2E9]/25 flex items-center justify-center hover:border-[#F6F2E9]/60 transition-colors"
-              >
-                →
-              </button>
-            </div>
-          </div>
-        </Reveal>
- 
-        <div
-          ref={scrollerRef}
-          className="flex gap-6 mt-12 overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none]"
-          style={{ scrollbarWidth: "none" }}
-        >
-          {stages.map((s, i) => (
-            <Reveal key={s.title} delay={i * 100} className="snap-start shrink-0 w-[280px] sm:w-[320px]">
-              <div className="rounded-3xl overflow-hidden bg-[#123832]">
-                <div className="h-44 overflow-hidden">
-                  <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
+    const stages = [
+        { title: "Feeding", img: IMG.feeding, copy: "Learn how to formulate and time feed for healthy, fast-growing stock." },
+        { title: "Growing", img: IMG.growing, copy: "Manage water quality, density, and health from fingerling to full size." },
+        { title: "Harvesting", img: IMG.harvesting, copy: "Time your harvest and handle fish right, from pond to market." },
+    ];
+    const scrollerRef = useRef(null);
+    const scrollBy = (dir) => {
+        scrollerRef.current?.scrollBy({ left: dir * 320, behavior: "smooth" });
+    };
+    return (
+        <section id="learn-fishery" className="py-24 bg-[#0E2B27] text-[#F6F2E9]">
+            <div className="max-w-6xl mx-auto px-6 md:px-10">
+                <Reveal>
+                    <div className="flex items-end justify-between flex-wrap gap-6">
+                        <div>
+                            <p className="text-[#D9A441] text-sm mb-3">Want to learn fishery?</p>
+                            <h2
+                                className="text-3xl md:text-4xl max-w-lg"
+                                style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
+                            >
+                                Go beyond buying — explore our fishery courses.
+                            </h2>
+                        </div>
+                        <div className="flex gap-3">
+                            <button
+                                onClick={() => scrollBy(-1)}
+                                aria-label="Scroll left"
+                                className="w-11 h-11 rounded-full border border-[#F6F2E9]/25 flex items-center justify-center hover:border-[#F6F2E9]/60 transition-colors"
+                            >
+                                ←
+                            </button>
+                            <button
+                                onClick={() => scrollBy(1)}
+                                aria-label="Scroll right"
+                                className="w-11 h-11 rounded-full border border-[#F6F2E9]/25 flex items-center justify-center hover:border-[#F6F2E9]/60 transition-colors"
+                            >
+                                →
+                            </button>
+                        </div>
+                    </div>
+                </Reveal>
+
+                <div
+                    ref={scrollerRef}
+                    className="flex gap-6 mt-12 overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none]"
+                    style={{ scrollbarWidth: "none" }}
+                >
+                    {stages.map((s, i) => (
+                        <Reveal key={s.title} delay={i * 100} className="snap-start shrink-0 w-[280px] sm:w-[320px]">
+                            <div className="rounded-3xl overflow-hidden bg-[#123832]">
+                                <div className="h-44 overflow-hidden">
+                                    <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
+                                </div>
+                                <div className="p-6">
+                                    <h3 className="text-xl mb-2">{s.title}</h3>
+                                    <p className="text-[#F6F2E9]/65 text-sm leading-relaxed">{s.copy}</p>
+                                </div>
+                            </div>
+                        </Reveal>
+                    ))}
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl mb-2">{s.title}</h3>
-                  <p className="text-[#F6F2E9]/65 text-sm leading-relaxed">{s.copy}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
- 
-        <Reveal delay={320}>
-          <a
-            href="learn-fishery"
-            className="inline-flex mt-10 rounded-full border border-[#F6F2E9]/30 px-7 py-3.5 text-[15px] hover:border-[#F6F2E9]/70 transition-colors"
-          >
-            Explore fishery courses
-          </a>
-        </Reveal>
-      </div>
-    </section>
-  );
+
+                <Reveal delay={320}>
+                    <a
+                        href="learn-fishery"
+                        className="inline-flex mt-10 rounded-full border border-[#F6F2E9]/30 px-7 py-3.5 text-[15px] hover:border-[#F6F2E9]/70 transition-colors"
+                    >
+                        Explore fishery courses
+                    </a>
+                </Reveal>
+            </div>
+        </section>
+    );
 }
 
 /* -------------------------------- Closing banner --------------------------- */
@@ -441,6 +510,7 @@ export default function Home() {
         * { font-family: 'Inter', sans-serif; }
       `}</style>
             <Hero />
+            <About />
             <HowItWorks />
             <Varieties />
             <Wholesale />
