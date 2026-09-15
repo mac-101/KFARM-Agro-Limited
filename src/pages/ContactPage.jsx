@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { MessageCircle, MapPin } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  Blue Harvest — Contact page                                        */
+/*  KFARM Agro Limited, Contact page                                        */
 /*  WhatsApp is the primary contact channel.                           */
 /*  Same design system as the rest of the site.                        */
 /* ------------------------------------------------------------------ */
@@ -85,7 +85,7 @@ function ContactHero() {
           }}
         >
           Orders, wholesale enquiries, or questions about our fishery
-          courses — the fastest way to reach us is a WhatsApp message.
+          courses, the fastest way to reach us is a WhatsApp message.
         </p>
         <div
           className={`${base} mt-10`}
@@ -146,7 +146,7 @@ function Location() {
         <Reveal delay={120}>
           <div className="rounded-2xl overflow-hidden h-64 md:h-80">
             <iframe
-              title="Blue Harvest location map"
+              title="KFARM Agro Limited location map"
               className="w-full h-full border-0"
               loading="lazy"
               src="https://www.google.com/maps?q=Market+Square+at+Ezendioma+Asa+Ukwa+West+Abia+State&output=embed"

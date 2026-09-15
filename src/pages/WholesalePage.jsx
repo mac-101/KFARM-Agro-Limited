@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { UtensilsCrossed, Store, Building2, MapPin } from "lucide-react";
+import { UtensilsCrossed, Store, Building2, MapPin, MessageCircle } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  Blue Harvest — Order + Wholesale page                              */
+/*  KFARM Agro Limited, Order + Wholesale page                              */
 /*  Covers both: (1) retail ordering of catfish & tilapia, and         */
 /*  (2) wholesale for restaurants/retailers/businesses.                */
 /*  Same design system as the rest of the site: deep teal + harvest    */
@@ -104,7 +104,7 @@ function OrderHero() {
             transitionDelay: "180ms",
           }}
         >
-          Order catfish or tilapia for your kitchen or your table — or set
+          Order catfish or tilapia for your kitchen or your table, or set
           up a standing supply for your restaurant, shop, or business.
         </p>
         <div
@@ -136,7 +136,7 @@ function OrderHero() {
 /* -------------------------------- Order / varieties ------------------------------ */
 function Order() {
   const cards = [
-    { img: IMG.catfish, name: "Catfish", copy: "Firm, mild, and versatile — sold live or freshly dressed, priced by weight.", cta: "Order catfish" },
+    { img: IMG.catfish, name: "Catfish", copy: "Firm, mild, and versatile, sold live or freshly dressed, priced by weight.", cta: "Order catfish" },
     { img: IMG.tilapia, name: "Tilapia", copy: "Sweet, delicate flesh, farmed in clean, well-fed ponds, priced by weight.", cta: "Order tilapia" },
   ];
   return (
@@ -187,6 +187,79 @@ function Order() {
   );
 }
 
+function OrderForm() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const message = [
+      "KFARM Agro Limited, I'd like to place an order.",
+      `Fish: ${formData.get("fish")}`,
+      `Quantity: ${formData.get("quantity")}`,
+      `Order type: ${formData.get("orderType")}`,
+      `Pickup or delivery: ${formData.get("fulfilment")}`,
+      `Notes: ${formData.get("notes") || "None"}`,
+    ].join("\n");
+    window.open(WHATSAPP_LINK(message), "_blank", "noopener,noreferrer");
+  };
+
+  return (
+    <section id="order-form" className="py-24 bg-[#0E2B27] text-[#F6F2E9]">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-[0.85fr_1.15fr] gap-12 items-start">
+        <Reveal>
+          <p className="text-[#D9A441] text-sm mb-3">Ready to order?</p>
+          <h2 className="text-3xl md:text-4xl max-w-md" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
+            Send us the details and we&apos;ll take it from there.
+          </h2>
+          <p className="text-[#F6F2E9]/70 mt-5 max-w-md leading-relaxed">
+            Complete the short form and it will open WhatsApp with your order already written out.
+          </p>
+        </Reveal>
+
+        <Reveal delay={120}>
+          <form onSubmit={handleSubmit} className="grid sm:grid-cols-2 gap-5">
+            <label className="text-sm">
+              Fish
+              <select name="fish" required className="mt-2 w-full rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9]">
+                <option>Catfish</option>
+                <option>Tilapia</option>
+                <option>Catfish and tilapia</option>
+              </select>
+            </label>
+            <label className="text-sm">
+              Quantity
+              <input name="quantity" required placeholder="e.g. 10 kg or 1 crate" className="mt-2 w-full rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9] placeholder:text-[#F6F2E9]/45" />
+            </label>
+            <label className="text-sm">
+              Order type
+              <select name="orderType" className="mt-2 w-full rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9]">
+                <option>One-time order</option>
+                <option>Regular supply</option>
+                <option>Wholesale order</option>
+              </select>
+            </label>
+            <label className="text-sm">
+              Pickup or delivery
+              <select name="fulfilment" className="mt-2 w-full rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9]">
+                <option>Pickup</option>
+                <option>Delivery</option>
+                <option>Not sure yet</option>
+              </select>
+            </label>
+            <label className="text-sm sm:col-span-2">
+              Extra details
+              <textarea name="notes" rows="3" placeholder="Preferred date, location, or anything else we should know" className="mt-2 w-full resize-y rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9] placeholder:text-[#F6F2E9]/45" />
+            </label>
+            <button type="submit" className="sm:col-span-2 inline-flex w-fit items-center gap-2 rounded-full bg-[#D9A441] px-7 py-3.5 text-[15px] text-[#0E2B27] hover:bg-[#e5b559] transition-colors">
+              <MessageCircle size={18} />
+              Continue on WhatsApp
+            </button>
+          </form>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 /* -------------------------------- Segments -------------------------------- */
 function Segments() {
   const segments = [
@@ -203,7 +276,7 @@ function Segments() {
     {
       icon: Building2,
       title: "For businesses",
-      copy: "Catering, processing, or anything in between — tell us your volume and we'll work it out.",
+      copy: "Catering, processing, or anything in between, tell us your volume and we'll work it out.",
     },
   ];
   return (
@@ -238,7 +311,7 @@ function Segments() {
 /* ------------------------------- How wholesale works ------------------------------ */
 function HowWholesaleWorks() {
   const steps = [
-    { n: "01", title: "Tell us what you need", copy: "Fish type, rough quantity, and how often — no minimum, no set tiers." },
+    { n: "01", title: "Tell us what you need", copy: "Fish type, rough quantity, and how often, no minimum, no set tiers." },
     { n: "02", title: "Get a quote", copy: "We come back with pricing and the earliest we can supply it." },
     { n: "03", title: "Schedule delivery", copy: "Agree on a pickup or delivery time that fits your operation." },
     { n: "04", title: "Reorder with ease", copy: "Once we know your pattern, repeat orders take minutes to confirm." },
@@ -297,7 +370,7 @@ function Location() {
         <Reveal delay={120}>
           <div className="rounded-2xl overflow-hidden h-64 md:h-80">
             <iframe
-              title="Blue Harvest location map"
+              title="KFARM Agro Limited location map"
               className="w-full h-full border-0"
               loading="lazy"
               src="https://www.google.com/maps?q=Market+Square+Ezendioma+Asa+Ukwa+West+Abia+State&output=embed"
@@ -319,7 +392,7 @@ function QuoteCTA() {
             className="text-3xl md:text-4xl text-[#0E2B27] max-w-xl mx-auto"
             style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
           >
-            Tell us what you need — we'll work out the rest.
+            Tell us what you need, we'll work out the rest.
           </h2>
           <p className="text-[#31463F]/80 mt-4 max-w-md mx-auto">
             No fixed minimum, no rigid tiers. Reach out with your fish type
@@ -347,6 +420,7 @@ export default function WholesalePage() {
       `}</style>
       <OrderHero />
       <Order />
+      <OrderForm />
       <Segments />
       <HowWholesaleWorks />
       <Location />

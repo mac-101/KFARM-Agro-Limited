@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 /* ------------------------------------------------------------------ */
-/*  KFARM  Agro Limited — fish business landing page                          */
+/*  KFARM  Agro Limited, fish business landing page                          */
 /*  Built from a hand-sketched wireframe: hero, ordering steps,        */
 /*  catfish/tilapia varieties, wholesale, fishery-learning carousel,   */
 /*  closing banner.                                                    */
@@ -120,7 +120,7 @@ function Hero() {
                             transitionDelay: "180ms",
                         }}
                     >
-                        Get quality fish, sourced fresh — or learn the skills to start
+                        Get quality fish, sourced fresh, or learn the skills to start
                         and grow your own fishery.
                     </p>
                     <div
@@ -185,14 +185,17 @@ function Hero() {
 
 // add to your existing IMG object:
 
-import { Fish, GraduationCap, Handshake } from "lucide-react";
+import { Fish, GraduationCap, Handshake, MessageCircle } from "lucide-react";
+import video3 from "../assets/video 3.mp4";
 
 function About() {
+    const [videoError, setVideoError] = useState(false);
+
     const values = [
         {
             icon: Fish,
             title: "Fresh, not frozen",
-            copy: "Fish comes straight from the pond to your order — no long cold storage in between.",
+            copy: "Fish comes straight from the pond to your order, no long cold storage in between.",
         },
         {
             icon: GraduationCap,
@@ -205,16 +208,31 @@ function About() {
             copy: "You're buying directly from the farm, whether it's one crate or a standing order.",
         },
     ];
+
     return (
         <section id="about" className="py-24 bg-[#F6F2E9]">
             <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-14 items-center">
                 <Reveal>
                     <div className="rounded-2xl overflow-hidden h-80 md:h-[420px]">
-                        <img
-                            src={IMG.about}
-                            alt="Fish farm pond at Blue Harvest"
-                            className="w-full h-full object-cover"
-                        />
+                        {!videoError ? (
+                            <video
+                                src={video3}
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                preload="auto"
+                                poster={IMG.about}
+                                onError={() => setVideoError(true)}
+                                className="w-full h-full object-cover"
+                            />
+                        ) : (
+                            <img
+                                src={IMG.about}
+                                alt="Fish farm pond at KFARM Agro Limited"
+                                className="w-full h-full object-cover"
+                            />
+                        )}
                     </div>
                 </Reveal>
 
@@ -224,13 +242,13 @@ function About() {
                         className="text-3xl md:text-4xl text-[#0E2B27] max-w-md"
                         style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
                     >
-                        We don't just sell fish — we build fisheries.
+                        We don't just sell fish, we build fisheries.
                     </h2>
                     <p className="text-[#31463F]/80 mt-5 max-w-md leading-relaxed">
-                        Blue Harvest raises catfish and tilapia the way we'd want to
+                        KFARM Agro Limited raises catfish and tilapia the way we'd want to
                         buy them: fresh, well-fed, and handled with care from pond to
                         delivery. And because good fish starts with good practice, we
-                        also teach the fishery skills behind it — so anyone can learn
+                        also teach the fishery skills behind it, so anyone can learn
                         to farm as well as we do.
                     </p>
 
@@ -251,11 +269,53 @@ function About() {
     );
 }
 
+function FarmGallery() {
+    const images = [
+        { src: IMG.about, alt: "Fish pond at KFARM Agro Limited" },
+        { src: IMG.feeding, alt: "Feeding fish at the farm" },
+        { src: IMG.growing, alt: "Fish growing in a managed farm pond" },
+        { src: IMG.harvesting, alt: "Harvesting fresh fish for customers" },
+    ];
+
+    return (
+        <section id="gallery" className="py-24 bg-[#F6F2E9]">
+            <div className="max-w-6xl mx-auto px-6 md:px-10">
+                <Reveal>
+                    <p className="text-[#B98A2B] text-sm mb-3">Life at the farm</p>
+                    <h2
+                        className="text-3xl md:text-4xl text-[#0E2B27] max-w-lg"
+                        style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
+                    >
+                        From pond to harvest.
+                    </h2>
+                </Reveal>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mt-12">
+                    {images.map((image, index) => (
+                        <Reveal key={image.alt} delay={index * 80}>
+                            <figure className={`overflow-hidden rounded-2xl ${index === 0 ? "col-span-2 row-span-2" : ""}`}>
+                                <img
+                                    src={image.src}
+                                    alt={image.alt}
+                                    loading="lazy"
+                                    decoding="async"
+                                    className="w-full h-full min-h-44 md:min-h-52 object-cover transition-transform duration-700 hover:scale-105"
+                                />
+                            </figure>
+                        </Reveal>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+
 /* ----------------------------- How it works ----------------------------- */
 function HowItWorks() {
     const steps = [
         { n: "01", title: "Choose your fish", copy: "Pick catfish, tilapia, or both, by weight or by crate." },
-        { n: "02", title: "Place your order", copy: "Tell us where and when — we fit around your schedule." },
+        { n: "02", title: "Place your order", copy: "Tell us where and when, we fit around your schedule." },
         { n: "03", title: "Confirm details", copy: "We confirm quantity, price, and delivery in minutes." },
         { n: "04", title: "Get your fish", copy: "Fresh fish arrives at your door, still cold from the farm." },
     ];
@@ -299,7 +359,7 @@ function HowItWorks() {
 
 function Varieties() {
     const cards = [
-        { img: IMG.catfish, name: "Catfish", copy: "Firm, mild, and versatile — sold live or freshly dressed.", cta: "Order catfish" },
+        { img: IMG.catfish, name: "Catfish", copy: "Firm, mild, and versatile, sold live or freshly dressed.", cta: "Order catfish" },
         { img: IMG.tilapia, name: "Tilapia", copy: "Sweet, delicate flesh, farmed in clean, well-fed ponds.", cta: "Order tilapia" },
     ];
     return (
@@ -397,6 +457,159 @@ function Wholesale() {
     );
 }
 
+function OrderForm() {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const message = [
+            "KFARM Agro Limited, I'd like to place an order.",
+            `Fish: ${formData.get("fish")}`,
+            `Quantity: ${formData.get("quantity")}`,
+            `Order type: ${formData.get("orderType")}`,
+            `Pickup or delivery: ${formData.get("fulfilment")}`,
+            `Notes: ${formData.get("notes") || "None"}`,
+        ].join("\n");
+        window.open(WHATSAPP_LINK(message), "_blank", "noopener,noreferrer");
+    };
+
+    return (
+        <section id="order-form" className="py-24 bg-[#0E2B27] text-[#F6F2E9]">
+            <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-[0.85fr_1.15fr] gap-12 items-start">
+                <Reveal>
+                    <p className="text-[#D9A441] text-sm mb-3">Ready to order?</p>
+                    <h2
+                        className="text-3xl md:text-4xl max-w-md"
+                        style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
+                    >
+                        Send us the details and we&apos;ll take it from there.
+                    </h2>
+                    <p className="text-[#F6F2E9]/70 mt-5 max-w-md leading-relaxed">
+                        Complete the short form and it will open WhatsApp with your order already written out.
+                    </p>
+                </Reveal>
+
+                <Reveal delay={120}>
+                    <form onSubmit={handleSubmit} className="grid sm:grid-cols-2 gap-5">
+                        <label className="text-sm">
+                            Fish
+                            <select name="fish" required className="mt-2 w-full rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9]">
+                                <option>Catfish</option>
+                                <option>Tilapia</option>
+                                <option>Catfish and tilapia</option>
+                            </select>
+                        </label>
+                        <label className="text-sm">
+                            Quantity
+                            <input name="quantity" required placeholder="e.g. 10 kg or 1 crate" className="mt-2 w-full rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9] placeholder:text-[#F6F2E9]/45" />
+                        </label>
+                        <label className="text-sm">
+                            Order type
+                            <select name="orderType" className="mt-2 w-full rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9]">
+                                <option>One-time order</option>
+                                <option>Regular supply</option>
+                                <option>Wholesale order</option>
+                            </select>
+                        </label>
+                        <label className="text-sm">
+                            Pickup or delivery
+                            <select name="fulfilment" className="mt-2 w-full rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9]">
+                                <option>Pickup</option>
+                                <option>Delivery</option>
+                                <option>Not sure yet</option>
+                            </select>
+                        </label>
+                        <label className="text-sm sm:col-span-2">
+                            Extra details
+                            <textarea name="notes" rows="3" placeholder="Preferred date, location, or anything else we should know" className="mt-2 w-full resize-y rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9] placeholder:text-[#F6F2E9]/45" />
+                        </label>
+                        <button type="submit" className="sm:col-span-2 inline-flex w-fit items-center gap-2 rounded-full bg-[#D9A441] px-7 py-3.5 text-[15px] text-[#0E2B27] hover:bg-[#e5b559] transition-colors">
+                            <MessageCircle size={18} />
+                            Continue on WhatsApp
+                        </button>
+                    </form>
+                </Reveal>
+            </div>
+        </section>
+    );
+}
+
+function FrequentlyAskedQuestions() {
+    const questions = [
+        {
+            question: "What fish can I order?",
+            answer: "We currently raise catfish and tilapia, available fresh from the farm.",
+        },
+        {
+            question: "Can I order for a small quantity?",
+            answer: "Yes. Whether you need one crate or a regular standing order, message us with what you need and when you need it.",
+        },
+        {
+            question: "Do you deliver?",
+            answer: "Tell us where and when you need your fish. We will confirm the available delivery option, quantity, and price with you on WhatsApp.",
+        },
+        {
+            question: "Where can I pick up my order?",
+            answer: "Our pickup location is Market Square, Ezendioma, Asa Ukwa West LGA, Abia State.",
+        },
+        {
+            question: "Do you teach fishery?",
+            answer: "Yes. Our courses cover practical fishery skills, from feeding and growing to harvesting.",
+        },
+    ];
+    const [openIndex, setOpenIndex] = useState(0);
+
+    return (
+        <section id="faq" className="py-24 bg-[#F6F2E9]">
+            <div className="max-w-4xl mx-auto px-6 md:px-10">
+                <Reveal>
+                    <p className="text-[#B98A2B] text-sm mb-3">Before you order</p>
+                    <h2
+                        className="text-3xl md:text-4xl text-[#0E2B27] max-w-lg"
+                        style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
+                    >
+                        Questions? We have answers.
+                    </h2>
+                </Reveal>
+
+                <div className="mt-10 border-t border-[#0E3B36]/15">
+                    {questions.map((item, index) => {
+                        const isOpen = openIndex === index;
+                        return (
+                            <div key={item.question} className="border-b border-[#0E3B36]/15">
+                                <button
+                                    type="button"
+                                    onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                                    aria-expanded={isOpen}
+                                    className="flex w-full items-center justify-between gap-6 py-5 text-left text-[#0E2B27]"
+                                >
+                                    <span className="text-base md:text-lg font-medium">{item.question}</span>
+                                    <span className="text-2xl font-light" aria-hidden="true">{isOpen ? "−" : "+"}</span>
+                                </button>
+                                {isOpen && (
+                                    <p className="max-w-2xl pb-5 pr-10 text-[#31463F]/75 leading-relaxed">
+                                        {item.answer}
+                                    </p>
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+
+                <Reveal delay={160}>
+                    <a
+                        href={WHATSAPP_LINK("I'd like to ask a question about ordering.")}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex mt-10 rounded-full bg-[#0E3B36] text-[#F6F2E9] px-7 py-3.5 text-[15px] hover:bg-[#134943] transition-colors"
+                    >
+                        Ask us on WhatsApp
+                    </a>
+                </Reveal>
+            </div>
+        </section>
+    );
+}
+
 /* ---------------------------- Fishery journey / learn --------------------- */
 function FisheryJourney() {
     const stages = [
@@ -419,7 +632,7 @@ function FisheryJourney() {
                                 className="text-3xl md:text-4xl max-w-lg"
                                 style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
                             >
-                                Go beyond buying — explore our fishery courses.
+                                Go beyond buying, explore our fishery courses.
                             </h2>
                         </div>
                         <div className="flex gap-3">
@@ -511,9 +724,12 @@ export default function Home() {
       `}</style>
             <Hero />
             <About />
+            <FarmGallery />
             <HowItWorks />
             <Varieties />
             <Wholesale />
+            <OrderForm />
+            <FrequentlyAskedQuestions />
             <FisheryJourney />
             <ClosingBanner />
         </div>

@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  Blue Harvest — Learn / Education page                              */
+/*  KFARM Agro Limited, Learn / Education page                              */
 /*  Same design system as the main site: deep teal + harvest gold on   */
 /*  soft paper cream, Fraunces headlines + Inter body.                 */
 /* ------------------------------------------------------------------ */
@@ -108,7 +108,7 @@ function EducationHero() {
             transitionDelay: "180ms",
           }}
         >
-          Practical, hands-on fishery training — from your first pond to
+          Practical, hands-on fishery training, from your first pond to
           running a farm that pays for itself. No guesswork, just what
           works.
         </p>
@@ -139,7 +139,7 @@ function WhatYoullLearn() {
     { icon: Fish, title: "Catfish production", copy: "Stocking, growth cycles, and handling practices specific to catfish." },
     { icon: Waves, title: "Tilapia production", copy: "What tilapia need to thrive, and how their production differs from catfish." },
     { icon: UtensilsCrossed, title: "Feeding & nutrition", copy: "Choosing and timing feed for healthy growth without wasting money." },
-    { icon: Sprout, title: "Pond management", copy: "Keeping ponds productive — stocking density, cycles, and upkeep." },
+    { icon: Sprout, title: "Pond management", copy: "Keeping ponds productive, stocking density, cycles, and upkeep." },
     { icon: Droplets, title: "Water management", copy: "Monitoring and maintaining the water quality your fish depend on." },
     { icon: HeartPulse, title: "Fish health", copy: "Spotting disease early and keeping stock healthy through every stage." },
     { icon: TrendingUp, title: "Business & marketing", copy: "Pricing, finding buyers, and turning a fishery into a steady income." },
@@ -178,7 +178,7 @@ function WhoIsItFor() {
   const groups = [
     {
       title: "Beginners",
-      copy: "You're curious about fish farming and want to understand it from scratch — no prior experience needed.",
+      copy: "You're curious about fish farming and want to understand it from scratch, no prior experience needed.",
     },
     {
       title: "Aspiring fish farmers",

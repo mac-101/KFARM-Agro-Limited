@@ -1,3 +1,5 @@
+import { MapPin } from "lucide-react";
+
 function Footer() {
     return (
         <footer id="contact" className="bg-[#F6F2E9] py-14 border-t border-[#0E3B36]/10">
@@ -10,11 +12,18 @@ function Footer() {
                         KFARM  Agro Limited
                     </span>
                     <p className="text-[#31463F]/70 text-sm mt-2 max-w-xs">
-                        Fresh catfish and tilapia, sold directly and by the crate — plus
+                        Fresh catfish and tilapia, sold directly and by the crate, plus
                         the know-how to grow your own.
                     </p>
                 </div>
-                <div className="flex gap-16 text-sm">
+                <div className="flex flex-wrap gap-12 md:gap-16 text-sm">
+                    <div className="max-w-[220px] text-[#0E3B36]/80">
+                        <span className="text-[#0E3B36]">Visit us</span>
+                        <div className="flex items-start gap-2 mt-2 leading-relaxed">
+                            <MapPin size={17} className="mt-0.5 shrink-0 text-[#0E3B36]" strokeWidth={1.8} />
+                            <p>Market Square, Ezendioma, Asa Ukwa West LGA, Abia State.</p>
+                        </div>
+                    </div>
                     <div className="flex flex-col gap-2 text-[#0E3B36]/80">
                         <span className="text-[#0E3B36] mb-1">Shop</span>
                         <a href="#varieties" className="hover:text-[#0E3B36]">Catfish</a>
