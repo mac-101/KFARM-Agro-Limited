@@ -15,6 +15,9 @@ function Footer() {
                         Fresh catfish and tilapia, sold directly and by the crate, plus
                         the know-how to grow your own.
                     </p>
+                    <a href="tel:+2349115380670" className="inline-flex items-center gap-2 mt-4 text-sm text-[#0E3B36] hover:text-[#B98A2B] transition-colors">
+                        Call us: 0911 538 0670
+                    </a>
                 </div>
                 <div className="flex flex-wrap gap-12 md:gap-16 text-sm">
                     <div className="max-w-[220px] text-[#0E3B36]/80">
