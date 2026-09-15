@@ -1,7 +1,27 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function Navbar() {
     const [open, setOpen] = useState(false);
+    const navbarRef = useRef(null);
+
+    useEffect(() => {
+        if (!open) return undefined;
+
+        const closeOnScroll = () => setOpen(false);
+        const closeOnOutsideTouch = (event) => {
+            if (!navbarRef.current?.contains(event.target)) {
+                setOpen(false);
+            }
+        };
+
+        window.addEventListener("scroll", closeOnScroll, { passive: true });
+        document.addEventListener("touchstart", closeOnOutsideTouch, { passive: true });
+
+        return () => {
+            window.removeEventListener("scroll", closeOnScroll);
+            document.removeEventListener("touchstart", closeOnOutsideTouch);
+        };
+    }, [open]);
     
     const links = [
         {
@@ -23,7 +43,7 @@ function Navbar() {
     ];
 
     return (
-        <header className="sticky top-0 z-50 bg-[#F6F2E9]/90 backdrop-blur border-b border-[#0E3B36]/10">
+        <header ref={navbarRef} className="sticky top-0 z-50 bg-[#F6F2E9]/90 backdrop-blur border-b border-[#0E3B36]/10">
             <div className="max-w-6xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
                 {/* Brand Logo & Name */}
                 <a href="/" className="flex items-center gap-2 shrink-0">
@@ -68,6 +88,8 @@ function Navbar() {
                     onClick={() => setOpen((v) => !v)}
                     className="md:hidden text-[#0E3B36] p-2 -mr-2 focus:outline-none"
                     aria-label="Toggle menu"
+                    aria-expanded={open}
+                    aria-controls="mobile-navigation"
                 >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path
@@ -81,14 +103,25 @@ function Navbar() {
             </div>
 
             {/* Mobile Navigation Menu */}
-            {open && (
-                <div className="md:hidden border-t border-[#0E3B36]/10 bg-[#F6F2E9] px-6 py-6 flex flex-col gap-4 shadow-lg animate-in fade-in slide-in-from-top-2 duration-200">
+            <div
+                id="mobile-navigation"
+                aria-hidden={!open}
+                className={`absolute left-0 right-0 top-full md:hidden overflow-hidden border-t border-[#0E3B36]/10 bg-[#F6F2E9] px-6 shadow-lg transition-[max-height,opacity,padding] duration-300 ease-out ${
+                    open
+                        ? "max-h-96 py-6 opacity-100"
+                        : "pointer-events-none max-h-0 py-0 opacity-0"
+                }`}
+            >
+                <div className="flex flex-col gap-4">
                     {links.map((l) => (
                         <a
                             key={l.link}
                             href={l.link}
                             onClick={() => setOpen(false)}
-                            className="text-[#0E3B36]/80 hover:text-[#0E3B36] text-[16px] py-1 font-medium transition-colors"
+                            tabIndex={open ? 0 : -1}
+                            className={`text-[#0E3B36]/80 hover:text-[#0E3B36] text-[16px] py-1 font-medium transition-[opacity,transform,color] duration-300 ${
+                                open ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
+                            }`}
                         >
                             {l.text}
                         </a>
@@ -96,12 +129,15 @@ function Navbar() {
                     <a
                         href="/contact"
                         onClick={() => setOpen(false)}
-                        className="inline-flex justify-center items-center rounded-full bg-[#0E3B36] text-[#F6F2E9] px-5 py-3 text-[15px] mt-2 font-medium hover:bg-[#134943] transition-colors"
+                        tabIndex={open ? 0 : -1}
+                        className={`inline-flex justify-center items-center rounded-full bg-[#0E3B36] text-[#F6F2E9] px-5 py-3 text-[15px] mt-2 font-medium hover:bg-[#134943] transition-[opacity,transform,background-color] duration-300 ${
+                            open ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+                        }`}
                     >
                         Contact us
                     </a>
                 </div>
-            )}
+            </div>
         </header>
     );
 }

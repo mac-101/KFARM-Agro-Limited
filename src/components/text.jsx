@@ -136,7 +136,7 @@ function Hero() {
                             href={WHATSAPP_LINK("I'd like to place an order.")}
                             className="rounded-full bg-[#0E3B36] text-[#F6F2E9] px-7 py-3.5 text-[15px] hover:bg-[#134943] transition-colors"
                         >
-                            Place an order
+                            Order fresh fish
                         </a>
                         <a
                             href="#varieties"
@@ -144,6 +144,31 @@ function Hero() {
                         >
                             Our varieties
                         </a>
+                    </div>
+                    <div
+                        className={`${base} grid grid-cols-2 gap-x-6 gap-y-4 mt-10 pt-6 border-t border-[#0E3B36]/15 max-w-lg`}
+                        style={{
+                            opacity: shown ? 1 : 0,
+                            transform: shown ? "translateY(0)" : "translateY(18px)",
+                            transitionDelay: "360ms",
+                        }}
+                    >
+                        <div>
+                            <p className="text-[#0E2B27] text-sm font-medium">Fresh from the farm</p>
+                            <p className="text-[#31463F]/65 text-xs mt-1">Catfish and tilapia</p>
+                        </div>
+                        <div>
+                            <p className="text-[#0E2B27] text-sm font-medium">Pickup &amp; delivery</p>
+                            <p className="text-[#31463F]/65 text-xs mt-1">Serving From Abia State</p>
+                        </div>
+                        <div>
+                            <p className="text-[#0E2B27] text-sm font-medium">Retail to wholesale</p>
+                            <p className="text-[#31463F]/65 text-xs mt-1">One order or regular supply</p>
+                        </div>
+                        <div>
+                            <p className="text-[#0E2B27] text-sm font-medium">Learn fishery</p>
+                            <p className="text-[#31463F]/65 text-xs mt-1">Practical farm courses</p>
+                        </div>
                     </div>
                 </div>
 
