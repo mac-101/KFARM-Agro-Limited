@@ -1122,7 +1122,11 @@ function FisheryJourney() {
                             delay={i * 100}
                             className="snap-start shrink-0 w-[82vw] sm:w-[420px] md:w-[460px]"
                         >
-                            <article className="group">
+                            <a
+                                href="/learn-fishery"
+                                className="group block"
+                                aria-label={`Learn about ${stage.title}`}
+                            >
 
                                 {/* Image */}
                                 <div className="relative h-[300px] md:h-[360px] overflow-hidden rounded-2xl">
@@ -1156,7 +1160,7 @@ function FisheryJourney() {
                                     </p>
                                 </div>
 
-                            </article>
+                            </a>
                         </Reveal>
                     ))}
                 </div>
