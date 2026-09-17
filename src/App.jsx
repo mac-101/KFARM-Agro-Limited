@@ -10,6 +10,7 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   const [orderAssistantOpen, setOrderAssistantOpen] = useState(false);
+  const [courseAssistantOpen, setCourseAssistantOpen] = useState(false);
   const [selectedFish, setSelectedFish] = useState("Catfish");
 
   useEffect(() => {
@@ -42,9 +43,25 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    if (sessionStorage.getItem("kfarm-course-assistant-seen")) return undefined;
+
+    const timer = window.setTimeout(() => {
+      setOrderAssistantOpen(false);
+      setCourseAssistantOpen(true);
+    }, 18000);
+
+    return () => window.clearTimeout(timer);
+  }, []);
+
   const closeOrderAssistant = () => {
     setOrderAssistantOpen(false);
     sessionStorage.setItem("kfarm-order-assistant-seen", "true");
+  };
+
+  const closeCourseAssistant = () => {
+    setCourseAssistantOpen(false);
+    sessionStorage.setItem("kfarm-course-assistant-seen", "true");
   };
 
   const orderAssistantLink = `https://wa.me/2349115380670?text=${encodeURIComponent(
@@ -127,6 +144,80 @@ function App() {
               <MessageCircle size={18} />
               Continue on WhatsApp
             </a>
+          </section>
+        </div>
+      )}
+      {courseAssistantOpen && (
+        <div
+          className="fixed inset-0 z-[90] flex items-end justify-center bg-[#071D1A]/30 p-4 backdrop-blur-[2px] md:items-center"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) closeCourseAssistant();
+          }}
+        >
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="course-assistant-title"
+            className="w-full max-w-md rounded-3xl bg-[#F6F2E9] p-6 text-[#0E2B27] shadow-2xl md:p-8"
+          >
+            <div className="flex items-start justify-between gap-6">
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-[#B98A2B]">Learn with KFARM</p>
+                <h2
+                  id="course-assistant-title"
+                  className="mt-3 text-3xl leading-none"
+                  style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
+                >
+                  Want to learn fishery?
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={closeCourseAssistant}
+                aria-label="Close fishery course assistant"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#0E3B36]/15 text-[#0E3B36] transition-colors hover:bg-[#0E3B36] hover:text-[#F6F2E9]"
+              >
+                <X size={17} />
+              </button>
+            </div>
+
+            <p className="mt-4 text-sm leading-relaxed text-[#31463F]/75">
+              We offer practical fishery courses covering feeding, growing, water management, and harvesting.
+            </p>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              {[
+                ["01", "Feeding"],
+                ["02", "Growing"],
+                ["03", "Harvesting"],
+              ].map(([number, title]) => (
+                <div key={title} className="border-t border-[#0E3B36]/15 pt-3">
+                  <span className="text-xs text-[#B98A2B]">{number}</span>
+                  <p className="mt-1 text-sm text-[#0E2B27]">{title}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="/learn-fishery"
+                onClick={closeCourseAssistant}
+                className="inline-flex flex-1 items-center justify-center rounded-full bg-[#0E3B36] px-5 py-3.5 text-[15px] text-[#F6F2E9] transition-colors hover:bg-[#134943]"
+              >
+                Explore courses
+              </a>
+              <a
+                href="https://wa.me/2349115380670?text=Hello%20KFARM%20Agro%20Limited%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20fishery%20courses."
+                target="_blank"
+                rel="noreferrer"
+                onClick={closeCourseAssistant}
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-[#0E3B36]/20 px-5 py-3.5 text-[15px] text-[#0E3B36] transition-colors hover:border-[#0E3B36]/60"
+              >
+                <MessageCircle size={18} />
+                Ask on WhatsApp
+              </a>
+            </div>
           </section>
         </div>
       )}
