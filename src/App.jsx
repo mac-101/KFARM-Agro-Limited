@@ -1,13 +1,55 @@
+import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import LearnFisheryPage from "./pages/Course";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ContactPage from "./pages/ContactPage";
 import WholesalePage from "./pages/WholesalePage";
-import { MessageCircle, Phone } from "lucide-react";
+import { MessageCircle, Phone, X } from "lucide-react";
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
+  const [orderAssistantOpen, setOrderAssistantOpen] = useState(false);
+  const [selectedFish, setSelectedFish] = useState("Catfish");
+
+  useEffect(() => {
+    const assistantSeen = sessionStorage.getItem("kfarm-order-assistant-seen");
+    if (assistantSeen) return undefined;
+
+    let timer;
+    let hasTriggered = false;
+
+    const openAssistant = () => {
+      if (hasTriggered) return;
+      hasTriggered = true;
+      setOrderAssistantOpen(true);
+      window.removeEventListener("scroll", handleScroll);
+    };
+
+    const handleScroll = () => {
+      const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (pageHeight > 0 && window.scrollY / pageHeight >= 0.45) {
+        openAssistant();
+      }
+    };
+
+    timer = window.setTimeout(openAssistant, 9000);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const closeOrderAssistant = () => {
+    setOrderAssistantOpen(false);
+    sessionStorage.setItem("kfarm-order-assistant-seen", "true");
+  };
+
+  const orderAssistantLink = `https://wa.me/2349115380670?text=${encodeURIComponent(
+    `Hello KFARM Agro Limited, I'd like to order ${selectedFish.toLowerCase()}. Please share availability, price, and delivery options.`
+  )}`;
 
   return (
     <Router>
@@ -19,6 +61,75 @@ function App() {
         <Route path="contact" element={<ContactPage/>} />
       </Routes>
       <Footer/>
+      {orderAssistantOpen && (
+        <div
+          className="fixed inset-0 z-[90] flex items-end justify-center bg-[#071D1A]/30 p-4 backdrop-blur-[2px] md:items-center"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) closeOrderAssistant();
+          }}
+        >
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="order-assistant-title"
+            className="w-full max-w-md rounded-3xl bg-[#F6F2E9] p-6 text-[#0E2B27] shadow-2xl md:p-8"
+          >
+            <div className="flex items-start justify-between gap-6">
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-[#B98A2B]">Fresh from KFARM</p>
+                <h2
+                  id="order-assistant-title"
+                  className="mt-3 text-3xl leading-none"
+                  style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
+                >
+                  Need fresh fish?
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={closeOrderAssistant}
+                aria-label="Close order assistant"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#0E3B36]/15 text-[#0E3B36] transition-colors hover:bg-[#0E3B36] hover:text-[#F6F2E9]"
+              >
+                <X size={17} />
+              </button>
+            </div>
+
+            <p className="mt-4 text-sm leading-relaxed text-[#31463F]/75">
+              Tell us what you need and we&apos;ll confirm availability, price, and delivery on WhatsApp.
+            </p>
+
+            <div className="mt-6 grid grid-cols-3 gap-2">
+              {["Catfish", "Tilapia", "Both"].map((fish) => (
+                <button
+                  key={fish}
+                  type="button"
+                  onClick={() => setSelectedFish(fish)}
+                  className={`rounded-xl border px-3 py-3 text-sm transition-colors ${
+                    selectedFish === fish
+                      ? "border-[#0E3B36] bg-[#0E3B36] text-[#F6F2E9]"
+                      : "border-[#0E3B36]/15 text-[#0E3B36] hover:border-[#0E3B36]/50"
+                  }`}
+                >
+                  {fish}
+                </button>
+              ))}
+            </div>
+
+            <a
+              href={orderAssistantLink}
+              target="_blank"
+              rel="noreferrer"
+              onClick={closeOrderAssistant}
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-[#1fba59]"
+            >
+              <MessageCircle size={18} />
+              Continue on WhatsApp
+            </a>
+          </section>
+        </div>
+      )}
       <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
         <a
           href="tel:+2349115380670"
