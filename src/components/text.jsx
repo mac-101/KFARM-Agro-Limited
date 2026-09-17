@@ -1180,7 +1180,7 @@ function FisheryJourney() {
 /* -------------------------------- Closing banner --------------------------- */
 function ClosingBanner() {
     return (
-        <section className="relative min-h-[75vh] md:min-h-screen overflow-hidden">
+        <section id="closing" className="relative min-h-[75vh] md:min-h-screen overflow-hidden">
             {/* Background image */}
             <img
                 src={IMG.closing}

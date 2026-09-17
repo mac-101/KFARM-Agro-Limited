@@ -24,7 +24,7 @@ function App() {
         },
       },
       {
-        id: "learn-fishery",
+        id: "closing",
         seenKey: "kfarm-course-assistant-seen",
         onEnter: () => {
           setOrderAssistantOpen(false);
