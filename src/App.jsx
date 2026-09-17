@@ -14,44 +14,43 @@ function App() {
   const [selectedFish, setSelectedFish] = useState("Catfish");
 
   useEffect(() => {
-    const assistantSeen = sessionStorage.getItem("kfarm-order-assistant-seen");
-    if (assistantSeen) return undefined;
+    const sections = [
+      {
+        id: "wholesale",
+        seenKey: "kfarm-order-assistant-seen",
+        onEnter: () => {
+          setCourseAssistantOpen(false);
+          setOrderAssistantOpen(true);
+        },
+      },
+      {
+        id: "learn-fishery",
+        seenKey: "kfarm-course-assistant-seen",
+        onEnter: () => {
+          setOrderAssistantOpen(false);
+          setCourseAssistantOpen(true);
+        },
+      },
+    ];
 
-    let timer;
-    let hasTriggered = false;
+    const observers = sections.map(({ id, seenKey, onEnter }) => {
+      const section = document.getElementById(id);
+      if (!section || sessionStorage.getItem(seenKey)) return null;
 
-    const openAssistant = () => {
-      if (hasTriggered) return;
-      hasTriggered = true;
-      setOrderAssistantOpen(true);
-      window.removeEventListener("scroll", handleScroll);
-    };
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+          onEnter();
+          observer.disconnect();
+        },
+        { threshold: 0.35 }
+      );
 
-    const handleScroll = () => {
-      const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (pageHeight > 0 && window.scrollY / pageHeight >= 0.45) {
-        openAssistant();
-      }
-    };
+      observer.observe(section);
+      return observer;
+    });
 
-    timer = window.setTimeout(openAssistant, 9000);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.clearTimeout(timer);
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (sessionStorage.getItem("kfarm-course-assistant-seen")) return undefined;
-
-    const timer = window.setTimeout(() => {
-      setOrderAssistantOpen(false);
-      setCourseAssistantOpen(true);
-    }, 18000);
-
-    return () => window.clearTimeout(timer);
+    return () => observers.forEach((observer) => observer?.disconnect());
   }, []);
 
   const closeOrderAssistant = () => {

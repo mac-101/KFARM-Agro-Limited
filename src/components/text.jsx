@@ -1078,7 +1078,7 @@ function FisheryJourney() {
                         </h2>
 
                         <p className="mt-6 text-[#F6F2E9]/60 text-base md:text-lg max-w-xl leading-relaxed">
-                            Learn the practical side of fish farming — from
+                            Learn the practical side of fish farming, from
                             feeding and growth to harvest.
                         </p>
                     </div>
