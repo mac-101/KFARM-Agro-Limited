@@ -1,8 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 
+const ANNOUNCEMENT_MESSAGES = [
+    "Fresh catfish and tilapia available now",
+    "Welcome to KFARM Agro Limited",
+    "Wholesale supply for restaurants, retailers, and businesses",
+    "Learn practical fishery skills with our courses",
+];
+
 function Navbar() {
     const [open, setOpen] = useState(false);
+    const [showRibbon, setShowRibbon] = useState(true);
     const navbarRef = useRef(null);
+
+    
 
     useEffect(() => {
         if (!open) return undefined;
@@ -22,6 +32,16 @@ function Navbar() {
             document.removeEventListener("touchstart", closeOnOutsideTouch);
         };
     }, [open]);
+
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         setShowRibbon(window.scrollY < window.innerHeight);
+    //     };
+
+    //     handleScroll();
+    //     window.addEventListener("scroll", handleScroll, { passive: true });
+    //     return () => window.removeEventListener("scroll", handleScroll);
+    // }, []);
     
     const links = [
         {
@@ -44,6 +64,22 @@ function Navbar() {
 
     return (
         <header ref={navbarRef} className="sticky top-0 z-50 bg-[#F6F2E9]/90 backdrop-blur border-b border-[#0E3B36]/10">
+            <div
+                aria-hidden={!showRibbon}
+                className={`overflow-hidden bg-[#0E2B27] text-[#F6F2E9] transition-[max-height,opacity] duration-500 ease-out ${
+                    showRibbon ? "max-h-12 opacity-100" : "pointer-events-none max-h-0 opacity-0"
+                }`}
+            >
+                <div className="flex min-w-max animate-[ribbon-scroll_28s_linear_infinite] items-center gap-8 py-2 text-xs tracking-wide">
+                    {[...ANNOUNCEMENT_MESSAGES, ...ANNOUNCEMENT_MESSAGES].map((message, index) => (
+                        <span key={`${message}-${index}`} className="flex items-center gap-8">
+                            <span>{message}</span>
+                            {/* <span className="text-[#D9A441]" aria-hidden="true">✦</span> */}
+                        </span>
+                    ))}
+                </div>
+            </div>
+
             <div className="max-w-6xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
                 {/* Brand Logo & Name */}
                 <a href="/" className="flex items-center gap-2 shrink-0">

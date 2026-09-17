@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@keyframes ribbon-scroll {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+
 html {
 	scroll-behavior: smooth;
 }
@@ -7,5 +16,9 @@ html {
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;
+	}
+
+	.animate-\[ribbon-scroll_28s_linear_infinite\] {
+		animation: none;
 	}
 }
