@@ -67,7 +67,7 @@ function AppContent() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="assistant-title"
-            className="w-full max-w-md rounded-3xl bg-[#F6F2E9] p-6 text-[#0E2B27] shadow-2xl md:p-8"
+            className="w-full max-w-md rounded-3xl bg-[#F6F2E9] p-6 text-[#6CA085] shadow-2xl md:p-8"
           >
             <div className="flex items-start justify-between gap-6">
               <div>
@@ -95,7 +95,7 @@ function AppContent() {
             </p>
 
             <div className="mt-6 border-t border-[#0E3B36]/15 pt-4">
-              <p className="text-sm font-medium text-[#0E2B27]">Order fresh fish</p>
+              <p className="text-sm font-medium text-[#6CA085]">Order fresh fish</p>
               <div className="mt-3 grid grid-cols-3 gap-2">
                 {["Catfish", "Tilapia", "Both"].map((fish) => (
                   <button
@@ -125,7 +125,7 @@ function AppContent() {
             </div>
 
             <div className="mt-6 border-t border-[#0E3B36]/15 pt-4">
-              <p className="text-sm font-medium text-[#0E2B27]">Learn fishery</p>
+              <p className="text-sm font-medium text-[#6CA085]">Learn fishery</p>
               <p className="mt-2 text-sm leading-relaxed text-[#31463F]/75">
                 Explore practical courses covering feeding, growing, water management, and harvesting.
               </p>

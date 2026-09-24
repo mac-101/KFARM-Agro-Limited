@@ -79,7 +79,7 @@ function EducationHero() {
           alt="Hands-on fishery training at a pond"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#0E2B27]/70" />
+        <div className="absolute inset-0 bg-[#6CA085]/70" />
       </div>
       <div className="relative max-w-6xl mx-auto px-6 md:px-10 pt-28 pb-24 md:pt-36 md:pb-32">
         <p
@@ -122,7 +122,7 @@ function EducationHero() {
         >
           <a
             href="#contact"
-            className="rounded-full bg-[#D9A441] text-[#0E2B27] px-7 py-3.5 text-[15px] hover:bg-[#e5b559] transition-colors"
+            className="rounded-full bg-[#D9A441] text-[#6CA085] px-7 py-3.5 text-[15px] hover:bg-[#e5b559] transition-colors"
           >
             Interested in learning? Contact us
           </a>
@@ -150,7 +150,7 @@ function WhatYoullLearn() {
         <Reveal>
           <p className="text-[#B98A2B] text-sm mb-3">What you'll learn</p>
           <h2
-            className="text-3xl md:text-4xl text-[#0E2B27] max-w-lg"
+            className="text-3xl md:text-4xl text-[#6CA085] max-w-lg"
             style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
           >
             Everything covered in our fishery training.
@@ -162,7 +162,7 @@ function WhatYoullLearn() {
             <Reveal key={t.title} delay={(i % 4) * 90}>
               <div className="border-t border-[#0E3B36]/15 pt-5">
                 <t.icon size={22} className="text-[#0E3B36]" strokeWidth={1.6} />
-                <h3 className="text-lg text-[#0E2B27] mt-4 mb-2">{t.title}</h3>
+                <h3 className="text-lg text-[#6CA085] mt-4 mb-2">{t.title}</h3>
                 <p className="text-[#31463F]/75 text-sm leading-relaxed">{t.copy}</p>
               </div>
             </Reveal>
@@ -190,7 +190,7 @@ function WhoIsItFor() {
     },
   ];
   return (
-    <section id="who-its-for" className="py-24 bg-[#0E2B27] text-[#F6F2E9]">
+    <section id="who-its-for" className="py-24 bg-[#6CA085] text-[#F6F2E9]">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <Reveal>
           <p className="text-[#D9A441] text-sm mb-3">Who it's for</p>
@@ -229,7 +229,7 @@ function LearnCTA() {
       <div className="max-w-6xl mx-auto px-6 md:px-10 text-center">
         <Reveal>
           <h2
-            className="text-3xl md:text-4xl text-[#0E2B27] max-w-xl mx-auto"
+            className="text-3xl md:text-4xl text-[#6CA085] max-w-xl mx-auto"
             style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
           >
             Interested in learning?

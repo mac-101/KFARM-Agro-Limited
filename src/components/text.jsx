@@ -85,127 +85,173 @@ function Reveal({ children, delay = 0, className = "" }) {
 
 /* --------------------------------- Hero -------------------------------- */
 function Hero() {
-    const [ref, shown] = useReveal();
-    const base = "transition-all duration-[900ms]";
-    return (
-        <section id="top" className="max-w-6xl mx-auto px-6 md:px-10 pt-14 md:pt-24 pb-20">
-            <div className="grid md:grid-cols-2 gap-14 items-center" ref={ref}>
-                <div>
-                    <p
-                        className={`${base} text-[#B98A2B] text-sm mb-4`}
-                        style={{
-                            opacity: shown ? 1 : 0,
-                            transform: shown ? "translateY(0)" : "translateY(14px)",
-                        }}
-                    >
-                        Buy and sell fresh fish
-                    </p>
-                    <h1
-                        className={`${base} text-[#0E2B27] text-[42px] leading-[1.08] sm:text-5xl md:text-6xl`}
-                        style={{
-                            fontFamily: "Fraunces, serif",
-                            fontWeight: 560,
-                            opacity: shown ? 1 : 0,
-                            transform: shown ? "translateY(0)" : "translateY(22px)",
-                            transitionDelay: "80ms",
-                        }}
-                    >
-                        Buy fresh fish. Sell fish with confidence.
-                    </h1>
-                    <p
-                        className={`${base} text-[#31463F] text-lg mt-6 max-w-md leading-relaxed`}
-                        style={{
-                            opacity: shown ? 1 : 0,
-                            transform: shown ? "translateY(0)" : "translateY(18px)",
-                            transitionDelay: "180ms",
-                        }}
-                    >
-                        Quality catfish and tilapia, sourced fresh for homes,
-                        retailers, and businesses that need dependable supply.
-                    </p>
-                    <div
-                        className={`${base} flex flex-wrap gap-4 mt-9`}
-                        style={{
-                            opacity: shown ? 1 : 0,
-                            transform: shown ? "translateY(0)" : "translateY(18px)",
-                            transitionDelay: "280ms",
-                        }}
-                    >
-                        <a
-                            id="order"
-                            href={WHATSAPP_LINK("I'd like to place an order.")}
-                            className="rounded-full bg-[#0E3B36] text-[#F6F2E9] px-7 py-3.5 text-[15px] hover:bg-[#134943] transition-colors"
-                        >
-                            Order fresh fish
-                        </a>
-                        <a
-                            href="#varieties"
-                            className="rounded-full border border-[#0E3B36]/25 text-[#0E3B36] px-7 py-3.5 text-[15px] hover:border-[#0E3B36]/60 transition-colors"
-                        >
-                            Our varieties
-                        </a>
-                    </div>
-                    <div
-                        className={`${base} grid grid-cols-2 gap-x-6 gap-y-4 mt-10 pt-6 border-t border-[#0E3B36]/15 max-w-lg`}
-                        style={{
-                            opacity: shown ? 1 : 0,
-                            transform: shown ? "translateY(0)" : "translateY(18px)",
-                            transitionDelay: "360ms",
-                        }}
-                    >
-                        <div>
-                            <p className="text-[#0E2B27] text-sm font-medium">Fresh from the farm</p>
-                            <p className="text-[#31463F]/65 text-xs mt-1">Catfish and tilapia</p>
-                        </div>
-                        <div>
-                            <p className="text-[#0E2B27] text-sm font-medium">Pickup &amp; delivery</p>
-                            <p className="text-[#31463F]/65 text-xs mt-1">Serving From Abia State</p>
-                        </div>
-                        <div>
-                            <p className="text-[#0E2B27] text-sm font-medium">Retail to wholesale</p>
-                            <p className="text-[#31463F]/65 text-xs mt-1">One order or regular supply</p>
-                        </div>
-                        <div>
-                            <p className="text-[#0E2B27] text-sm font-medium">Learn fishery</p>
-                            <p className="text-[#31463F]/65 text-xs mt-1">Practical farm courses</p>
-                        </div>
-                    </div>
-                </div>
+  const [ref, shown] = useReveal();
+  const base = "transition-all duration-[900ms]";
 
-                {/* overlapping-circle "fish eye" image collage, echoing the sketch */}
-                <div
-                    className={`${base} relative h-[380px] sm:h-[440px]`}
-                    style={{
-                        opacity: shown ? 1 : 0,
-                        transform: shown ? "scale(1)" : "scale(0.94)",
-                        transitionDelay: "160ms",
-                    }}
-                >
-                    <div className="absolute inset-0 rounded-[999px_/_50%] overflow-hidden shadow-xl">
-                        <img
-                            src={IMG.hero}
-                            alt="Vibrant fish farm pond"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                    <div className="absolute -top-6 -right-4 w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden border-4 border-[#F6F2E9] shadow-lg">
-                        <img
-                            src={IMG.heroSmall1}
-                            alt="Fresh catfish on a tray"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                    <div className="absolute -bottom-8 -left-4 w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden border-4 border-[#F6F2E9] shadow-lg">
-                        <img
-                            src={IMG.heroSmall2}
-                            alt="Fresh tilapia on ice"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+  return (
+    <section id="top" className="relative max-w-6xl mx-auto px-6 md:px-10 pt-16 md:pt-28 pb-24 overflow-hidden">
+      {/* Floating Keyframe Animation */}
+      <style>{`
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+          50% { transform: translateY(-12px) rotate(var(--rot, 0deg)); }
+        }
+        .animate-float {
+          animation: float-slow 4.5s ease-in-out infinite;
+        }
+      `}</style>
+
+      {/* Borderless Floating Pop-up Images with Clean Google Shadows */}
+      <div className="absolute inset-0 pointer-events-none hidden md:block z-0">
+        
+        {/* Top Left Floating Image */}
+        <div
+          className="absolute top-6 left-2 lg:left-6 w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) animate-float"
+          style={{
+            "--rot": "-6deg",
+            opacity: shown ? 1 : 0,
+            transform: shown ? "scale(1) translateY(0) rotate(-6deg)" : "scale(0) translateY(40px) rotate(-20deg)",
+            transitionDelay: "350ms",
+          }}
+        >
+          <img
+            src={IMG.heroSmall1}
+            alt="Fresh catfish"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Top Right Floating Image */}
+        <div
+          className="absolute top-10 right-4 lg:right-8 w-36 h-36 lg:w-100 lg:h-100 rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) "
+          style={{
+            "--rot": "8deg",
+            opacity: shown ? 1 : 0,
+            transform: shown ? "scale(1) translateY(0) rotate(8deg)" : "scale(0) translateY(40px) rotate(20deg)",
+            transitionDelay: "500ms",
+          }}
+        >
+          <img
+            src={IMG.heroSmall2}
+            alt="Fresh tilapia"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Bottom Left Floating Image */}
+        <div
+          className="absolute bottom-8 left-6 lg:left-12 w-36 h-36 lg:w-44 lg:h-44 rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) animate-float"
+          style={{
+            "--rot": "5deg",
+            opacity: shown ? 1 : 0,
+            transform: shown ? "scale(1) translateY(0) rotate(5deg)" : "scale(0) translateY(40px) rotate(-15deg)",
+            transitionDelay: "650ms",
+          }}
+        >
+          <img
+            src={IMG.hero}
+            alt="Fish farm"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Bottom Right Floating Image */}
+        <div
+          className="absolute bottom-10 right-6 lg:right-12 w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) animate-float"
+          style={{
+            "--rot": "-8deg",
+            opacity: shown ? 1 : 0,
+            transform: shown ? "scale(1) translateY(0) rotate(-8deg)" : "scale(0) translateY(40px) rotate(15deg)",
+            transitionDelay: "800ms",
+          }}
+        >
+          <img
+            src={IMG.heroSmall1}
+            alt="Fresh harvest"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+      </div>
+
+      {/* Centered Main Content Container */}
+      <div ref={ref} className="relative z-10 text-center max-w-3xl mx-auto">
+        <p
+          className={`${base} text-[#6CA085] text-sm md:text-base font-semibold tracking-wide uppercase mb-4`}
+          style={{
+            opacity: shown ? 1 : 0,
+            transform: shown ? "translateY(0)" : "translateY(14px)",
+          }}
+        >
+          Beyond Farming
+        </p>
+
+        <h1
+          className={`${base} text-[#000000] text-[40px] leading-[1.1] sm:text-5xl md:text-6xl`}
+          style={{
+            fontFamily: "Fraunces, serif",
+            fontWeight: 560,
+            opacity: shown ? 1 : 0,
+            transform: shown ? "translateY(0)" : "translateY(22px)",
+            transitionDelay: "100ms",
+          }}
+        >
+          Get your well breaded fish, straight from the farm here now
+        </h1>
+
+        {/* Centered CTA Buttons */}
+        <div
+          className={`${base} flex flex-wrap justify-center gap-4 mt-9`}
+          style={{
+            opacity: shown ? 1 : 0,
+            transform: shown ? "translateY(0)" : "translateY(18px)",
+            transitionDelay: "220ms",
+          }}
+        >
+          <a
+            id="order"
+            href={WHATSAPP_LINK("I'd like to place an order.")}
+            className="rounded-full bg-[#6CA085] text-[#F6F2E9] px-8 py-3.5 text-[15px] font-medium hover:bg-[#134943] transition-all shadow-md hover:shadow-lg"
+          >
+            Order fresh fish
+          </a>
+          <a
+            href="#varieties"
+            className="rounded-full border border-[#0E3B36]/25 text-[#0E3B36] px-8 py-3.5 text-[15px] font-medium hover:border-[#0E3B36]/60 transition-all"
+          >
+            Our varieties
+          </a>
+        </div>
+
+        {/* Features Row */}
+        <div
+          className={`${base} grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14 pt-8 border-t border-[#0E3B36]/15 max-w-2xl mx-auto text-center`}
+          style={{
+            opacity: shown ? 1 : 0,
+            transform: shown ? "translateY(0)" : "translateY(18px)",
+            transitionDelay: "320ms",
+          }}
+        >
+          <div>
+            <p className="text-[#6CA085] text-sm font-medium">Fresh from farm</p>
+            <p className="text-[#31463F]/65 text-xs mt-1">Catfish & tilapia</p>
+          </div>
+          <div>
+            <p className="text-[#6CA085] text-sm font-medium">Pickup & delivery</p>
+            <p className="text-[#31463F]/65 text-xs mt-1">From Abia State</p>
+          </div>
+          <div>
+            <p className="text-[#6CA085] text-sm font-medium">Retail & wholesale</p>
+            <p className="text-[#31463F]/65 text-xs mt-1">Single or bulk</p>
+          </div>
+          <div>
+            <p className="text-[#6CA085] text-sm font-medium">Learn fishery</p>
+            <p className="text-[#31463F]/65 text-xs mt-1">Practical courses</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 // add to your existing IMG object:
@@ -235,7 +281,7 @@ function About() {
     ];
 
     return (
-        <section id="about" className="relative min-h-[min(760px,88vh)] overflow-hidden bg-[#0E2B27] text-[#F6F2E9]">
+        <section id="about" className="relative min-h-[min(760px,88vh)] overflow-hidden bg-[#6CA085] text-[#F6F2E9]">
             <div className="absolute inset-0">
                 {!videoError ? (
                     <video
@@ -256,7 +302,7 @@ function About() {
                         className="w-full h-full object-cover"
                     />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#071D1A]/90 via-[#0E2B27]/65 to-[#0E2B27]/15" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#071D1A]/90 via-[#6CA085]/65 to-[#6CA085]/15" />
             </div>
 
             <div className="relative z-10 flex min-h-[min(760px,88vh)] items-center">
@@ -340,7 +386,7 @@ function FarmGallery() {
                         <div>
                             <p className="text-[#B98A2B] text-sm mb-3">Life at the farm</p>
                             <h2
-                                className="text-3xl md:text-4xl text-[#0E2B27] max-w-lg"
+                                className="text-3xl md:text-4xl text-[#6CA085] max-w-lg"
                                 style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
                             >
                                 From pond to harvest.
@@ -361,7 +407,7 @@ function FarmGallery() {
                             delay={(index % baseImages.length) * 80}
                             className="shrink-0 w-[82%] sm:w-[58%] lg:w-[38%]"
                         >
-                            <figure className="group relative h-[360px] md:h-[420px] overflow-hidden rounded-[28px] bg-[#0E2B27]">
+                            <figure className="group relative h-[360px] md:h-[420px] overflow-hidden rounded-[28px] bg-[#6CA085]">
                                 <img
                                     src={image.src}
                                     alt={image.alt}
@@ -396,7 +442,7 @@ function HowItWorks() {
         { n: "04", title: "Get your fish", copy: "Fresh fish arrives at your door, still cold from the farm." },
     ];
     return (
-        <section id="how-it-works" className="relative bg-[#0E2B27] text-[#F6F2E9] py-24 overflow-hidden">
+        <section id="how-it-works" className="relative bg-[#6CA085] text-[#F6F2E9] py-24 overflow-hidden">
 
             <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
                 <Reveal>
@@ -423,7 +469,7 @@ function HowItWorks() {
                 <Reveal delay={360}>
                     <a
                         href="#varieties"
-                        className="inline-flex mt-16 rounded-full bg-[#D9A441] text-[#0E2B27] px-7 py-3.5 text-[15px] hover:bg-[#e5b559] transition-colors"
+                        className="inline-flex mt-16 rounded-full bg-[#D9A441] text-[#6CA085] px-7 py-3.5 text-[15px] hover:bg-[#e5b559] transition-colors"
                     >
                         Start an order
                     </a>
@@ -710,7 +756,7 @@ function BulkSupply() {
             {/* PROMOTIONAL SECTION */}
             <section
                 id="wholesale"
-                className="relative overflow-hidden bg-[#0E2B27] text-[#F6F2E9]"
+                className="relative overflow-hidden bg-[#6CA085] text-[#F6F2E9]"
             >
                 <div className="mx-auto grid min-h-[720px] max-w-7xl items-center px-6 py-20 md:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:py-24">
 
@@ -747,7 +793,7 @@ function BulkSupply() {
                         <button
                             type="button"
                             onClick={() => setIsOpen(true)}
-                            className="group mt-10 inline-flex items-center gap-3 rounded-full bg-[#F6F2E9] px-6 py-3.5 text-[15px] text-[#0E2B27] transition-all duration-300 hover:gap-4"
+                            className="group mt-10 inline-flex items-center gap-3 rounded-full bg-[#F6F2E9] px-6 py-3.5 text-[15px] text-[#6CA085] transition-all duration-300 hover:gap-4"
                         >
                             Start a bulk order
                             <span
@@ -796,7 +842,7 @@ function BulkSupply() {
                         role="dialog"
                         aria-modal="true"
                         aria-labelledby="bulk-order-title"
-                        className="h-full w-full max-w-xl overflow-y-auto bg-[#F6F2E9] text-[#0E2B27] shadow-2xl"
+                        className="h-full w-full max-w-xl overflow-y-auto bg-[#F6F2E9] text-[#6CA085] shadow-2xl"
                     >
                         <div className="flex min-h-full flex-col px-6 py-8 md:px-10 md:py-10">
 
@@ -853,7 +899,7 @@ function BulkSupply() {
                                         <select
                                             name="fish"
                                             required
-                                            className="mt-2 w-full border-0 border-b border-[#0E3B36]/20 bg-transparent px-0 py-3 text-base text-[#0E2B27] outline-none focus:border-[#0E3B36]"
+                                            className="mt-2 w-full border-0 border-b border-[#0E3B36]/20 bg-transparent px-0 py-3 text-base text-[#6CA085] outline-none focus:border-[#0E3B36]"
                                         >
                                             <option>Catfish</option>
                                             <option>Tilapia</option>
@@ -871,7 +917,7 @@ function BulkSupply() {
                                             name="quantity"
                                             required
                                             placeholder="e.g. 10 kg or 1 crate"
-                                            className="mt-2 w-full border-0 border-b border-[#0E3B36]/20 bg-transparent px-0 py-3 text-base text-[#0E2B27] outline-none placeholder:text-[#31463F]/35 focus:border-[#0E3B36]"
+                                            className="mt-2 w-full border-0 border-b border-[#0E3B36]/20 bg-transparent px-0 py-3 text-base text-[#6CA085] outline-none placeholder:text-[#31463F]/35 focus:border-[#0E3B36]"
                                         />
                                     </label>
 
@@ -883,7 +929,7 @@ function BulkSupply() {
 
                                         <select
                                             name="orderType"
-                                            className="mt-2 w-full border-0 border-b border-[#0E3B36]/20 bg-transparent px-0 py-3 text-base text-[#0E2B27] outline-none focus:border-[#0E3B36]"
+                                            className="mt-2 w-full border-0 border-b border-[#0E3B36]/20 bg-transparent px-0 py-3 text-base text-[#6CA085] outline-none focus:border-[#0E3B36]"
                                         >
                                             <option>One-time order</option>
                                             <option>Regular supply</option>
@@ -899,7 +945,7 @@ function BulkSupply() {
 
                                         <select
                                             name="fulfilment"
-                                            className="mt-2 w-full border-0 border-b border-[#0E3B36]/20 bg-transparent px-0 py-3 text-base text-[#0E2B27] outline-none focus:border-[#0E3B36]"
+                                            className="mt-2 w-full border-0 border-b border-[#0E3B36]/20 bg-transparent px-0 py-3 text-base text-[#6CA085] outline-none focus:border-[#0E3B36]"
                                         >
                                             <option>Pickup</option>
                                             <option>Delivery</option>
@@ -917,7 +963,7 @@ function BulkSupply() {
                                             name="notes"
                                             rows="3"
                                             placeholder="Preferred date, location, or anything else we should know"
-                                            className="mt-2 w-full resize-none border-0 border-b border-[#0E3B36]/20 bg-transparent px-0 py-3 text-base text-[#0E2B27] outline-none placeholder:text-[#31463F]/35 focus:border-[#0E3B36]"
+                                            className="mt-2 w-full resize-none border-0 border-b border-[#0E3B36]/20 bg-transparent px-0 py-3 text-base text-[#6CA085] outline-none placeholder:text-[#31463F]/35 focus:border-[#0E3B36]"
                                         />
                                     </label>
                                 </div>
@@ -975,7 +1021,7 @@ function FrequentlyAskedQuestions() {
                 <Reveal>
                     <p className="text-[#B98A2B] text-sm mb-3">Before you order</p>
                     <h2
-                        className="text-3xl md:text-4xl text-[#0E2B27] max-w-lg"
+                        className="text-3xl md:text-4xl text-[#6CA085] max-w-lg"
                         style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
                     >
                         Questions? We have answers.
@@ -991,7 +1037,7 @@ function FrequentlyAskedQuestions() {
                                     type="button"
                                     onClick={() => setOpenIndex(isOpen ? -1 : index)}
                                     aria-expanded={isOpen}
-                                    className="flex w-full items-center justify-between gap-6 py-5 text-left text-[#0E2B27]"
+                                    className="flex w-full items-center justify-between gap-6 py-5 text-left text-[#6CA085]"
                                 >
                                     <span className="text-base md:text-lg font-medium">{item.question}</span>
                                     <span className="text-2xl font-light" aria-hidden="true">{isOpen ? "−" : "+"}</span>
@@ -1056,7 +1102,7 @@ function FisheryJourney() {
     return (
         <section
             id="learn-fishery"
-            className="bg-[#0E2B27] text-[#F6F2E9] py-24 md:py-32 overflow-hidden"
+            className="bg-[#6CA085] text-[#F6F2E9] py-24 md:py-32 overflow-hidden"
         >
             <div className="max-w-6xl mx-auto px-6 md:px-10">
 
@@ -1136,7 +1182,7 @@ function FisheryJourney() {
                                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                                     />
 
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2B27]/50 to-transparent" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#6CA085]/50 to-transparent" />
 
                                     <span className="absolute top-5 left-5 text-sm text-[#F6F2E9]/70">
                                         {stage.number}
@@ -1193,7 +1239,7 @@ function ClosingBanner() {
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-[#0E2B27]/55" />
+            <div className="absolute inset-0 bg-[#6CA085]/55" />
 
             {/* Content */}
             <div className="relative min-h-[75vh] md:min-h-screen max-w-7xl mx-auto px-6 md:px-10 flex items-end">
@@ -1229,7 +1275,7 @@ function ClosingBanner() {
 /* ----------------------------------- App ------------------------------------ */
 export default function Home() {
     return (
-        <div className="bg-[#F6F2E9] min-h-screen">
+        <div className="bg-[#FEFCFF] min-h-screen">
             <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;560;600&family=Inter:wght@400;500&display=swap');
         * { font-family: 'Inter', sans-serif; }

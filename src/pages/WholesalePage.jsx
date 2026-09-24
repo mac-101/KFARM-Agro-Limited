@@ -75,7 +75,7 @@ function OrderHero() {
           alt="Large-scale fish farm, aerial view"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#0E2B27]/70" />
+        <div className="absolute inset-0 bg-[#6CA085]/70" />
       </div>
       <div className="relative max-w-6xl mx-auto px-6 md:px-10 pt-28 pb-24 md:pt-36 md:pb-32">
         <p
@@ -117,7 +117,7 @@ function OrderHero() {
         >
           <a
             href={WHATSAPP_LINK("I'd like to order fish for my kitchen or table.")}
-            className="rounded-full bg-[#D9A441] text-[#0E2B27] px-7 py-3.5 text-[15px] hover:bg-[#e5b559] transition-colors"
+            className="rounded-full bg-[#D9A441] text-[#6CA085] px-7 py-3.5 text-[15px] hover:bg-[#e5b559] transition-colors"
           >
             Order fish
           </a>
@@ -145,7 +145,7 @@ function Order() {
         <Reveal>
           <p className="text-[#B98A2B] text-sm mb-3">Order for yourself</p>
           <h2
-            className="text-3xl md:text-4xl text-[#0E2B27] max-w-lg"
+            className="text-3xl md:text-4xl text-[#6CA085] max-w-lg"
             style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
           >
             Two fish, always fresh.
@@ -164,7 +164,7 @@ function Order() {
                   />
                 </div>
                 <h3
-                  className="text-2xl text-[#0E2B27] mt-6"
+                  className="text-2xl text-[#6CA085] mt-6"
                   style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
                 >
                   {c.name}
@@ -203,7 +203,7 @@ function OrderForm() {
   };
 
   return (
-    <section id="order-form" className="py-24 bg-[#0E2B27] text-[#F6F2E9]">
+    <section id="order-form" className="py-24 bg-[#6CA085] text-[#F6F2E9]">
       <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-[0.85fr_1.15fr] gap-12 items-start">
         <Reveal>
           <p className="text-[#D9A441] text-sm mb-3">Ready to order?</p>
@@ -249,7 +249,7 @@ function OrderForm() {
               Extra details
               <textarea name="notes" rows="3" placeholder="Preferred date, location, or anything else we should know" className="mt-2 w-full resize-y rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9] placeholder:text-[#F6F2E9]/45" />
             </label>
-            <button type="submit" className="sm:col-span-2 inline-flex w-fit items-center gap-2 rounded-full bg-[#D9A441] px-7 py-3.5 text-[15px] text-[#0E2B27] hover:bg-[#e5b559] transition-colors">
+            <button type="submit" className="sm:col-span-2 inline-flex w-fit items-center gap-2 rounded-full bg-[#D9A441] px-7 py-3.5 text-[15px] text-[#6CA085] hover:bg-[#e5b559] transition-colors">
               <MessageCircle size={18} />
               Continue on WhatsApp
             </button>
@@ -280,7 +280,7 @@ function Segments() {
     },
   ];
   return (
-    <section id="segments" className="py-24 bg-[#0E2B27] text-[#F6F2E9]">
+    <section id="segments" className="py-24 bg-[#6CA085] text-[#F6F2E9]">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <Reveal>
           <p className="text-[#D9A441] text-sm mb-3">Need it in larger quantity?</p>
@@ -321,7 +321,7 @@ function HowWholesaleWorks() {
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <Reveal>
           <h2
-            className="text-3xl md:text-4xl text-[#0E2B27] max-w-lg"
+            className="text-3xl md:text-4xl text-[#6CA085] max-w-lg"
             style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
           >
             How wholesale works.
@@ -333,7 +333,7 @@ function HowWholesaleWorks() {
             <Reveal key={s.n} delay={i * 90}>
               <div className="border-t border-[#0E3B36]/15 pt-5">
                 <span className="text-[#B98A2B] text-sm">{s.n}</span>
-                <h3 className="text-lg text-[#0E2B27] mt-3 mb-2">{s.title}</h3>
+                <h3 className="text-lg text-[#6CA085] mt-3 mb-2">{s.title}</h3>
                 <p className="text-[#31463F]/75 text-sm leading-relaxed">{s.copy}</p>
               </div>
             </Reveal>
@@ -347,7 +347,7 @@ function HowWholesaleWorks() {
 /* ---------------------------------- Location -------------------------------- */
 function Location() {
   return (
-    <section className="py-24 bg-[#0E2B27] text-[#F6F2E9]">
+    <section className="py-24 bg-[#6CA085] text-[#F6F2E9]">
       <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-12 items-center">
         <Reveal>
           <p className="text-[#D9A441] text-sm mb-3">Where we are</p>
@@ -389,7 +389,7 @@ function QuoteCTA() {
       <div className="max-w-6xl mx-auto px-6 md:px-10 text-center">
         <Reveal>
           <h2
-            className="text-3xl md:text-4xl text-[#0E2B27] max-w-xl mx-auto"
+            className="text-3xl md:text-4xl text-[#6CA085] max-w-xl mx-auto"
             style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
           >
             Tell us what you need, we'll work out the rest.

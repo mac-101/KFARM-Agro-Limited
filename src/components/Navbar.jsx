@@ -63,10 +63,10 @@ function Navbar() {
     ];
 
     return (
-        <header ref={navbarRef} className="sticky top-0 z-50 bg-[#F6F2E9]/90 backdrop-blur border-b border-[#0E3B36]/10">
+        <header ref={navbarRef} className="sticky top-0 z-50 bg-[#FEFCFF]/90 backdrop-blur border-b border-[#0E3B36]/10">
             <div
                 aria-hidden={!showRibbon}
-                className={`overflow-hidden bg-[#0E2B27] text-[#F6F2E9] transition-[max-height,opacity] duration-500 ease-out ${
+                className={`overflow-hidden bg-[#6CA085] text-white transition-[max-height,opacity] duration-500 ease-out ${
                     showRibbon ? "max-h-12 opacity-100" : "pointer-events-none max-h-0 opacity-0"
                 }`}
             >
