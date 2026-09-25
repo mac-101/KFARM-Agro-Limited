@@ -41,6 +41,10 @@ const IMG = {
         "https://images.pexels.com/photos/18640095/pexels-photo-18640095.jpeg?auto=compress&cs=tinysrgb&w=1600",
 };
 
+const galleryImage = {
+
+}
+
 /* ---------------------------- scroll reveal --------------------------- */
 function useReveal() {
     const ref = useRef(null);
@@ -85,13 +89,13 @@ function Reveal({ children, delay = 0, className = "" }) {
 
 /* --------------------------------- Hero -------------------------------- */
 function Hero() {
-  const [ref, shown] = useReveal();
-  const base = "transition-all duration-[900ms]";
+    const [ref, shown] = useReveal();
+    const base = "transition-all duration-[900ms]";
 
-  return (
-    <section id="top" className="relative max-w-6xl mx-auto px-6 md:px-10 pt-16 md:pt-28 pb-24 overflow-hidden">
-      {/* Floating Keyframe Animation */}
-      <style>{`
+    return (
+        <section id="top" className="relative max-w-6xl mx-auto px-6 md:px-10 pt-16 md:pt-28 pb-24 overflow-hidden">
+            {/* Floating Keyframe Animation */}
+            <style>{`
         @keyframes float-slow {
           0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
           50% { transform: translateY(-12px) rotate(var(--rot, 0deg)); }
@@ -101,11 +105,11 @@ function Hero() {
         }
       `}</style>
 
-      {/* Borderless Floating Pop-up Images with Clean Google Shadows */}
-      <div className="absolute inset-0 pointer-events-none hidden md:block z-0">
-        
-        {/* Top Left Floating Image */}
-        <div
+            {/* Borderless Floating Pop-up Images with Clean Google Shadows */}
+            <div className="absolute inset-0 pointer-events-none hidden md:block z-0">
+
+                {/* Top Left Floating Image */}
+                {/* <div
           className="absolute top-6 left-2 lg:left-6 w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) animate-float"
           style={{
             "--rot": "-6deg",
@@ -119,139 +123,139 @@ function Hero() {
             alt="Fresh catfish"
             className="w-full h-full object-cover"
           />
-        </div>
+        </div> */}
 
-        {/* Top Right Floating Image */}
-        <div
-          className="absolute top-10 right-4 lg:right-8 w-36 h-36 lg:w-100 lg:h-100 rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) "
-          style={{
-            "--rot": "8deg",
-            opacity: shown ? 1 : 0,
-            transform: shown ? "scale(1) translateY(0) rotate(8deg)" : "scale(0) translateY(40px) rotate(20deg)",
-            transitionDelay: "500ms",
-          }}
-        >
-          <img
-            src={IMG.heroSmall2}
-            alt="Fresh tilapia"
-            className="w-full h-full object-cover"
-          />
-        </div>
+                {/* Top Right Floating Image */}
+                <div
+                    className="absolute top-10 right-4 lg:right-8 w-36 h-36 lg:w-85 lg:h-85 rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) "
+                    style={{
+                        "--rot": "8deg",
+                        opacity: shown ? 1 : 0,
+                        transform: shown ? "scale(1) translateY(0) rotate(8deg)" : "scale(0) translateY(40px) rotate(20deg)",
+                        transitionDelay: "500ms",
+                    }}
+                >
+                    <img
+                        src={IMG.heroSmall2}
+                        alt="Fresh tilapia"
+                        className="w-full h-full object-cover"
+                    />
+                </div>
 
-        {/* Bottom Left Floating Image */}
-        <div
-          className="absolute bottom-8 left-6 lg:left-12 w-36 h-36 lg:w-44 lg:h-44 rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) animate-float"
-          style={{
-            "--rot": "5deg",
-            opacity: shown ? 1 : 0,
-            transform: shown ? "scale(1) translateY(0) rotate(5deg)" : "scale(0) translateY(40px) rotate(-15deg)",
-            transitionDelay: "650ms",
-          }}
-        >
-          <img
-            src={IMG.hero}
-            alt="Fish farm"
-            className="w-full h-full object-cover"
-          />
-        </div>
+                {/* Bottom Left Floating Image */}
+                <div
+                    className="absolute bottom-8 left-6 lg:left-12 w-36 h-36 lg:w-44 lg:h-44 rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) animate-float"
+                    style={{
+                        "--rot": "5deg",
+                        opacity: shown ? 1 : 0,
+                        transform: shown ? "scale(1) translateY(0) rotate(5deg)" : "scale(0) translateY(40px) rotate(-15deg)",
+                        transitionDelay: "650ms",
+                    }}
+                >
+                    <img
+                        src={IMG.hero}
+                        alt="Fish farm"
+                        className="w-full h-full object-cover"
+                    />
+                </div>
 
-        {/* Bottom Right Floating Image */}
-        <div
-          className="absolute bottom-10 right-6 lg:right-12 w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) animate-float"
-          style={{
-            "--rot": "-8deg",
-            opacity: shown ? 1 : 0,
-            transform: shown ? "scale(1) translateY(0) rotate(-8deg)" : "scale(0) translateY(40px) rotate(15deg)",
-            transitionDelay: "800ms",
-          }}
-        >
-          <img
-            src={IMG.heroSmall1}
-            alt="Fresh harvest"
-            className="w-full h-full object-cover"
-          />
-        </div>
+                {/* Bottom Right Floating Image */}
+                <div
+                    className="absolute bottom-10 right-6 lg:right-12 w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) animate-float"
+                    style={{
+                        "--rot": "-8deg",
+                        opacity: shown ? 1 : 0,
+                        transform: shown ? "scale(1) translateY(0) rotate(-8deg)" : "scale(0) translateY(40px) rotate(15deg)",
+                        transitionDelay: "800ms",
+                    }}
+                >
+                    <img
+                        src={IMG.heroSmall1}
+                        alt="Fresh harvest"
+                        className="w-full h-full object-cover"
+                    />
+                </div>
 
-      </div>
+            </div>
 
-      {/* Centered Main Content Container */}
-      <div ref={ref} className="relative z-10 text-center max-w-3xl mx-auto">
-        <p
-          className={`${base} text-[#6CA085] text-sm md:text-base font-semibold tracking-wide uppercase mb-4`}
-          style={{
-            opacity: shown ? 1 : 0,
-            transform: shown ? "translateY(0)" : "translateY(14px)",
-          }}
-        >
-          Beyond Farming
-        </p>
+            {/* Centered Main Content Container */}
+            <div ref={ref} className="relative z-10 text-center max-w-3xl mx-auto">
+                <p
+                    className={`${base} text-[#6CA085] text-left text-sm md:text-base font-semibold tracking-wide uppercase mb-4`}
+                    style={{
+                        opacity: shown ? 1 : 0,
+                        transform: shown ? "translateY(0)" : "translateY(14px)",
+                    }}
+                >
+                    Beyond Farming
+                </p>
 
-        <h1
-          className={`${base} text-[#000000] text-[40px] leading-[1.1] sm:text-5xl md:text-6xl`}
-          style={{
-            fontFamily: "Fraunces, serif",
-            fontWeight: 560,
-            opacity: shown ? 1 : 0,
-            transform: shown ? "translateY(0)" : "translateY(22px)",
-            transitionDelay: "100ms",
-          }}
-        >
-          Get your well breaded fish, straight from the farm here now
-        </h1>
+                <h1
+                    className={`${base} text-[#000000] text-[40px] leading-[1.1] sm:text-5xl md:text-6xl`}
+                    style={{
+                        fontFamily: "Fraunces, serif",
+                        fontWeight: 560,
+                        opacity: shown ? 1 : 0,
+                        transform: shown ? "translateY(0)" : "translateY(22px)",
+                        transitionDelay: "100ms",
+                    }}
+                >
+                    Get your well breaded fish, straight from the farm here now
+                </h1>
 
-        {/* Centered CTA Buttons */}
-        <div
-          className={`${base} flex flex-wrap justify-center gap-4 mt-9`}
-          style={{
-            opacity: shown ? 1 : 0,
-            transform: shown ? "translateY(0)" : "translateY(18px)",
-            transitionDelay: "220ms",
-          }}
-        >
-          <a
-            id="order"
-            href={WHATSAPP_LINK("I'd like to place an order.")}
-            className="rounded-full bg-[#6CA085] text-[#F6F2E9] px-8 py-3.5 text-[15px] font-medium hover:bg-[#134943] transition-all shadow-md hover:shadow-lg"
-          >
-            Order fresh fish
-          </a>
-          <a
-            href="#varieties"
-            className="rounded-full border border-[#0E3B36]/25 text-[#0E3B36] px-8 py-3.5 text-[15px] font-medium hover:border-[#0E3B36]/60 transition-all"
-          >
-            Our varieties
-          </a>
-        </div>
+                {/* Centered CTA Buttons */}
+                <div
+                    className={`${base} flex flex-wrap justify-center gap-4 mt-9`}
+                    style={{
+                        opacity: shown ? 1 : 0,
+                        transform: shown ? "translateY(0)" : "translateY(18px)",
+                        transitionDelay: "220ms",
+                    }}
+                >
+                    <a
+                        id="order"
+                        href={WHATSAPP_LINK("I'd like to place an order.")}
+                        className="rounded-full bg-[#6CA085] text-[#F6F2E9] px-8 py-3.5 text-[15px] font-medium hover:bg-[#134943] transition-all shadow-md hover:shadow-lg"
+                    >
+                        Order fresh fish
+                    </a>
+                    <a
+                        href="#varieties"
+                        className="rounded-full border border-[#0E3B36]/25 text-[#0E3B36] px-8 py-3.5 text-[15px] font-medium hover:border-[#0E3B36]/60 transition-all"
+                    >
+                        Our varieties
+                    </a>
+                </div>
 
-        {/* Features Row */}
-        <div
-          className={`${base} grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14 pt-8 border-t border-[#0E3B36]/15 max-w-2xl mx-auto text-center`}
-          style={{
-            opacity: shown ? 1 : 0,
-            transform: shown ? "translateY(0)" : "translateY(18px)",
-            transitionDelay: "320ms",
-          }}
-        >
-          <div>
-            <p className="text-[#6CA085] text-sm font-medium">Fresh from farm</p>
-            <p className="text-[#31463F]/65 text-xs mt-1">Catfish & tilapia</p>
-          </div>
-          <div>
-            <p className="text-[#6CA085] text-sm font-medium">Pickup & delivery</p>
-            <p className="text-[#31463F]/65 text-xs mt-1">From Abia State</p>
-          </div>
-          <div>
-            <p className="text-[#6CA085] text-sm font-medium">Retail & wholesale</p>
-            <p className="text-[#31463F]/65 text-xs mt-1">Single or bulk</p>
-          </div>
-          <div>
-            <p className="text-[#6CA085] text-sm font-medium">Learn fishery</p>
-            <p className="text-[#31463F]/65 text-xs mt-1">Practical courses</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+                {/* Features Row */}
+                <div
+                    className={`${base} grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14 pt-8 border-t border-[#0E3B36]/15 max-w-2xl mx-auto text-center`}
+                    style={{
+                        opacity: shown ? 1 : 0,
+                        transform: shown ? "translateY(0)" : "translateY(18px)",
+                        transitionDelay: "320ms",
+                    }}
+                >
+                    <div>
+                        <p className="text-[#6CA085] text-sm font-medium">Fresh from farm</p>
+                        <p className="text-[#31463F]/65 text-xs mt-1">Catfish & tilapia</p>
+                    </div>
+                    <div>
+                        <p className="text-[#6CA085] text-sm font-medium">Pickup & delivery</p>
+                        <p className="text-[#31463F]/65 text-xs mt-1">From Abia State</p>
+                    </div>
+                    <div>
+                        <p className="text-[#6CA085] text-sm font-medium">Retail & wholesale</p>
+                        <p className="text-[#31463F]/65 text-xs mt-1">Single or bulk</p>
+                    </div>
+                    <div>
+                        <p className="text-[#6CA085] text-sm font-medium">Learn fishery</p>
+                        <p className="text-[#31463F]/65 text-xs mt-1">Practical courses</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
 }
 
 // add to your existing IMG object:
@@ -260,89 +264,56 @@ import { Fish, GraduationCap, Handshake, MessageCircle } from "lucide-react";
 import video3 from "../assets/video 3.mp4";
 
 function About() {
-    const [videoError, setVideoError] = useState(false);
-
-    const values = [
-        {
-            icon: Fish,
-            title: "Fresh, not frozen",
-            copy: "Fish comes straight from the pond to your order, no long cold storage in between.",
-        },
-        {
-            icon: GraduationCap,
-            title: "We teach, too",
-            copy: "Beyond selling fish, we train people to start and grow their own fishery.",
-        },
-        {
-            icon: Handshake,
-            title: "No middlemen",
-            copy: "You're buying directly from the farm, whether it's one crate or a standing order.",
-        },
-    ];
-
     return (
-        <section id="about" className="relative min-h-[min(760px,88vh)] overflow-hidden bg-[#6CA085] text-[#F6F2E9]">
-            <div className="absolute inset-0">
-                {!videoError ? (
-                    <video
-                        src={video3}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload="auto"
-                        poster={IMG.about}
-                        onError={() => setVideoError(true)}
-                        className="w-full h-full object-cover"
-                    />
-                ) : (
-                    <img
-                        src={IMG.about}
-                        alt="Fish farm pond at KFARM Agro Limited"
-                        className="w-full h-full object-cover"
-                    />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#071D1A]/90 via-[#6CA085]/65 to-[#6CA085]/15" />
-            </div>
+        <section id="about" className="py-16 md:py-24  text-[#0E3B36]">
+            <div className="max-w-4xl mx-auto px-6 text-center">
+                <Reveal>
+                    {/* Subtle Label */}
+                    {/* <p className="text-[#6CA085] text-xs font-bold tracking-widest uppercase mb-3">
+            Welcome to KFARM
+          </p> */}
 
-            <div className="relative z-10 flex min-h-[min(760px,88vh)] items-center">
-                <div className="max-w-6xl w-full mx-auto px-6 md:px-10 py-20">
-                    <Reveal>
-                        <div className="max-w-xl">
-                            <p className="text-[#D9A441] text-sm mb-4">About us</p>
-                            <h2
-                                className="text-4xl md:text-6xl leading-[1.05] text-[#F6F2E9]"
-                                style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
-                            >
-                                We don&apos;t just sell fish, we build fisheries.
-                            </h2>
-                            <p className="text-[#F6F2E9]/80 mt-6 max-w-lg leading-relaxed">
-                                KFARM Agro Limited raises catfish and tilapia the way we&apos;d want to
-                                buy them: fresh, well-fed, and handled with care from pond to
-                                delivery. We also teach the practical skills behind good fishery,
-                                so anyone can learn to farm as well as we do.
-                            </p>
+                    {/* Simple, Warm Headline */}
+                    <h2
+                        className="text-3xl sm:text-4xl md:text-5xl leading-tight text-[#0E3B36]"
+                        style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
+                    >
+                        The home of healthy fish. Fresh or dried, in any quantity you need.
+                    </h2>
 
-                            <div className="grid sm:grid-cols-3 gap-5 mt-10 pt-6 border-t border-[#F6F2E9]/25">
-                                {values.map((v) => (
-                                    <div key={v.title}>
-                                        <v.icon size={22} className="text-[#D9A441] mb-3" strokeWidth={1.6} />
-                                        <h3 className="text-[#F6F2E9] font-medium">{v.title}</h3>
-                                        <p className="text-[#F6F2E9]/65 text-sm mt-1 leading-relaxed">{v.copy}</p>
-                                    </div>
-                                ))}
-                            </div>
+                    <p className="text-[#31463F]/80 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
+                        Straight from clean farm waters to your kitchen. We handle single home orders and bulk wholesale with the exact same care.
+                    </p>
+
+                    {/* Single Simple Image Showcase */}
+                    <div className="mt-10 rounded-2xl overflow-hidden shadow-lg max-w-2xl mx-auto aspect-[16/9]">
+                        <img
+                            src={IMG.about}
+                            alt="Healthy farm fresh fish"
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+
+                    {/* 2 Quick Simple Highlights */}
+                    <div className="flex flex-wrap justify-center gap-8 mt-8 text-sm font-medium text-[#31463F]">
+                        <div className="flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-[#6CA085]" />
+                            Fresh live harvest or smoked dried
                         </div>
-                    </Reveal>
-                </div>
+                        <div className="flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-[#6CA085]" />
+                            No order is too small or too large
+                        </div>
+                    </div>
+                </Reveal>
             </div>
         </section>
     );
 }
 
-// import React, { useState, useEffect, useRef } from 'react';
 
-function FarmGallery() {
+// Assumed Reveal component exists in your workspace
+export function FarmGallery() {
     const baseImages = [
         { src: IMG.about, alt: "Fish pond at KFARM Agro Limited", title: "Pond view" },
         { src: IMG.feeding, alt: "Feeding fish at the farm", title: "Feeding time" },
@@ -379,7 +350,7 @@ function FarmGallery() {
     }, []);
 
     return (
-        <section id="gallery" className="py-24 bg-[#F6F2E9]">
+        <section id="gallery" className="py-24 bg-[#F6F2E9] overflow-hidden">
             <div className="mx-auto px-6 md:px-10">
                 <Reveal>
                     <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
@@ -394,36 +365,37 @@ function FarmGallery() {
                         </div>
                     </div>
                 </Reveal>
+            </div>
 
-                {/* 4. NOTE: Removed 'snap-x snap-mandatory' because snapping breaks linear auto-scrolling */}
+            {/* RECTANGLE RIBBON: Pulls out to full viewport screen edge, removes gap-5, sets gap-0 */}
+            <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-12">
                 <div
                     ref={scrollerRef}
-                    className="mt-12 flex gap-5 overflow-x-auto pb-4 [scrollbar-width:none] [-ms-overflow-style:none]"
+                    className="flex gap-0 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none]"
                     style={{ scrollbarWidth: "none" }}
                 >
                     {images.map((image, index) => (
-                        <Reveal
+                        <div
                             key={`${image.alt}-${index}`}
-                            delay={(index % baseImages.length) * 80}
-                            className="shrink-0 w-[82%] sm:w-[58%] lg:w-[38%]"
+                            className="shrink-0 w-[75vw] sm:w-[45vw] lg:w-[28vw] relative h-[360px] md:h-[420px] group overflow-hidden bg-[#6CA085]"
                         >
-                            <figure className="group relative h-[360px] md:h-[420px] overflow-hidden rounded-[28px] bg-[#6CA085]">
-                                <img
-                                    src={image.src}
-                                    alt={image.alt}
-                                    loading="lazy"
-                                    decoding="async"
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#071D1A]/75 via-[#071D1A]/10 to-transparent" />
-                                <figcaption className="absolute bottom-0 left-0 right-0 p-5 text-[#F6F2E9]">
-                                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#D9A441]">Farm view</p>
-                                    <h3 className="mt-2 text-xl" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
-                                        {image.title}
-                                    </h3>
-                                </figcaption>
-                            </figure>
-                        </Reveal>
+                            <img
+                                src={image.src}
+                                alt={image.alt}
+                                loading="lazy"
+                                decoding="async"
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            {/* Dark gradient for layout text legibility */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#071D1A]/75 via-[#071D1A]/10 to-transparent" />
+
+                            <div className="absolute bottom-0 left-0 right-0 p-6 text-[#F6F2E9]">
+                                <p className="text-[10px] uppercase tracking-[0.2em] text-[#D9A441]">Farm view</p>
+                                <h3 className="mt-2 text-xl" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
+                                    {image.title}
+                                </h3>
+                            </div>
+                        </div>
                     ))}
                 </div>
             </div>
@@ -479,7 +451,9 @@ function HowItWorks() {
     );
 }
 
-function Varieties() {
+// import React, { useState, useEffect, useRef } from 'react';
+
+export function Varieties() {
     const cards = [
         {
             img: IMG.catfish,
@@ -505,10 +479,8 @@ function Varieties() {
         if (!section) return;
 
         let ticking = false;
-
         const updateProgress = () => {
             if (ticking) return;
-
             ticking = true;
 
             requestAnimationFrame(() => {
@@ -517,23 +489,14 @@ function Varieties() {
                     section.offsetHeight - window.innerHeight,
                     1
                 );
-
-                const value = Math.min(
-                    Math.max(-rect.top / scrollable, 0),
-                    1
-                );
-
+                const value = Math.min(Math.max(-rect.top / scrollable, 0), 1);
                 setProgress(value);
                 ticking = false;
             });
         };
 
         updateProgress();
-
-        window.addEventListener("scroll", updateProgress, {
-            passive: true,
-        });
-
+        window.addEventListener("scroll", updateProgress, { passive: true });
         window.addEventListener("resize", updateProgress);
 
         return () => {
@@ -542,163 +505,102 @@ function Varieties() {
         };
     }, []);
 
-    // Give each fish a dedicated portion of the scroll.
-    const catfishProgress = Math.min(progress / 0.5, 1);
     const tilapiaProgress = Math.max((progress - 0.5) / 0.5, 0);
+    const catfishOpacity = progress <= 0.5 ? 1 : Math.max(1 - tilapiaProgress * 1.15, 0);
+    const tilapiaOpacity = progress < 0.5 ? 0 : Math.min(tilapiaProgress * 1.15, 1);
 
-    const catfishOpacity =
-        progress <= 0.5
-            ? 1
-            : Math.max(1 - tilapiaProgress * 1.15, 0);
-
-    const tilapiaOpacity =
-        progress < 0.5
-            ? 0
-            : Math.min(tilapiaProgress * 1.15, 1);
-
-    const catfishImageStyle = {
+    const catfishCardStyle = {
         opacity: catfishOpacity,
-        transform: `scale(${1 + tilapiaProgress * 0.06})`,
+        transform: `scale(${1 - tilapiaProgress * 0.04})`,
     };
 
-    const tilapiaImageStyle = {
+    const tilapiaCardStyle = {
         opacity: tilapiaOpacity,
-        transform: `scale(${1.06 - tilapiaProgress * 0.06})`,
-    };
-
-    const catfishTextStyle = {
-        opacity: catfishOpacity,
-        transform: `translateY(${tilapiaProgress * -28}px)`,
-    };
-
-    const tilapiaTextStyle = {
-        opacity: tilapiaOpacity,
-        transform: `translateY(${28 - tilapiaProgress * 28}px)`,
+        transform: `translateY(${(1 - tilapiaProgress) * 40}px) scale(${0.96 + tilapiaProgress * 0.04})`,
     };
 
     return (
-        <section
-            ref={sectionRef}
-            id="varieties"
-            className="relative h-[200vh] bg-[#F6F2E9]"
-        >
-            <div className="sticky top-0 h-screen overflow-hidden">
+        <section ref={sectionRef} id="varieties" className="relative h-[200vh] bg-[#F6F2E9]" >
+            <div className="sticky top-0 flex pt-45 lg:h-screen lg:pt-0 w-full items-center justify-center overflow-hidden">
 
-                {/* IMAGE */}
-                <div className="absolute inset-0">
-                    <img
-                        src={cards[0].img}
-                        alt={cards[0].name}
-                        className="absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-300"
-                        style={catfishImageStyle}
-                    />
+                {/* RESPONSIVE CONTAINER (Tighter margins on small mobile screens) */}
+                <div className="relative h-auto max-h-[95vh] w-[88vw] md:h-[80vh] md:w-[80vw] max-w-6xl overflow-hidden rounded-2xl md:rounded-3xl bg-[#6CA085] shadow-2xl aspect-[3/4] md:aspect-auto">
 
-                    <img
-                        src={cards[1].img}
-                        alt={cards[1].name}
-                        className="absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-300"
-                        style={tilapiaImageStyle}
-                    />
+                    {/* --- CARD 1: CATFISH --- */}
+                    <div
+                        className="absolute inset-0 flex flex-col justify-end p-5 xs:p-6 md:p-12 transition-all duration-300 ease-out"
+                        style={catfishCardStyle}
+                    >
+                        <img
+                            src={cards[0].img}
+                            alt={cards[0].name}
+                            className="absolute inset-0 h-full w-full object-cover mix-blend-luminosity opacity-60"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#071D1A] via-[#071D1A]/20 to-transparent" />
 
-                    {/* readable text area */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#071D1A]/85 via-[#071D1A]/25 to-transparent" />
-                </div>
-
-                {/* CONTENT */}
-                <div className="relative z-10 flex h-full items-end">
-                    <div className="mx-auto w-full max-w-6xl px-6 pb-10 md:px-10 md:pb-14">
-
-                        <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#D9A441]">
-                            Our varieties
-                        </p>
-
-                        {/* CATFISH */}
-                        <div
-                            className="absolute bottom-10 left-6 right-6 md:bottom-14 md:left-10 md:right-10"
-                            style={catfishTextStyle}
-                        >
-                            <h2
-                                className="text-6xl leading-none text-[#F6F2E9] md:text-8xl"
-                                style={{
-                                    fontFamily: "Fraunces, serif",
-                                    fontWeight: 560,
-                                }}
-                            >
-                                Catfish
+                        {/* Typography scales gracefully across breakouts */}
+                        <div className="relative z-10 w-full">
+                            <p className="mb-1 text-[10px] md:text-xs uppercase tracking-[0.22em] text-[#D9A441]"> Our varieties </p>
+                            <h2 className="text-4xl xs:text-5xl leading-none text-[#F6F2E9] md:text-7xl" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
+                                {cards[0].name}
                             </h2>
-
-                            <p className="mt-5 max-w-xl text-sm leading-relaxed text-[#F6F2E9]/85 md:text-base">
+                            <p className="mt-3 max-w-xl text-xs xs:text-sm leading-relaxed text-[#F6F2E9]/85 md:text-base">
                                 {cards[0].copy}
                             </p>
 
-                            <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center">
-                                <p className="max-w-md text-sm text-[#F6F2E9]/70">
+                            {/* Stacked elements on mobile, row-aligned on desktop */}
+                            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-t border-[#F6F2E9]/10 pt-4 md:pt-6">
+                                <p className="max-w-md text-[11px] xs:text-xs leading-normal text-[#F6F2E9]/70">
                                     {cards[0].supporting}
                                 </p>
-
-                                <a
-                                    href={WHATSAPP_LINK(
-                                        `I'd like to order ${cards[0].name}.`
-                                    )}
-                                    className="w-fit rounded-full bg-[#F6F2E9] px-6 py-3.5 text-sm text-[#0E3B36] transition-transform duration-300 hover:scale-[1.03]"
-                                >
+                                <a href={WHATSAPP_LINK(`I'd like to order ${cards[0].name}.`)} className="w-full text-center sm:w-fit shrink-0 rounded-full bg-[#F6F2E9] px-5 py-3 text-xs xs:text-sm font-medium text-[#0E3B36] transition-transform duration-300 hover:scale-[1.03]">
                                     {cards[0].cta}
                                 </a>
                             </div>
                         </div>
+                    </div>
 
-                        {/* TILAPIA */}
-                        <div
-                            className="absolute bottom-10 left-6 right-6 md:bottom-14 md:left-10 md:right-10"
-                            style={tilapiaTextStyle}
-                        >
-                            <h2
-                                className="text-6xl leading-none text-[#F6F2E9] md:text-8xl"
-                                style={{
-                                    fontFamily: "Fraunces, serif",
-                                    fontWeight: 560,
-                                }}
-                            >
-                                Tilapia
+                    {/* --- CARD 2: TILAPIA --- */}
+                    <div
+                        className="absolute inset-0 flex flex-col justify-end p-5 xs:p-6 md:p-12 transition-all duration-300 ease-out bg-[#071D1A]"
+                        style={tilapiaCardStyle}
+                    >
+                        <img
+                            src={cards[1].img}
+                            alt={cards[1].name}
+                            className="absolute inset-0 h-full w-full object-cover mix-blend-luminosity opacity-60"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#071D1A] via-[#071D1A]/5 to-transparent" />
+
+                        <div className="relative z-10 w-full">
+                            <p className="mb-1 text-[10px] md:text-xs uppercase tracking-[0.22em] text-[#D9A441]"> Our varieties </p>
+                            <h2 className="text-4xl xs:text-5xl leading-none text-[#F6F2E9] md:text-7xl" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
+                                {cards[1].name}
                             </h2>
-
-                            <p className="mt-5 max-w-xl text-sm leading-relaxed text-[#F6F2E9]/85 md:text-base">
+                            <p className="mt-3 max-w-xl text-xs xs:text-sm leading-relaxed text-[#F6F2E9]/85 md:text-base">
                                 {cards[1].copy}
                             </p>
 
-                            <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center">
-                                <p className="max-w-md text-sm text-[#F6F2E9]/70">
+                            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-t border-[#F6F2E9]/10 pt-4 md:pt-6">
+                                <p className="max-w-md text-[11px] xs:text-xs leading-normal text-[#F6F2E9]/70">
                                     {cards[1].supporting}
                                 </p>
-
-                                <a
-                                    href={WHATSAPP_LINK(
-                                        `I'd like to order ${cards[1].name}.`
-                                    )}
-                                    className="w-fit rounded-full bg-[#F6F2E9] px-6 py-3.5 text-sm text-[#0E3B36] transition-transform duration-300 hover:scale-[1.03]"
-                                >
+                                <a href={WHATSAPP_LINK(`I'd like to order ${cards[1].name}.`)} className="w-full text-center sm:w-fit shrink-0 rounded-full bg-[#F6F2E9] px-5 py-3 text-xs xs:text-sm font-medium text-[#0E3B36] transition-transform duration-300 hover:scale-[1.03]">
                                     {cards[1].cta}
                                 </a>
                             </div>
                         </div>
-
                     </div>
+
                 </div>
 
-                {/* SCROLL INDICATOR */}
-                <div className="absolute bottom-5 right-6 z-20 md:right-10">
-                    <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-[#F6F2E9]/60">
+                {/* SCROLL INDICATOR - Shifted to stay readable against the card borders on mobile */}
+                <div className="absolute bottom-4 right-6 z-20 md:bottom-8 md:right-10">
+                    <div className="flex items-center gap-3 text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-[#071D1A]/60">
                         <span>01</span>
-
-                        <div className="h-px w-12 bg-[#F6F2E9]/30">
-                            <div
-                                className="h-full origin-left bg-[#F6F2E9]"
-                                style={{
-                                    transform: `scaleX(${progress})`,
-                                }}
-                            />
+                        <div className="h-px w-8 md:w-12 bg-[#071D1A]/20">
+                            <div className="h-full origin-left bg-[#071D1A]" style={{ transform: `scaleX(${progress})` }} />
                         </div>
-
                         <span>02</span>
                     </div>
                 </div>
@@ -707,6 +609,7 @@ function Varieties() {
         </section>
     );
 }
+
 
 
 
@@ -821,7 +724,7 @@ function BulkSupply() {
                                     KFARM Agro Limited
                                 </span>
 
-                                
+
                             </div>
                         </div>
                     </Reveal>
@@ -1283,8 +1186,8 @@ export default function Home() {
             <Hero />
             <About />
             <FarmGallery />
-            <HowItWorks />
             <Varieties />
+            <HowItWorks />
             <BulkSupply />
             <FrequentlyAskedQuestions />
             <FisheryJourney />
