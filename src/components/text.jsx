@@ -109,7 +109,7 @@ function Hero() {
             <div className="absolute inset-0 pointer-events-none hidden md:block z-0">
 
                 {/* Top Left Floating Image */}
-                {/* <div
+                <div
           className="absolute top-6 left-2 lg:left-6 w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) animate-float"
           style={{
             "--rot": "-6deg",
@@ -123,7 +123,7 @@ function Hero() {
             alt="Fresh catfish"
             className="w-full h-full object-cover"
           />
-        </div> */}
+        </div>
 
                 {/* Top Right Floating Image */}
                 <div
@@ -191,7 +191,7 @@ function Hero() {
                 </p>
 
                 <h1
-                    className={`${base} text-[#000000] text-[40px] leading-[1.1] sm:text-5xl md:text-6xl`}
+                    className={`${base} text-[#0E3B36] text-[40px] leading-[1.1] sm:text-5xl md:text-6xl`}
                     style={{
                         fontFamily: "Fraunces, serif",
                         fontWeight: 560,
@@ -350,17 +350,17 @@ export function FarmGallery() {
     }, []);
 
     return (
-        <section id="gallery" className="py-24 bg-[#F6F2E9] overflow-hidden">
+        <section id="gallery" className="py-24 bg-[#6CA085] overflow-hidden">
             <div className="mx-auto px-6 md:px-10">
                 <Reveal>
                     <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
                         <div>
-                            <p className="text-[#B98A2B] text-sm mb-3">Life at the farm</p>
+                            {/* <p className="text-[#B98A2B] text-sm mb-3">Life at the farm</p> */}
                             <h2
-                                className="text-3xl md:text-4xl text-[#6CA085] max-w-lg"
+                                className="text-3xl md:text-4xl text-[#FEFCFF] max-w-lg"
                                 style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
                             >
-                                From pond to harvest.
+                                Life at the farm.
                             </h2>
                         </div>
                     </div>
@@ -377,7 +377,7 @@ export function FarmGallery() {
                     {images.map((image, index) => (
                         <div
                             key={`${image.alt}-${index}`}
-                            className="shrink-0 w-[75vw] sm:w-[45vw] lg:w-[28vw] relative h-[360px] md:h-[420px] group overflow-hidden bg-[#6CA085]"
+                            className="shrink-0 w-[75vw] sm:w-[45vw] lg:w-[28vw] relative h-[360px]  group overflow-hidden bg-[#6CA085]"
                         >
                             <img
                                 src={image.src}
@@ -414,7 +414,7 @@ function HowItWorks() {
         { n: "04", title: "Get your fish", copy: "Fresh fish arrives at your door, still cold from the farm." },
     ];
     return (
-        <section id="how-it-works" className="relative bg-[#6CA085] text-[#F6F2E9] py-24 overflow-hidden">
+        <section id="how-it-works" className="relative py-24 overflow-hidden">
 
             <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
                 <Reveal>
@@ -520,7 +520,7 @@ export function Varieties() {
     };
 
     return (
-        <section ref={sectionRef} id="varieties" className="relative h-[200vh] bg-[#F6F2E9]" >
+        <section ref={sectionRef} id="varieties" className="relative h-[200vh] bg-[#FEFCFF]" >
             <div className="sticky top-0 flex pt-45 lg:h-screen lg:pt-0 w-full items-center justify-center overflow-hidden">
 
                 {/* RESPONSIVE CONTAINER (Tighter margins on small mobile screens) */}

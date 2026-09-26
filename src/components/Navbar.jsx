@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-
+import Logo from "../assets/logo.png";
 const ANNOUNCEMENT_MESSAGES = [
     "Fresh catfish and tilapia available now",
     "Welcome to KFARM Agro Limited",
@@ -83,7 +83,7 @@ function Navbar() {
             <div className="max-w-6xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
                 {/* Brand Logo & Name */}
                 <a href="/" className="flex items-center gap-2 shrink-0">
-                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    {/* <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
                         <path
                             d="M2 15c5-9 15-9 20-4l6-4-2 8 2 8-6-4c-5 5-15 5-20-4Z"
                             fill="#0E3B36"
@@ -95,7 +95,10 @@ function Navbar() {
                         style={{ fontFamily: "Fraunces, serif", fontWeight: 600 }}
                     >
                         KFARM Agro Limited
-                    </span>
+                    </span> */}
+
+                    <img src={Logo} 
+                    className="h-12"/>
                 </a>
 
                 {/* Desktop Navigation Links */}
