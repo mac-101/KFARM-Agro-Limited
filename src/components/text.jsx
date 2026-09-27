@@ -137,7 +137,7 @@ function Hero() {
                     }}
                 >
                     
-                        id="order"
+                     <a   id="order"
                         href={WHATSAPP_LINK("I'd like to place an order.")}
                         className="rounded-full bg-[#F6F2E9] text-[#1B4332] px-8 py-3.5 text-[15px] font-medium hover:bg-[#E9E4D5] transition-all"
                     >
