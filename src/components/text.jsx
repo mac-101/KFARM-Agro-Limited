@@ -996,7 +996,7 @@ function ReferAndEarn() {
                         </a>
                     </Reveal>
                 </div>
-                <div >
+                <div className="items-center flex" >
                     <img src={referImg} />
                 </div>
             </div>
