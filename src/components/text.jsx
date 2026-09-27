@@ -80,142 +80,104 @@ function Reveal({ children, delay = 0, className = "" }) {
 
 
 /* --------------------------------- Hero -------------------------------- */
+
+
 function Hero() {
     const [ref, shown] = useReveal();
     const base = "transition-all duration-[900ms]";
 
-    const collage = [
-        { img: IMG.hero, alt: "Fish farm", delay: 120 },
-        { img: IMG.heroSmall1, alt: "Fresh catfish", delay: 240 },
-        { img: IMG.heroSmall2, alt: "Fresh tilapia", delay: 340 },
-    ];
-
     return (
-        <section id="top" className="max-w-7xl mx-auto px-6 md:px-10 pt-16 md:pt-28 pb-24">
-            <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <section id="top" className="relative h-[92vh] min-h-[640px] overflow-hidden">
+            <img
+                src={IMG.hero}
+                alt="Fish farm at KFARM"
+                className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B2B22] via-[#0B2B22]/55 to-[#0B2B22]/15" />
 
-                {/* Left: text */}
-                <div ref={ref}>
-                    <p
-                        className={`${base} text-[#1B4332] text-sm md:text-base font-semibold tracking-wide uppercase mb-4`}
-                        style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(14px)" }}
+            <div ref={ref} className="relative h-full max-w-6xl mx-auto px-6 md:px-10 flex flex-col justify-end pb-16 md:pb-20">
+                <p
+                    className={`${base} text-[#F6F2E9]/80 text-sm md:text-base font-medium tracking-wide uppercase mb-4`}
+                    style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(14px)" }}
+                >
+                    Beyond Farming
+                </p>
+
+                <h1
+                    className={`${base} text-[#F6F2E9] text-[40px] leading-[1.1] sm:text-5xl md:text-6xl max-w-2xl`}
+                    style={{
+                        fontFamily: "Fraunces, serif",
+                        fontWeight: 560,
+                        opacity: shown ? 1 : 0,
+                        transform: shown ? "translateY(0)" : "translateY(22px)",
+                        transitionDelay: "100ms",
+                    }}
+                >
+                    Get your well-bred fish, straight from the farm.
+                </h1>
+
+                <p
+                    className={`${base} text-[#F6F2E9]/75 text-base md:text-lg mt-5 max-w-md leading-relaxed`}
+                    style={{
+                        opacity: shown ? 1 : 0,
+                        transform: shown ? "translateY(0)" : "translateY(18px)",
+                        transitionDelay: "180ms",
+                    }}
+                >
+                    Fresh or dried catfish and tilapia, delivered from our farm
+                    in Abia State, retail or wholesale.
+                </p>
+
+                <div
+                    className={`${base} flex flex-wrap gap-4 mt-9`}
+                    style={{
+                        opacity: shown ? 1 : 0,
+                        transform: shown ? "translateY(0)" : "translateY(18px)",
+                        transitionDelay: "260ms",
+                    }}
+                >
+                    
+                        id="order"
+                        href={WHATSAPP_LINK("I'd like to place an order.")}
+                        className="rounded-full bg-[#F6F2E9] text-[#1B4332] px-8 py-3.5 text-[15px] font-medium hover:bg-[#E9E4D5] transition-all"
                     >
-                        Beyond Farming
-                    </p>
-
-                    <h1
-                        className={`${base} text-[#1B4332] text-[40px] leading-[1.1] sm:text-5xl md:text-[56px]`}
-                        style={{
-                            fontFamily: "Fraunces, serif",
-                            fontWeight: 560,
-                            opacity: shown ? 1 : 0,
-                            transform: shown ? "translateY(0)" : "translateY(22px)",
-                            transitionDelay: "100ms",
-                        }}
+                        Order fresh fish
+                    </a>
+                    
+                        href="#varieties"
+                        className="rounded-full border border-[#F6F2E9]/35 text-[#F6F2E9] px-8 py-3.5 text-[15px] font-medium hover:border-[#F6F2E9]/70 transition-all"
                     >
-                        Get your well-bred fish, straight from the farm.
-                    </h1>
-
-                    <p
-                        className={`${base} text-[#31463F]/75 text-base md:text-lg mt-5 max-w-md leading-relaxed`}
-                        style={{
-                            opacity: shown ? 1 : 0,
-                            transform: shown ? "translateY(0)" : "translateY(18px)",
-                            transitionDelay: "180ms",
-                        }}
-                    >
-                        Fresh or dried catfish and tilapia, delivered from our farm
-                        in Abia State, retail or wholesale.
-                    </p>
-
-                    <div
-                        className={`${base} flex flex-wrap gap-4 mt-9`}
-                        style={{
-                            opacity: shown ? 1 : 0,
-                            transform: shown ? "translateY(0)" : "translateY(18px)",
-                            transitionDelay: "260ms",
-                        }}
-                    >
-                        <a
-                            id="order"
-                            href={WHATSAPP_LINK("I'd like to place an order.")}
-                            className="rounded-full bg-[#1B4332] text-[#F6F2E9] px-8 py-3.5 text-[15px] font-medium hover:bg-[#12281F] transition-all shadow-md hover:shadow-lg"
-                        >
-                            Order fresh fish
-                        </a>
-
-                        <a href="#varieties"
-                            className="rounded-full border border-[#1B4332]/25 text-[#1B4332] px-8 py-3.5 text-[15px] font-medium hover:border-[#1B4332]/60 transition-all"
-                        >
-                            Our varieties
-                        </a>
-                    </div>
-
-                    <div
-                        className={`${base} grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14 pt-8 border-t border-[#1B4332]/15 max-w-lg`}
-                        style={{
-                            opacity: shown ? 1 : 0,
-                            transform: shown ? "translateY(0)" : "translateY(18px)",
-                            transitionDelay: "340ms",
-                        }}
-                    >
-                        <div>
-                            <p className="text-[#1B4332] text-sm font-medium">Fresh from farm</p>
-                            <p className="text-[#31463F]/65 text-xs mt-1">Catfish & tilapia</p>
-                        </div>
-                        <div>
-                            <p className="text-[#1B4332] text-sm font-medium">Pickup & delivery</p>
-                            <p className="text-[#31463F]/65 text-xs mt-1">From Abia State</p>
-                        </div>
-                        <div>
-                            <p className="text-[#1B4332] text-sm font-medium">Retail & wholesale</p>
-                            <p className="text-[#31463F]/65 text-xs mt-1">Single or bulk</p>
-                        </div>
-                        <div>
-                            <p className="text-[#1B4332] text-sm font-medium">Learn fishery</p>
-                            <p className="text-[#31463F]/65 text-xs mt-1">Practical courses</p>
-                        </div>
-                    </div>
+                        Our varieties
+                    </a>
                 </div>
+            </div>
 
-                {/* Right: structured image collage — one wide, two stacked below */}
-                <div className="grid grid-cols-4 ">
-                    <div/>
-                    <div
-                        className="col-span-3 rounded-t-2xl overflow-hidden h-56 md:h-64 transition-all duration-700"
-                        style={{
-                            opacity: shown ? 1 : 0,
-                            transform: shown ? "translateY(0)" : "translateY(24px)",
-                            transitionDelay: `${collage[0].delay}ms`,
-                        }}
-                    >
-                        <img src={collage[0].img} alt={collage[0].alt} className="w-full h-full object-cover" />
-                    </div>
-                    <div
-                        className="rounded-l-2xl col-span-2 overflow-hidden h-40 md:h-48 transition-all duration-700"
-                        style={{
-                            opacity: shown ? 1 : 0,
-                            transform: shown ? "translateY(0)" : "translateY(24px)",
-                            transitionDelay: `${collage[1].delay}ms`,
-                        }}
-                    >
-                        <img src={collage[1].img} alt={collage[1].alt} className="w-full h-full object-cover" />
-                    </div>
-                    <div
-                        className="rounded-br-2xl col-span-2 overflow-hidden h-40 md:h-48 transition-all duration-700"
-                        style={{
-                            opacity: shown ? 1 : 0,
-                            transform: shown ? "translateY(0)" : "translateY(24px)",
-                            transitionDelay: `${collage[2].delay}ms`,
-                        }}
-                    >
-                        <img src={collage[2].img} alt={collage[2].alt} className="w-full h-full object-cover" />
-                    </div>
+            {/* two supporting images, quiet corner accent, no motion loop */}
+            <div className="hidden md:flex absolute bottom-10 right-8 lg:right-12 gap-3">
+                <div
+                    className="w-28 h-36 lg:w-32 lg:h-40 rounded-2xl overflow-hidden shadow-lg transition-all duration-700"
+                    style={{
+                        opacity: shown ? 1 : 0,
+                        transform: shown ? "translateY(0)" : "translateY(24px)",
+                        transitionDelay: "420ms",
+                    }}
+                >
+                    <img src={IMG.heroSmall1} alt="Fresh catfish" className="w-full h-full object-cover" />
+                </div>
+                <div
+                    className="w-28 h-36 lg:w-32 lg:h-40 rounded-2xl overflow-hidden shadow-lg mt-8 transition-all duration-700"
+                    style={{
+                        opacity: shown ? 1 : 0,
+                        transform: shown ? "translateY(0)" : "translateY(24px)",
+                        transitionDelay: "520ms",
+                    }}
+                >
+                    <img src={IMG.heroSmall2} alt="Fresh tilapia" className="w-full h-full object-cover" />
                 </div>
             </div>
         </section>
     );
-}
+ }
 
 // add to your existing IMG object:
 
@@ -262,6 +224,32 @@ function About() {
                         <div className="flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-[#1B4332]" />
                             No order is too small or too large
+                        </div>
+                    </div>
+
+                    <div
+                        className={`${base} grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14 pt-8 border-t border-[#1B4332]/15 max-w-lg`}
+                        style={{
+                            opacity: shown ? 1 : 0,
+                            transform: shown ? "translateY(0)" : "translateY(18px)",
+                            transitionDelay: "340ms",
+                        }}
+                    >
+                        <div>
+                            <p className="text-[#1B4332] text-sm font-medium">Fresh from farm</p>
+                            <p className="text-[#31463F]/65 text-xs mt-1">Catfish & tilapia</p>
+                        </div>
+                        <div>
+                            <p className="text-[#1B4332] text-sm font-medium">Pickup & delivery</p>
+                            <p className="text-[#31463F]/65 text-xs mt-1">From Abia State</p>
+                        </div>
+                        <div>
+                            <p className="text-[#1B4332] text-sm font-medium">Retail & wholesale</p>
+                            <p className="text-[#31463F]/65 text-xs mt-1">Single or bulk</p>
+                        </div>
+                        <div>
+                            <p className="text-[#1B4332] text-sm font-medium">Learn fishery</p>
+                            <p className="text-[#31463F]/65 text-xs mt-1">Practical courses</p>
                         </div>
                     </div>
                 </Reveal>
