@@ -185,6 +185,8 @@ import { Fish, ChevronRight, ChevronDown, Droplets, TrendingUp, GraduationCap, H
 import video3 from "../assets/video 3.mp4";
 
 function About() {
+    const base = "transition-all duration-[900ms]";
+
     return (
         <section id="about" className="py-16 md:py-24  text-[#1B4332]">
             <div className="max-w-4xl mx-auto px-6 text-center">
