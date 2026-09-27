@@ -2,7 +2,7 @@ import { MapPin } from "lucide-react";
 
 function Footer() {
     return (
-        <footer id="contact" className="bg-[#F6F2E9] py-14 border-t border-[#1B4332]/10">
+        <footer id="contact" className="bg-[#FEFCFF] py-14 border-t border-[#1B4332]/10">
             <div className="max-w-6xl mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between gap-8">
                 <div>
                     <span
@@ -15,7 +15,7 @@ function Footer() {
                         Fresh catfish and tilapia, sold directly and by the crate, plus
                         the know-how to grow your own.
                     </p>
-                    <a href="tel:+2349115380670" className="inline-flex items-center gap-2 mt-4 text-sm text-[#1B4332] hover:text-[#B98A2B] transition-colors">
+                    <a href="tel:+2349115380670" className="inline-flex items-center gap-2 mt-4 text-sm text-[#1B4332] hover:text-[#F6F2E9] transition-colors">
                         Call us: 0911 538 0670
                     </a>
                 </div>

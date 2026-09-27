@@ -74,7 +74,7 @@ function Navbar() {
                     {[...ANNOUNCEMENT_MESSAGES, ...ANNOUNCEMENT_MESSAGES].map((message, index) => (
                         <span key={`${message}-${index}`} className="flex items-center gap-8">
                             <span>{message}</span>
-                            {/* <span className="text-[#D9A441]" aria-hidden="true">✦</span> */}
+                            {/* <span className="text-[#F6F2E9]" aria-hidden="true">✦</span> */}
                         </span>
                     ))}
                 </div>

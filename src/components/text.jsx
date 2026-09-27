@@ -1,14 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-
-/* ------------------------------------------------------------------ */
-/*  KFARM  Agro Limited, fish business landing page                          */
-/*  Built from a hand-sketched wireframe: hero, ordering steps,        */
-/*  catfish/tilapia varieties, wholesale, fishery-learning carousel,   */
-/*  closing banner.                                                    */
-/*                                                                      */
-/*  Palette: deep teal + warm Agro Limited gold, on a soft paper cream       */
-/*  Type: Fraunces (headlines) + Inter (body/UI)                       */
-/* ------------------------------------------------------------------ */
+import referImg from "../assets/slazzer-preview-74wu0.png"
 
 const WHATSAPP_NUMBER = "2349115380670"; // 09115380670, with Nigeria country code, no leading 0
 const DEFAULT_ORDER_MESSAGE =
@@ -39,6 +30,7 @@ const IMG = {
         "https://images.pexels.com/photos/32243195/pexels-photo-32243195.jpeg?auto=compress&cs=tinysrgb&w=900",
     closing:
         "https://images.pexels.com/photos/18640095/pexels-photo-18640095.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    wholesale: "https://images.pexels.com/photos/7509417/pexels-photo-7509417.jpeg?auto=compress&cs=tinysrgb&w=1400",
 };
 
 const galleryImage = {
@@ -92,165 +84,131 @@ function Hero() {
     const [ref, shown] = useReveal();
     const base = "transition-all duration-[900ms]";
 
+    const collage = [
+        { img: IMG.hero, alt: "Fish farm", delay: 120 },
+        { img: IMG.heroSmall1, alt: "Fresh catfish", delay: 240 },
+        { img: IMG.heroSmall2, alt: "Fresh tilapia", delay: 340 },
+    ];
+
     return (
-        <section id="top" className="relative max-w-6xl mx-auto px-6 md:px-10 pt-16 md:pt-28 pb-24 overflow-hidden">
-            {/* Floating Keyframe Animation */}
-            <style>{`
-        @keyframes float-slow {
-          0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
-          50% { transform: translateY(-12px) rotate(var(--rot, 0deg)); }
-        }
-        .animate-float {
-          animation: float-slow 4.5s ease-in-out infinite;
-        }
-      `}</style>
+        <section id="top" className="max-w-6xl mx-auto px-6 md:px-10 pt-16 md:pt-28 pb-24">
+            <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
 
-            {/* Borderless Floating Pop-up Images with Clean Google Shadows */}
-            <div className="absolute inset-0 pointer-events-none hidden md:block z-0">
-
-                {/* Top Left Floating Image */}
-                <div
-                    className="absolute top-6 left-2 lg:left-6 w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) animate-float"
-                    style={{
-                        "--rot": "-6deg",
-                        opacity: shown ? 1 : 0,
-                        transform: shown ? "scale(1) translateY(0) rotate(-6deg)" : "scale(0) translateY(40px) rotate(-20deg)",
-                        transitionDelay: "350ms",
-                    }}
-                >
-                    <img
-                        src={IMG.heroSmall1}
-                        alt="Fresh catfish"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-
-                {/* Top Right Floating Image */}
-                <div
-                    className="absolute top-10 right-4 lg:right-8 w-36 h-36 lg:w-85 lg:h-85 rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) "
-                    style={{
-                        "--rot": "8deg",
-                        opacity: shown ? 1 : 0,
-                        transform: shown ? "scale(1) translateY(0) rotate(8deg)" : "scale(0) translateY(40px) rotate(20deg)",
-                        transitionDelay: "500ms",
-                    }}
-                >
-                    <img
-                        src={IMG.heroSmall2}
-                        alt="Fresh tilapia"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-
-                {/* Bottom Left Floating Image */}
-                <div
-                    className="absolute bottom-8 left-6 lg:left-12 w-36 h-36 lg:w-44 lg:h-44 rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) animate-float"
-                    style={{
-                        "--rot": "5deg",
-                        opacity: shown ? 1 : 0,
-                        transform: shown ? "scale(1) translateY(0) rotate(5deg)" : "scale(0) translateY(40px) rotate(-15deg)",
-                        transitionDelay: "650ms",
-                    }}
-                >
-                    <img
-                        src={IMG.hero}
-                        alt="Fish farm"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-
-                {/* Bottom Right Floating Image */}
-                <div
-                    className="absolute bottom-10 right-6 lg:right-12 w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.12)] bg-white transition-all duration-700 cubic-bezier(0.34,1.56,0.64,1) animate-float"
-                    style={{
-                        "--rot": "-8deg",
-                        opacity: shown ? 1 : 0,
-                        transform: shown ? "scale(1) translateY(0) rotate(-8deg)" : "scale(0) translateY(40px) rotate(15deg)",
-                        transitionDelay: "800ms",
-                    }}
-                >
-                    <img
-                        src={IMG.heroSmall1}
-                        alt="Fresh harvest"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-
-            </div>
-
-            {/* Centered Main Content Container */}
-            <div ref={ref} className="relative z-10 text-center max-w-3xl mx-auto">
-                <p
-                    className={`${base} text-[#1B4332] text-left text-sm md:text-base font-semibold tracking-wide uppercase mb-4`}
-                    style={{
-                        opacity: shown ? 1 : 0,
-                        transform: shown ? "translateY(0)" : "translateY(14px)",
-                    }}
-                >
-                    Beyond Farming
-                </p>
-
-                <h1
-                    className={`${base} text-[#1B4332] text-[40px] leading-[1.1] sm:text-5xl md:text-6xl`}
-                    style={{
-                        fontFamily: "Fraunces, serif",
-                        fontWeight: 560,
-                        opacity: shown ? 1 : 0,
-                        transform: shown ? "translateY(0)" : "translateY(22px)",
-                        transitionDelay: "100ms",
-                    }}
-                >
-                    Get your well bred fish, straight from the farm here now
-                </h1>
-
-                {/* Centered CTA Buttons */}
-                <div
-                    className={`${base} flex flex-wrap justify-center gap-4 mt-9`}
-                    style={{
-                        opacity: shown ? 1 : 0,
-                        transform: shown ? "translateY(0)" : "translateY(18px)",
-                        transitionDelay: "220ms",
-                    }}
-                >
-                    <a
-                        id="order"
-                        href={WHATSAPP_LINK("I'd like to place an order.")}
-                        className="rounded-full bg-[#1B4332] text-[#F6F2E9] px-8 py-3.5 text-[15px] font-medium hover:bg-[#12281F] transition-all shadow-md hover:shadow-lg"
+                {/* Left: text */}
+                <div ref={ref}>
+                    <p
+                        className={`${base} text-[#1B4332] text-sm md:text-base font-semibold tracking-wide uppercase mb-4`}
+                        style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(14px)" }}
                     >
-                        Order fresh fish
-                    </a>
-                    <a
-                        href="#varieties"
-                        className="rounded-full border border-[#1B4332]/25 text-[#1B4332] px-8 py-3.5 text-[15px] font-medium hover:border-[#1B4332]/60 transition-all"
+                        Beyond Farming
+                    </p>
+
+                    <h1
+                        className={`${base} text-[#1B4332] text-[40px] leading-[1.1] sm:text-5xl md:text-[56px]`}
+                        style={{
+                            fontFamily: "Fraunces, serif",
+                            fontWeight: 560,
+                            opacity: shown ? 1 : 0,
+                            transform: shown ? "translateY(0)" : "translateY(22px)",
+                            transitionDelay: "100ms",
+                        }}
                     >
-                        Our varieties
-                    </a>
+                        Get your well-bred fish, straight from the farm.
+                    </h1>
+
+                    <p
+                        className={`${base} text-[#31463F]/75 text-base md:text-lg mt-5 max-w-md leading-relaxed`}
+                        style={{
+                            opacity: shown ? 1 : 0,
+                            transform: shown ? "translateY(0)" : "translateY(18px)",
+                            transitionDelay: "180ms",
+                        }}
+                    >
+                        Fresh or dried catfish and tilapia, delivered from our farm
+                        in Abia State, retail or wholesale.
+                    </p>
+
+                    <div
+                        className={`${base} flex flex-wrap gap-4 mt-9`}
+                        style={{
+                            opacity: shown ? 1 : 0,
+                            transform: shown ? "translateY(0)" : "translateY(18px)",
+                            transitionDelay: "260ms",
+                        }}
+                    >
+                        <a
+                            id="order"
+                            href={WHATSAPP_LINK("I'd like to place an order.")}
+                            className="rounded-full bg-[#1B4332] text-[#F6F2E9] px-8 py-3.5 text-[15px] font-medium hover:bg-[#12281F] transition-all shadow-md hover:shadow-lg"
+                        >
+                            Order fresh fish
+                        </a>
+
+                        <a href="#varieties"
+                            className="rounded-full border border-[#1B4332]/25 text-[#1B4332] px-8 py-3.5 text-[15px] font-medium hover:border-[#1B4332]/60 transition-all"
+                        >
+                            Our varieties
+                        </a>
+                    </div>
+
+                    <div
+                        className={`${base} grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14 pt-8 border-t border-[#1B4332]/15 max-w-lg`}
+                        style={{
+                            opacity: shown ? 1 : 0,
+                            transform: shown ? "translateY(0)" : "translateY(18px)",
+                            transitionDelay: "340ms",
+                        }}
+                    >
+                        <div>
+                            <p className="text-[#1B4332] text-sm font-medium">Fresh from farm</p>
+                            <p className="text-[#31463F]/65 text-xs mt-1">Catfish & tilapia</p>
+                        </div>
+                        <div>
+                            <p className="text-[#1B4332] text-sm font-medium">Pickup & delivery</p>
+                            <p className="text-[#31463F]/65 text-xs mt-1">From Abia State</p>
+                        </div>
+                        <div>
+                            <p className="text-[#1B4332] text-sm font-medium">Retail & wholesale</p>
+                            <p className="text-[#31463F]/65 text-xs mt-1">Single or bulk</p>
+                        </div>
+                        <div>
+                            <p className="text-[#1B4332] text-sm font-medium">Learn fishery</p>
+                            <p className="text-[#31463F]/65 text-xs mt-1">Practical courses</p>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Features Row */}
-                <div
-                    className={`${base} grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14 pt-8 border-t border-[#1B4332]/15 max-w-2xl mx-auto text-center`}
-                    style={{
-                        opacity: shown ? 1 : 0,
-                        transform: shown ? "translateY(0)" : "translateY(18px)",
-                        transitionDelay: "320ms",
-                    }}
-                >
-                    <div>
-                        <p className="text-[#1B4332] text-sm font-medium">Fresh from farm</p>
-                        <p className="text-[#31463F]/65 text-xs mt-1">Catfish & tilapia</p>
+                {/* Right: structured image collage — one wide, two stacked below */}
+                <div className="grid grid-cols-2 gap-4">
+                    <div
+                        className="col-span-2 rounded-2xl overflow-hidden h-56 md:h-64 transition-all duration-700"
+                        style={{
+                            opacity: shown ? 1 : 0,
+                            transform: shown ? "translateY(0)" : "translateY(24px)",
+                            transitionDelay: `${collage[0].delay}ms`,
+                        }}
+                    >
+                        <img src={collage[0].img} alt={collage[0].alt} className="w-full h-full object-cover" />
                     </div>
-                    <div>
-                        <p className="text-[#1B4332] text-sm font-medium">Pickup & delivery</p>
-                        <p className="text-[#31463F]/65 text-xs mt-1">From Abia State</p>
+                    <div
+                        className="rounded-2xl overflow-hidden h-40 md:h-48 transition-all duration-700"
+                        style={{
+                            opacity: shown ? 1 : 0,
+                            transform: shown ? "translateY(0)" : "translateY(24px)",
+                            transitionDelay: `${collage[1].delay}ms`,
+                        }}
+                    >
+                        <img src={collage[1].img} alt={collage[1].alt} className="w-full h-full object-cover" />
                     </div>
-                    <div>
-                        <p className="text-[#1B4332] text-sm font-medium">Retail & wholesale</p>
-                        <p className="text-[#31463F]/65 text-xs mt-1">Single or bulk</p>
-                    </div>
-                    <div>
-                        <p className="text-[#1B4332] text-sm font-medium">Learn fishery</p>
-                        <p className="text-[#31463F]/65 text-xs mt-1">Practical courses</p>
+                    <div
+                        className="rounded-2xl overflow-hidden h-40 md:h-48 transition-all duration-700"
+                        style={{
+                            opacity: shown ? 1 : 0,
+                            transform: shown ? "translateY(0)" : "translateY(24px)",
+                            transitionDelay: `${collage[2].delay}ms`,
+                        }}
+                    >
+                        <img src={collage[2].img} alt={collage[2].alt} className="w-full h-full object-cover" />
                     </div>
                 </div>
             </div>
@@ -260,7 +218,7 @@ function Hero() {
 
 // add to your existing IMG object:
 
-import { Fish, GraduationCap, Handshake, MessageCircle } from "lucide-react";
+import { Fish, ChevronRight, ChevronDown, Droplets, TrendingUp, GraduationCap, Handshake, MessageCircle } from "lucide-react";
 import video3 from "../assets/video 3.mp4";
 
 function About() {
@@ -442,7 +400,7 @@ export function FarmGallery() {
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0B2B22]/85 via-[#0B2B22]/20 to-transparent" />
 
                             <div className="absolute bottom-0 left-0 right-0 p-6 text-[#F6F2E9]">
-                                <p className="text-[10px] uppercase tracking-[0.2em] text-[#D9A441]">
+                                <p className="text-[10px] uppercase tracking-[0.2em] text-[#F6F2E9]">
                                     {image.category}
                                 </p>
                                 <h3 className="mt-2 text-xl" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
@@ -572,8 +530,8 @@ export function Varieties() {
             {/* Removed lg:flex from section container to fix sticky break */}
             <section ref={sectionRef} id="varieties" className="relative h-[200vh] bg-[#FEFCFF]">
                 {/* Single sticky wrapper wrapping heading and card stack */}
-                <div className="sticky lg:top-20 h-screen flex flex-col items-center justify-center pt-8 pb-12 overflow-hidden">
-                    
+                <div className="sticky top-15 lg:top-20 h-screen flex flex-col items-center justify-center pt-8 pb-12 overflow-hidden">
+
                     {/* Header */}
                     <div className="mb-6 text-center">
                         <h2
@@ -681,7 +639,7 @@ export function Varieties() {
                     {/* 2. Single Continuous Progress Line Sitting Below */}
                     <div className="relative h-[2px] w-full bg-[#F6F2E9]/15 overflow-hidden rounded-full">
                         <div
-                            className="h-full bg-[#D9A441] rounded-full"
+                            className="h-full bg-[#F6F2E9] rounded-full"
                             style={{
                                 width: `${progressPercentage}%`,
                                 transition: "width 1.2s ease-out"
@@ -692,7 +650,7 @@ export function Varieties() {
                     <Reveal delay={200}>
                         <a
                             href={WHATSAPP_LINK("I'd like to place an order.")}
-                            className="inline-flex mt-16 rounded-full bg-[#D9A441] text-[#1B4332] px-7 py-3.5 text-[15px] hover:bg-[#e5b559] transition-colors"
+                            className="inline-flex mt-16 rounded-full bg-[#F6F2E9] text-[#1B4332] px-7 py-3.5 text-[15px] hover:bg-[#E9E4D5] transition-colors"
                         >
                             Start an order
                         </a>
@@ -707,517 +665,282 @@ export function Varieties() {
 
 
 /* -------------------------------- Wholesale ------------------------------- */
-function BulkSupply() {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(event.currentTarget);
-
-        const message = [
-            "KFARM Agro Limited, I'd like to place a bulk order.",
-            `Fish: ${formData.get("fish")}`,
-            `Quantity: ${formData.get("quantity")}`,
-            `Order type: ${formData.get("orderType")}`,
-            `Pickup or delivery: ${formData.get("fulfilment")}`,
-            `Notes: ${formData.get("notes") || "None"}`,
-        ].join("\n");
-
-        window.open(
-            WHATSAPP_LINK(message),
-            "_blank",
-            "noopener,noreferrer"
-        );
-    };
-
-    useEffect(() => {
-        if (!isOpen) return;
-
-        const handleKeyDown = (event) => {
-            if (event.key === "Escape") setIsOpen(false);
-        };
-
-        document.addEventListener("keydown", handleKeyDown);
-        document.body.style.overflow = "hidden";
-
-        return () => {
-            document.removeEventListener("keydown", handleKeyDown);
-            document.body.style.overflow = "";
-        };
-    }, [isOpen]);
+export function BulkSupply() {
+    const wholesaleTags = ["For restaurants", "For retailers", "For hotels & caterers"];
 
     return (
-        <>
-            {/* PROMOTIONAL SECTION */}
-            <section
-                id="wholesale"
-                className="relative overflow-hidden bg-[#1B4332] text-[#F6F2E9]"
-            >
-                <div className="mx-auto grid min-h-[720px] max-w-7xl items-center px-6 py-20 md:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:py-24">
+        <section id="wholesale" className="relative overflow-hidden bg-[#0B2B22]">
+            <div className="absolute inset-0">
+                <img
+                    src={IMG.wholesale}
+                    alt="Fish in a working pond"
+                    className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B2B22] via-[#0B2B22]/70 to-[#0B2B22]/40" />
+            </div>
 
-                    {/* TEXT */}
-                    <Reveal className="relative z-10 py-10 lg:pr-12">
-                        <p className="text-xs uppercase tracking-[0.25em] text-[#D9A441]">
-                            Bulk supply
-                        </p>
+            <div className="relative max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
+                    {/* LEFT COLUMN: Direct bulk buyers */}
+                    <div className="lg:col-span-7">
                         <h2
-                            className="mt-5 max-w-xl text-5xl leading-[0.95] md:text-7xl"
-                            style={{
-                                fontFamily: "Fraunces, serif",
-                                fontWeight: 560,
-                            }}
+                            className="text-[#F6F2E9] text-3xl sm:text-4xl md:text-5xl leading-tight"
+                            style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
                         >
-                            For those
-                            <br />
-                            who need more.
+                            Need fish in larger quantity?
                         </h2>
 
-                        <p className="mt-7 max-w-md text-[15px] leading-relaxed text-[#F6F2E9]/70 md:text-base">
-                            Catfish and tilapia supply for restaurants,
-                            retailers, and businesses that need larger
-                            quantities.
+                        <p className="text-[#F6F2E9]/80 mt-5 max-w-lg text-base sm:text-lg leading-relaxed">
+                            Whether you're running a restaurant, managing a retail
+                            shop, or catering events, we supply fresh stock on a
+                            reliable schedule tailored to your volume.
                         </p>
 
-                        <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#F6F2E9]/55">
-                            <span>Restaurants</span>
-                            <span>Retailers</span>
-                            <span>Businesses</span>
-                        </div>
-
-                        <button
-                            type="button"
-                            onClick={() => setIsOpen(true)}
-                            className="group mt-10 inline-flex items-center gap-3 rounded-full bg-[#F6F2E9] px-6 py-3.5 text-[15px] text-[#1B4332] transition-all duration-300 hover:gap-4"
-                        >
-                            Start a bulk order
-                            <span
-                                aria-hidden="true"
-                                className="transition-transform duration-300 group-hover:translate-x-1"
-                            >
-                                →
-                            </span>
-                        </button>
-                    </Reveal>
-
-                    {/* IMAGE */}
-                    <Reveal delay={120} className="relative mt-10 lg:mt-0">
-                        <div className="relative h-[430px] overflow-hidden rounded-[2rem] md:h-[560px] lg:h-[620px]">
-                            <img
-                                src={IMG.wholesale}
-                                alt="Large-scale fish farming"
-                                className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
-                            />
-
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0B2B22]/45 via-transparent to-transparent" />
-
-                            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-                                <span className="text-xs uppercase tracking-[0.2em] text-[#F6F2E9]/70">
-                                    KFARM Agro Limited
+                        <div className="flex flex-wrap gap-2.5 mt-6">
+                            {wholesaleTags.map((t) => (
+                                <span
+                                    key={t}
+                                    className="rounded-full border border-[#F6F2E9]/20 text-[#F6F2E9]/90 px-4 py-1.5 text-xs font-medium"
+                                >
+                                    {t}
                                 </span>
-
-
-                            </div>
+                            ))}
                         </div>
-                    </Reveal>
-                </div>
-            </section>
 
-            {/* ORDER PANEL */}
-            {isOpen && (
-                <div
-                    className="fixed inset-0 z-[100] flex justify-end bg-black/40 backdrop-blur-[2px]"
-                    onMouseDown={(event) => {
-                        if (event.target === event.currentTarget) {
-                            setIsOpen(false);
-                        }
-                    }}
-                >
-                    <div
-                        role="dialog"
-                        aria-modal="true"
-                        aria-labelledby="bulk-order-title"
-                        className="h-full w-full max-w-xl overflow-y-auto bg-[#F6F2E9] text-[#1B4332] shadow-2xl"
-                    >
-                        <div className="flex min-h-full flex-col px-6 py-8 md:px-10 md:py-10">
 
-                            {/* HEADER */}
-                            <div className="flex items-start justify-between gap-6">
-                                <div>
-                                    <p className="text-xs uppercase tracking-[0.22em] text-[#B98A2B]">
-                                        Bulk supply
-                                    </p>
-
-                                    <h3
-                                        id="bulk-order-title"
-                                        className="mt-3 text-4xl leading-none md:text-5xl"
-                                        style={{
-                                            fontFamily: "Fraunces, serif",
-                                            fontWeight: 560,
-                                        }}
-                                    >
-                                        Let&apos;s talk
-                                        <br />
-                                        supply.
-                                    </h3>
-                                </div>
-
-                                <button
-                                    type="button"
-                                    onClick={() => setIsOpen(false)}
-                                    aria-label="Close order form"
-                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#1B4332]/10 text-xl transition-colors hover:bg-[#1B4332] hover:text-[#F6F2E9]"
-                                >
-                                    ×
-                                </button>
-                            </div>
-
-                            <p className="mt-5 max-w-md text-sm leading-relaxed text-[#31463F]/75">
-                                Tell us what you need. Your details will be
-                                prepared for WhatsApp so we can continue from
-                                there.
-                            </p>
-
-                            {/* FORM */}
-                            <form
-                                onSubmit={handleSubmit}
-                                className="mt-12 flex flex-1 flex-col"
-                            >
-                                <div className="space-y-7">
-
-                                    {/* FISH */}
-                                    <label className="block">
-                                        <span className="text-xs uppercase tracking-[0.18em] text-[#31463F]/60">
-                                            Fish
-                                        </span>
-
-                                        <select
-                                            name="fish"
-                                            required
-                                            className="mt-2 w-full border-0 border-b border-[#1B4332]/20 bg-transparent px-0 py-3 text-base text-[#1B4332] outline-none focus:border-[#1B4332]"
-                                        >
-                                            <option>Catfish</option>
-                                            <option>Tilapia</option>
-                                            <option>Catfish and tilapia</option>
-                                        </select>
-                                    </label>
-
-                                    {/* QUANTITY */}
-                                    <label className="block">
-                                        <span className="text-xs uppercase tracking-[0.18em] text-[#31463F]/60">
-                                            Quantity
-                                        </span>
-
-                                        <input
-                                            name="quantity"
-                                            required
-                                            placeholder="e.g. 10 kg or 1 crate"
-                                            className="mt-2 w-full border-0 border-b border-[#1B4332]/20 bg-transparent px-0 py-3 text-base text-[#1B4332] outline-none placeholder:text-[#31463F]/35 focus:border-[#1B4332]"
-                                        />
-                                    </label>
-
-                                    {/* ORDER TYPE */}
-                                    <label className="block">
-                                        <span className="text-xs uppercase tracking-[0.18em] text-[#31463F]/60">
-                                            Order type
-                                        </span>
-
-                                        <select
-                                            name="orderType"
-                                            className="mt-2 w-full border-0 border-b border-[#1B4332]/20 bg-transparent px-0 py-3 text-base text-[#1B4332] outline-none focus:border-[#1B4332]"
-                                        >
-                                            <option>One-time order</option>
-                                            <option>Regular supply</option>
-                                            <option>Wholesale order</option>
-                                        </select>
-                                    </label>
-
-                                    {/* FULFILMENT */}
-                                    <label className="block">
-                                        <span className="text-xs uppercase tracking-[0.18em] text-[#31463F]/60">
-                                            Pickup or delivery
-                                        </span>
-
-                                        <select
-                                            name="fulfilment"
-                                            className="mt-2 w-full border-0 border-b border-[#1B4332]/20 bg-transparent px-0 py-3 text-base text-[#1B4332] outline-none focus:border-[#1B4332]"
-                                        >
-                                            <option>Pickup</option>
-                                            <option>Delivery</option>
-                                            <option>Not sure yet</option>
-                                        </select>
-                                    </label>
-
-                                    {/* NOTES */}
-                                    <label className="block">
-                                        <span className="text-xs uppercase tracking-[0.18em] text-[#31463F]/60">
-                                            Extra details
-                                        </span>
-
-                                        <textarea
-                                            name="notes"
-                                            rows="3"
-                                            placeholder="Preferred date, location, or anything else we should know"
-                                            className="mt-2 w-full resize-none border-0 border-b border-[#1B4332]/20 bg-transparent px-0 py-3 text-base text-[#1B4332] outline-none placeholder:text-[#31463F]/35 focus:border-[#1B4332]"
-                                        />
-                                    </label>
-                                </div>
-
-                                {/* CTA */}
-                                <button
-                                    type="submit"
-                                    className="mt-10 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#1B4332] px-7 py-4 text-[15px] text-[#F6F2E9] transition-all duration-300 hover:bg-[#12281F]"
-                                >
-                                    <MessageCircle size={18} />
-                                    Continue on WhatsApp
-                                </button>
-
-                                <p className="mt-4 text-center text-xs text-[#31463F]/50">
-                                    We&apos;ll open WhatsApp with your order
-                                    details ready to send.
-                                </p>
-                            </form>
-                        </div>
+                        <a href={WHATSAPP_LINK("I'd like to talk about a wholesale order.")}
+                            className="inline-flex items-center justify-center rounded-full bg-[#F6F2E9] text-[#1B4332] px-7 py-3.5 text-[15px] font-semibold hover:bg-white transition-all mt-8"
+                        >
+                            Talk to us about wholesale
+                        </a>
                     </div>
+
+                    {/* RIGHT COLUMN: Partner / commission */}
+                    <div className="lg:col-span-5 lg:border-l border-[#F6F2E9]/15 lg:pl-10">
+                        <h3
+                            className="text-2xl sm:text-3xl text-[#F6F2E9]"
+                            style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
+                        >
+                            Bring us buyers, earn commission.
+                        </h3>
+
+                        <p className="text-[#F6F2E9]/75 mt-4 text-sm leading-relaxed max-w-sm">
+                            Know a restaurant, hotel, or bulk buyer? Connect them
+                            to KFARM and earn commission on what they order.
+                        </p>
+
+
+                        <a href={WHATSAPP_LINK("Hello, I'd like to become a partner and refer a buyer.")}
+                            className="inline-flex items-center justify-center rounded-full border border-[#F6F2E9]/30 text-[#F6F2E9] px-6 py-3 text-sm font-medium hover:border-[#F6F2E9]/70 transition-colors mt-7"
+                        >
+                            Become a partner
+                        </a>
+                    </div>
+
                 </div>
-            )}
-        </>
+            </div>
+        </section>
     );
 }
 
-function FrequentlyAskedQuestions() {
-    const questions = [
+function FAQ() {
+    const faqs = [
         {
-            question: "What fish can I order?",
-            answer: "We currently raise catfish and tilapia, available fresh from the farm.",
+            q: "Do you sell fresh, dried, or both?",
+            a: "Both. We sell fresh live-harvest fish and smoked/dried fish, in any quantity you need.",
         },
         {
-            question: "Can I order for a small quantity?",
-            answer: "Yes. Whether you need one crate or a regular standing order, message us with what you need and when you need it.",
+            q: "Is there a minimum order?",
+            a: "No fixed minimum for retail orders. For wholesale, tell us your volume and we'll work out a quote.",
         },
         {
-            question: "Do you deliver?",
-            answer: "Tell us where and when you need your fish. We will confirm the available delivery option, quantity, and price with you on WhatsApp.",
+            q: "How do I place an order?",
+            a: "Message us directly on WhatsApp with what you need, and we'll confirm quantity, price, and delivery.",
         },
         {
-            question: "Where can I pick up my order?",
-            answer: "Our pickup location is Market Square, Ezendioma, Asa Ukwa West LGA, Abia State.",
+            q: "Do you deliver, or is it pickup only?",
+            a: "Pickup is available at Market Square, Ezendioma, Asa Ukwa West LGA, Abia State. Ask us on WhatsApp about delivery to your location.",
         },
         {
-            question: "Do you teach fishery?",
-            answer: "Yes. Our courses cover practical fishery skills, from feeding and growing to harvesting.",
+            q: "How does the fishery training discount work?",
+            a: "Place any order with us, then enroll in our fishery training afterward, your course fee is automatically halved.",
+        },
+        {
+            q: "How does the referral offer work?",
+            a: "Refer 10 people to KFARM. Once they order, we send you 2 fish, free.",
         },
     ];
-    const [openIndex, setOpenIndex] = useState(0);
+
+    const [open, setOpen] = useState(0);
 
     return (
-        <section id="faq" className="py-24 bg-[#F6F2E9]">
-            <div className="max-w-4xl mx-auto px-6 md:px-10">
+        <section id="faq" className="bg-[#FEFCFF] py-24">
+            <div className="max-w-3xl mx-auto px-6 md:px-10">
                 <Reveal>
-                    <p className="text-[#B98A2B] text-sm mb-3">Before you order</p>
-                    <h2
-                        className="text-3xl md:text-4xl text-[#1B4332] max-w-lg"
-                        style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
-                    >
-                        Questions? We have answers.
+                    <h2 className="text-3xl md:text-4xl text-[#1B4332]" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
+                        Questions, answered.
                     </h2>
                 </Reveal>
 
-                <div className="mt-10 border-t border-[#1B4332]/15">
-                    {questions.map((item, index) => {
-                        const isOpen = openIndex === index;
+                <div className="mt-10">
+                    {faqs.map((f, i) => {
+                        const isOpen = open === i;
                         return (
-                            <div key={item.question} className="border-b border-[#1B4332]/15">
-                                <button
-                                    type="button"
-                                    onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                                    aria-expanded={isOpen}
-                                    className="flex w-full items-center justify-between gap-6 py-5 text-left text-[#1B4332]"
-                                >
-                                    <span className="text-base md:text-lg font-medium">{item.question}</span>
-                                    <span className="text-2xl font-light" aria-hidden="true">{isOpen ? "−" : "+"}</span>
-                                </button>
-                                {isOpen && (
-                                    <p className="max-w-2xl pb-5 pr-10 text-[#31463F]/75 leading-relaxed">
-                                        {item.answer}
-                                    </p>
-                                )}
-                            </div>
+                            <Reveal key={f.q} delay={i * 60}>
+                                <div className="border-t border-[#1B4332]/12 last:border-b">
+                                    <button
+                                        onClick={() => setOpen(isOpen ? -1 : i)}
+                                        className="w-full flex items-center justify-between gap-4 py-5 text-left"
+                                    >
+                                        <span className="text-[#1B4332] text-base md:text-lg">{f.q}</span>
+                                        <ChevronDown
+                                            size={18}
+                                            className="text-[#1B4332]/50 shrink-0 transition-transform duration-300"
+                                            style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                                        />
+                                    </button>
+                                    <div
+                                        className="grid transition-all duration-300 ease-out"
+                                        style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                                    >
+                                        <div className="overflow-hidden">
+                                            <p className="text-[#31463F]/75 text-sm md:text-base leading-relaxed pb-5 max-w-xl">
+                                                {f.a}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Reveal>
                         );
                     })}
                 </div>
-
-                <Reveal delay={160}>
-                    <a
-                        href={WHATSAPP_LINK("I'd like to ask a question about ordering.")}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex mt-10 rounded-full bg-[#1B4332] text-[#F6F2E9] px-7 py-3.5 text-[15px] hover:bg-[#12281F] transition-colors"
-                    >
-                        Ask us on WhatsApp
-                    </a>
-                </Reveal>
             </div>
         </section>
     );
 }
 
 /* ---------------------------- Fishery journey / learn --------------------- */
-function FisheryJourney() {
-    const stages = [
-        {
-            number: "01",
-            title: "Feeding",
-            img: IMG.feeding,
-            copy: "Learn the right feeding practices, timing, and routines for healthy fish growth.",
-        },
-        {
-            number: "02",
-            title: "Growing",
-            img: IMG.growing,
-            copy: "Understand water quality, stocking, and everyday management from fingerling to full size.",
-        },
-        {
-            number: "03",
-            title: "Harvesting",
-            img: IMG.harvesting,
-            copy: "Learn when to harvest and how to handle your fish from pond to market.",
-        },
-    ];
-
-    const scrollerRef = useRef(null);
-
-    const scrollBy = (dir) => {
-        scrollerRef.current?.scrollBy({
-            left: dir * 360,
-            behavior: "smooth",
-        });
-    };
+function DiscountTag({ compact = false, dark = false }) {
+    const [ref, shown] = useReveal();
+    const size = compact ? "w-16 h-16" : "w-32 h-32 md:w-36 md:h-36";
+    const textSize = compact ? "text-lg" : "text-3xl md:text-4xl";
+    const tagFill = dark ? "#1B4332" : "#F6F2E9";
+    const detailColor = dark ? "#F6F2E9" : "#1B4332";
 
     return (
-        <section
-            id="learn-fishery"
-            className="bg-[#1B4332] text-[#F6F2E9] py-24 md:py-32 overflow-hidden"
+        <div
+            ref={ref}
+            className={`shrink-0 relative ${size}`}
+            style={{
+                opacity: shown ? 1 : 0,
+                transform: shown ? "scale(1)" : "scale(0.5)",
+                transition: "opacity 550ms cubic-bezier(.2,.8,.2,1), transform 550ms cubic-bezier(.2,.8,.2,1)",
+                transformOrigin: "top center",
+            }}
         >
+            <div className="w-full h-full" style={{ animation: "tagSwing 5s ease-in-out infinite", transformOrigin: "20% 15%" }}>
+                <svg viewBox="0 0 140 140" className="w-full h-full drop-shadow-md">
+                    <g transform="rotate(-18 70 70)">
+                        <path d="M20 30 Q20 20 30 20 L85 20 Q95 20 100 28 L120 66 Q124 73 120 80 L100 118 Q95 126 85 126 L30 126 Q20 126 20 116 Z" fill={tagFill} />
+                        <circle cx="38" cy="73" r="8" fill={detailColor} />
+                        <path d="M38 65 C 26 42, 12 34, 6 14" stroke={detailColor} strokeWidth="4" fill="none" strokeLinecap="round" />
+                    </g>
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+                    <span className={`leading-none ${textSize}`} style={{ fontFamily: "Fraunces, serif", fontWeight: 700, color: detailColor }}>50%</span>
+                    {!compact && (
+                        <span className="text-[10px] uppercase tracking-wide mt-1 max-w-[70px] leading-tight" style={{ color: detailColor, opacity: 0.8 }}>
+                            off fishery training
+                        </span>
+                    )}
+                </div>
+            </div>
+            <style>{`@keyframes tagSwing { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }`}</style>
+        </div>
+    );
+}
+
+function FisheryJourney() {
+    const pillars = [
+        { icon: Fish, title: "Farm Production", copy: "Catfish and tilapia rearing, from stocking to grow-out." },
+        { icon: Droplets, title: "Care & Environment", copy: "Feeding, water quality, and fish health." },
+        { icon: TrendingUp, title: "Business & Growth", copy: "Pricing, marketing, and running it as real income." },
+    ];
+    const mechanic = [
+        { step: "Order fish", copy: "Place any order with us, big or small." },
+        { step: "Enroll in training", copy: "Sign up for our fishery course afterward." },
+        { step: "Save 50%", copy: "Your training fee is automatically halved.", tag: true },
+    ];
+
+    return (
+        <section id="learn-fishery" className="py-24 md:py-28 bg-[#F6F2E9] text-[#1B4332]">
             <div className="max-w-6xl mx-auto px-6 md:px-10">
-
-                {/* Intro */}
                 <Reveal>
-                    <div className="max-w-2xl">
-                        <p className="text-[#D9A441] text-sm tracking-wide mb-4">
-                            WANT TO LEARN FISHERY?
-                        </p>
-
-                        <h2
-                            className="text-4xl md:text-6xl leading-[1.05]"
-                            style={{
-                                fontFamily: "Fraunces, serif",
-                                fontWeight: 560,
-                            }}
-                        >
-                            There&apos;s more to fish than buying it.
-                        </h2>
-
-                        <p className="mt-6 text-[#F6F2E9]/60 text-base md:text-lg max-w-xl leading-relaxed">
-                            Learn the practical side of fish farming, from
-                            feeding and growth to harvest.
-                        </p>
-                    </div>
-                </Reveal>
-
-                {/* Controls */}
-                <Reveal delay={100}>
-                    <div className="flex justify-between items-center mt-14">
-                        <p className="text-xs tracking-[0.2em] text-[#F6F2E9]/40">
-                            WHAT YOU CAN LEARN
-                        </p>
-
-                        <div className="flex gap-3">
-                            <button
-                                onClick={() => scrollBy(-1)}
-                                aria-label="Previous lesson"
-                                className="w-11 h-11 rounded-full border border-[#F6F2E9]/20 flex items-center justify-center hover:border-[#F6F2E9]/60 transition-colors"
-                            >
-                                ←
-                            </button>
-
-                            <button
-                                onClick={() => scrollBy(1)}
-                                aria-label="Next lesson"
-                                className="w-11 h-11 rounded-full border border-[#F6F2E9]/20 flex items-center justify-center hover:border-[#F6F2E9]/60 transition-colors"
-                            >
-                                →
-                            </button>
+                    <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+                        <div>
+                            <h2 className="text-3xl md:text-4xl" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
+                                There's more to fish than buying it.
+                            </h2>
+                            <p className="text-[#31463F]/80 mt-4 max-w-md leading-relaxed">
+                                Behind every order is a full fishery training program
+                                covering production, pond management, fish health, and
+                                the business side of running a farm, taught by people
+                                who do it daily.
+                            </p>
+                        </div>
+                        <div className="rounded-2xl overflow-hidden h-72 md:h-96">
+                            <img src={IMG.growing} alt="Fishery training in progress" className="w-full h-full object-cover" />
                         </div>
                     </div>
                 </Reveal>
 
-                {/* Lessons */}
-                <div
-                    ref={scrollerRef}
-                    className="flex gap-6 mt-8 overflow-x-auto pb-6 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none]"
-                >
-                    {stages.map((stage, i) => (
-                        <Reveal
-                            key={stage.title}
-                            delay={i * 100}
-                            className="snap-start shrink-0 w-[82vw] sm:w-[420px] md:w-[460px]"
-                        >
-                            <a
-                                href="/learn-fishery"
-                                className="group block"
-                                aria-label={`Learn about ${stage.title}`}
-                            >
-
-                                {/* Image */}
-                                <div className="relative h-[300px] md:h-[360px] overflow-hidden rounded-2xl">
-                                    <img
-                                        src={stage.img}
-                                        alt={stage.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                                    />
-
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#1B4332]/50 to-transparent" />
-
-                                    <span className="absolute top-5 left-5 text-sm text-[#F6F2E9]/70">
-                                        {stage.number}
-                                    </span>
+                <Reveal delay={100}>
+                    <div className="grid sm:grid-cols-3 gap-10 sm:gap-8 mt-16 border-t border-[#1B4332]/12 pt-10">
+                        {pillars.map((p) => (
+                            <div key={p.title}>
+                                <div className="w-11 h-11 rounded-full border border-[#1B4332]/25 flex items-center justify-center">
+                                    <p.icon size={18} className="text-[#1B4332]" strokeWidth={1.6} />
                                 </div>
-
-                                {/* Lesson information */}
-                                <div className="pt-6">
-                                    <h3
-                                        className="text-3xl md:text-4xl"
-                                        style={{
-                                            fontFamily: "Fraunces, serif",
-                                            fontWeight: 520,
-                                        }}
-                                    >
-                                        {stage.title}
-                                    </h3>
-
-                                    <p className="mt-3 text-[#F6F2E9]/55 text-sm md:text-base leading-relaxed max-w-md">
-                                        {stage.copy}
-                                    </p>
-                                </div>
-
-                            </a>
-                        </Reveal>
-                    ))}
-                </div>
-
-                {/* CTA */}
-                <Reveal delay={300}>
-                    <a
-                        href="#contact"
-                        className="inline-flex items-center gap-3 mt-12 border-b border-[#D9A441] pb-2 text-[15px] text-[#F6F2E9] hover:text-[#D9A441] transition-colors"
-                    >
-                        Explore fishery courses
-                        <span>→</span>
+                                <h3 className="text-base md:text-lg mt-4 mb-1.5">{p.title}</h3>
+                                <p className="text-[#31463F]/75 text-sm leading-relaxed">{p.copy}</p>
+                            </div>
+                        ))}
+                    </div>
+                    <a href="/learn" className="inline-flex items-center gap-1.5 mt-8 text-[#1B4332] text-sm font-medium hover:gap-2.5 transition-all">
+                        See the full curriculum →
                     </a>
                 </Reveal>
 
+                <Reveal delay={200}>
+                    <div className="mt-16 md:mt-20 border-t border-[#1B4332]/12 pt-10">
+                        <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-4">
+                            {mechanic.map((m, i) => (
+                                <React.Fragment key={m.step}>
+                                    <div className="flex items-start gap-4 md:flex-1">
+                                        {m.tag ? <DiscountTag compact dark /> : <span className="w-2 h-2 rounded-full bg-[#1B4332] mt-2 shrink-0" />}
+                                        <div>
+                                            <h3 className="text-base md:text-lg">{m.step}</h3>
+                                            <p className="text-[#31463F]/70 text-sm mt-1 leading-relaxed max-w-[220px]">{m.copy}</p>
+                                        </div>
+                                    </div>
+                                    {i < mechanic.length - 1 && (
+                                        <div className="hidden md:flex items-center justify-center pt-3">
+                                            <ChevronRight size={18} className="text-[#1B4332]/40" style={{ animation: "flowNudge 1.6s ease-in-out infinite" }} />
+                                        </div>
+                                    )}
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    </div>
+                    <style>{`@keyframes flowNudge { 0%, 100% { transform: translateX(0); opacity: 0.5; } 50% { transform: translateX(4px); opacity: 1; } }`}</style>
+                </Reveal>
+
+                <Reveal delay={320}>
+                    <a href="/learn" className="inline-flex mt-12 rounded-full bg-[#1B4332] text-[#F6F2E9] px-7 py-3.5 text-[15px] hover:bg-[#12281F] transition-colors">
+                        Explore fishery courses
+                    </a>
+                </Reveal>
             </div>
         </section>
     );
@@ -1226,40 +949,56 @@ function FisheryJourney() {
 /* -------------------------------- Closing banner --------------------------- */
 function ClosingBanner() {
     return (
-        <section id="closing" className="relative min-h-[75vh] md:min-h-screen overflow-hidden">
-            {/* Background image */}
-            <img
-                src={IMG.closing}
-                alt="Fish farm"
-                className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
-            />
-
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-[#1B4332]/55" />
-
-            {/* Content */}
-            <div className="relative min-h-[75vh] md:min-h-screen max-w-7xl mx-auto px-6 md:px-10 flex items-end">
+        <section className="relative h-[420px] md:h-[480px] overflow-hidden">
+            <img src={IMG.closing} alt="Full-size aerial view of a fish farm" className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-[#0B2B22]/55" />
+            <div className="relative h-full max-w-6xl mx-auto px-6 md:px-10 flex items-center">
                 <Reveal>
-                    <div className="pb-16 md:pb-20 max-w-3xl">
+                    <h2 className="text-[#F6F2E9] text-4xl md:text-5xl max-w-xl leading-tight" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
+                        Good fish shouldn't be complicated.
+                    </h2>
+                </Reveal>
+            </div>
+        </section>
+    );
+}
 
-                        <p className="text-[#D9A441] text-xs md:text-sm tracking-[0.2em] mb-5">
-                            FISH · FISHERY · GROWTH
+
+function ReferAndEarn() {
+    return (
+        <section className="bg-[#FEFCFF] py-20 md:py-24">
+            <h1 className="text-center text-[#1B4332] text-4xl pb-20 md:pb-0 md:text-5xl " style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}> More offer for you</h1>
+            <div className="grid grid-cols-3 md:grid-cols-2">
+
+                <div className=" mx-auto px-6 md:px-10 col-span-2 md:col-span-1 grid md:grid-cols-[auto,1fr] gap-8 md:gap-14 items-center">
+                    <Reveal>
+                        <div className="flex items-baseline gap-3">
+                            <span className="text-[#F6F2E9] text-7xl md:text-8xl leading-none" style={{ fontFamily: "Fraunces, serif", fontWeight: 600 }}>
+                                2
+                            </span>
+                            <span className="text-[#1B4332] text-lg md:text-xl">free fish</span>
+                        </div>
+                    </Reveal>
+                    <Reveal delay={100}>
+                        <h2 className="text-[#1B4332] text-3xl md:text-4xl" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
+                            Refer 10 people, get 2 fish free.
+                        </h2>
+                        <p className="text-[#1B4332]/70 mt-3 max-w-md leading-relaxed">
+                            Know people who'd love fresh fish? Send them our way,
+                            once 10 of them place an order, we deliver 2 fish to
+                            you, on us.
                         </p>
 
-                        <h2
-                            className="text-[#F6F2E9] text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95]"
-                            style={{
-                                fontFamily: "Fraunces, serif",
-                                fontWeight: 560,
-                            }}
+                        <a href={WHATSAPP_LINK("Hi, I'd like to refer people to KFARM.")}
+                            className="inline-flex mt-6 rounded-full bg-[#F6F2E9] text-[#1B4332] px-7 py-3.5 text-[15px] font-medium hover:bg-[#E9E4D5] transition-colors"
                         >
-                            Good fish shouldn&apos;t
-                            <br />
-                            be complicated.
-                        </h2>
-
-                    </div>
-                </Reveal>
+                            Start referring
+                        </a>
+                    </Reveal>
+                </div>
+                <div >
+                    <img src={referImg} />
+                </div>
             </div>
         </section>
     );
@@ -1282,9 +1021,10 @@ export default function Home() {
             <Varieties />
             {/* <HowItWorks /> */}
             <BulkSupply />
-            <FrequentlyAskedQuestions />
             <FisheryJourney />
+            <ReferAndEarn />
             <ClosingBanner />
+            <FAQ />
         </div>
     );
 }

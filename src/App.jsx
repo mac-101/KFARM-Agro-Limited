@@ -71,7 +71,7 @@ function AppContent() {
           >
             <div className="flex items-start justify-between gap-6">
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-[#B98A2B]">KFARM Agro Limited</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-[#F6F2E9]">KFARM Agro Limited</p>
                 <h2
                   id="assistant-title"
                   className="mt-3 text-3xl leading-none"

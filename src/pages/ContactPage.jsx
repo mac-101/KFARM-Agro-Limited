@@ -59,7 +59,7 @@ function ContactHero() {
     <section className="bg-[#1B4332] text-[#F6F2E9]" ref={ref}>
       <div className="max-w-6xl mx-auto px-6 md:px-10 pt-28 pb-24 md:pt-36 md:pb-28 text-center">
         <p
-          className={`${base} text-[#D9A441] text-sm mb-4`}
+          className={`${base} text-[#F6F2E9] text-sm mb-4`}
           style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(14px)" }}
         >
           Contact us
@@ -117,7 +117,7 @@ function Location() {
     <section className="py-24 bg-[#F6F2E9]">
       <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-12 items-center">
         <Reveal>
-          <p className="text-[#B98A2B] text-sm mb-3">Where we are</p>
+          <p className="text-[#F6F2E9] text-sm mb-3">Where we are</p>
           <h2
             className="text-3xl md:text-4xl text-[#1B4332]"
             style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}

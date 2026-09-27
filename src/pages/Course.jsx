@@ -83,7 +83,7 @@ function EducationHero() {
       </div>
       <div className="relative max-w-6xl mx-auto px-6 md:px-10 pt-28 pb-24 md:pt-36 md:pb-32">
         <p
-          className={`${base} text-[#D9A441] text-sm mb-4`}
+          className={`${base} text-[#F6F2E9] text-sm mb-4`}
           style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(14px)" }}
         >
           Fishery education
@@ -122,7 +122,7 @@ function EducationHero() {
         >
           <a
             href="#contact"
-            className="rounded-full bg-[#D9A441] text-[#1B4332] px-7 py-3.5 text-[15px] hover:bg-[#e5b559] transition-colors"
+            className="rounded-full bg-[#F6F2E9] text-[#1B4332] px-7 py-3.5 text-[15px] hover:bg-[#E9E4D5] transition-colors"
           >
             Interested in learning? Contact us
           </a>
@@ -148,7 +148,7 @@ function WhatYoullLearn() {
     <section id="what-youll-learn" className="py-24 bg-[#F6F2E9]">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <Reveal>
-          <p className="text-[#B98A2B] text-sm mb-3">What you'll learn</p>
+          <p className="text-[#F6F2E9] text-sm mb-3">What you'll learn</p>
           <h2
             className="text-3xl md:text-4xl text-[#1B4332] max-w-lg"
             style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
@@ -193,7 +193,7 @@ function WhoIsItFor() {
     <section id="who-its-for" className="py-24 bg-[#1B4332] text-[#F6F2E9]">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <Reveal>
-          <p className="text-[#D9A441] text-sm mb-3">Who it's for</p>
+          <p className="text-[#F6F2E9] text-sm mb-3">Who it's for</p>
           <h2
             className="text-3xl md:text-4xl max-w-lg"
             style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}

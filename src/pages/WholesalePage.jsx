@@ -79,7 +79,7 @@ function OrderHero() {
       </div>
       <div className="relative max-w-6xl mx-auto px-6 md:px-10 pt-28 pb-24 md:pt-36 md:pb-32">
         <p
-          className={`${base} text-[#D9A441] text-sm mb-4`}
+          className={`${base} text-[#F6F2E9] text-sm mb-4`}
           style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(14px)" }}
         >
           Order &amp; wholesale
@@ -117,7 +117,7 @@ function OrderHero() {
         >
           <a
             href={WHATSAPP_LINK("I'd like to order fish for my kitchen or table.")}
-            className="rounded-full bg-[#D9A441] text-[#1B4332] px-7 py-3.5 text-[15px] hover:bg-[#e5b559] transition-colors"
+            className="rounded-full bg-[#F6F2E9] text-[#1B4332] px-7 py-3.5 text-[15px] hover:bg-[#E9E4D5] transition-colors"
           >
             Order fish
           </a>
@@ -143,7 +143,7 @@ function Order() {
     <section id="order" className="py-24 bg-[#F6F2E9]">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <Reveal>
-          <p className="text-[#B98A2B] text-sm mb-3">Order for yourself</p>
+          <p className="text-[#F6F2E9] text-sm mb-3">Order for yourself</p>
           <h2
             className="text-3xl md:text-4xl text-[#1B4332] max-w-lg"
             style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
@@ -206,7 +206,7 @@ function OrderForm() {
     <section id="order-form" className="py-24 bg-[#1B4332] text-[#F6F2E9]">
       <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-[0.85fr_1.15fr] gap-12 items-start">
         <Reveal>
-          <p className="text-[#D9A441] text-sm mb-3">Ready to order?</p>
+          <p className="text-[#F6F2E9] text-sm mb-3">Ready to order?</p>
           <h2 className="text-3xl md:text-4xl max-w-md" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
             Send us the details and we&apos;ll take it from there.
           </h2>
@@ -249,7 +249,7 @@ function OrderForm() {
               Extra details
               <textarea name="notes" rows="3" placeholder="Preferred date, location, or anything else we should know" className="mt-2 w-full resize-y rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9] placeholder:text-[#F6F2E9]/45" />
             </label>
-            <button type="submit" className="sm:col-span-2 inline-flex w-fit items-center gap-2 rounded-full bg-[#D9A441] px-7 py-3.5 text-[15px] text-[#1B4332] hover:bg-[#e5b559] transition-colors">
+            <button type="submit" className="sm:col-span-2 inline-flex w-fit items-center gap-2 rounded-full bg-[#F6F2E9] px-7 py-3.5 text-[15px] text-[#1B4332] hover:bg-[#E9E4D5] transition-colors">
               <MessageCircle size={18} />
               Continue on WhatsApp
             </button>
@@ -283,7 +283,7 @@ function Segments() {
     <section id="segments" className="py-24 bg-[#1B4332] text-[#F6F2E9]">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <Reveal>
-          <p className="text-[#D9A441] text-sm mb-3">Need it in larger quantity?</p>
+          <p className="text-[#F6F2E9] text-sm mb-3">Need it in larger quantity?</p>
           <h2
             className="text-3xl md:text-4xl max-w-lg"
             style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
@@ -296,7 +296,7 @@ function Segments() {
           {segments.map((s, i) => (
             <Reveal key={s.title} delay={i * 120}>
               <div className="border-t border-[#F6F2E9]/20 pt-6">
-                <s.icon size={24} className="text-[#D9A441]" strokeWidth={1.6} />
+                <s.icon size={24} className="text-[#F6F2E9]" strokeWidth={1.6} />
                 <h3 className="text-xl mt-4 mb-2">{s.title}</h3>
                 <p className="text-[#F6F2E9]/70 leading-relaxed">{s.copy}</p>
               </div>
@@ -332,7 +332,7 @@ function HowWholesaleWorks() {
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 90}>
               <div className="border-t border-[#1B4332]/15 pt-5">
-                <span className="text-[#B98A2B] text-sm">{s.n}</span>
+                <span className="text-[#F6F2E9] text-sm">{s.n}</span>
                 <h3 className="text-lg text-[#1B4332] mt-3 mb-2">{s.title}</h3>
                 <p className="text-[#31463F]/75 text-sm leading-relaxed">{s.copy}</p>
               </div>
@@ -350,7 +350,7 @@ function Location() {
     <section className="py-24 bg-[#1B4332] text-[#F6F2E9]">
       <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-12 items-center">
         <Reveal>
-          <p className="text-[#D9A441] text-sm mb-3">Where we are</p>
+          <p className="text-[#F6F2E9] text-sm mb-3">Where we are</p>
           <h2
             className="text-3xl md:text-4xl"
             style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
@@ -358,7 +358,7 @@ function Location() {
             Find us at Market Square.
           </h2>
           <div className="flex items-start gap-3 mt-6 text-[#F6F2E9]/75">
-            <MapPin size={20} className="text-[#D9A441] mt-0.5 shrink-0" strokeWidth={1.8} />
+            <MapPin size={20} className="text-[#F6F2E9] mt-0.5 shrink-0" strokeWidth={1.8} />
             <p className="leading-relaxed">
               Market Square, Ezendioma, Asa Ukwa West LGA, Abia State.
               <br />
