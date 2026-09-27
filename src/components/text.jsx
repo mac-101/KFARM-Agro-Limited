@@ -185,7 +185,6 @@ import { Fish, ChevronRight, ChevronDown, Droplets, TrendingUp, GraduationCap, H
 import video3 from "../assets/video 3.mp4";
 
 function About() {
-    const base = "transition-all duration-[900ms]";
 
     return (
         <section id="about" className="py-16 md:py-24  text-[#1B4332]">
@@ -228,32 +227,7 @@ function About() {
                             No order is too small or too large
                         </div>
                     </div>
-
-                    <div
-                        className={`${base} grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14 pt-8 border-t border-[#1B4332]/15 max-w-lg`}
-                        style={{
-                            opacity: shown ? 1 : 0,
-                            transform: shown ? "translateY(0)" : "translateY(18px)",
-                            transitionDelay: "340ms",
-                        }}
-                    >
-                        <div>
-                            <p className="text-[#1B4332] text-sm font-medium">Fresh from farm</p>
-                            <p className="text-[#31463F]/65 text-xs mt-1">Catfish & tilapia</p>
-                        </div>
-                        <div>
-                            <p className="text-[#1B4332] text-sm font-medium">Pickup & delivery</p>
-                            <p className="text-[#31463F]/65 text-xs mt-1">From Abia State</p>
-                        </div>
-                        <div>
-                            <p className="text-[#1B4332] text-sm font-medium">Retail & wholesale</p>
-                            <p className="text-[#31463F]/65 text-xs mt-1">Single or bulk</p>
-                        </div>
-                        <div>
-                            <p className="text-[#1B4332] text-sm font-medium">Learn fishery</p>
-                            <p className="text-[#31463F]/65 text-xs mt-1">Practical courses</p>
-                        </div>
-                    </div>
+                        
                 </Reveal>
             </div>
         </section>
