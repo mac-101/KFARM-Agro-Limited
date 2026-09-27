@@ -414,7 +414,7 @@ export function FarmGallery() {
                                 className="text-3xl md:text-4xl text-[#FEFCFF] max-w-lg"
                                 style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
                             >
-                                Fresh stock & active ponds.
+                                Life at the farm.
                             </h2>
                         </div>
                     </div>
