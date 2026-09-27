@@ -144,7 +144,7 @@ function Hero() {
                         Order fresh fish
                     </a>
                     
-                        href="#varieties"
+                    <a    href="#varieties"
                         className="rounded-full border border-[#F6F2E9]/35 text-[#F6F2E9] px-8 py-3.5 text-[15px] font-medium hover:border-[#F6F2E9]/70 transition-all"
                     >
                         Our varieties
