@@ -56,7 +56,7 @@ function ContactHero() {
   const [ref, shown] = useReveal();
   const base = "transition-all duration-[900ms]";
   return (
-    <section className="bg-[#6CA085] text-[#F6F2E9]" ref={ref}>
+    <section className="bg-[#1B4332] text-[#F6F2E9]" ref={ref}>
       <div className="max-w-6xl mx-auto px-6 md:px-10 pt-28 pb-24 md:pt-36 md:pb-28 text-center">
         <p
           className={`${base} text-[#D9A441] text-sm mb-4`}
@@ -99,7 +99,7 @@ function ContactHero() {
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-3 rounded-full bg-[#25D366] text-[#6CA085] px-8 py-4 text-[16px] font-medium hover:brightness-95 transition-all"
+            className="inline-flex items-center gap-3 rounded-full bg-[#25D366] text-[#1B4332] px-8 py-4 text-[16px] font-medium hover:brightness-95 transition-all"
           >
             <MessageCircle size={20} strokeWidth={2} />
             Message us on WhatsApp
@@ -119,13 +119,13 @@ function Location() {
         <Reveal>
           <p className="text-[#B98A2B] text-sm mb-3">Where we are</p>
           <h2
-            className="text-3xl md:text-4xl text-[#6CA085]"
+            className="text-3xl md:text-4xl text-[#1B4332]"
             style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
           >
             Find us at Market Square.
           </h2>
           <div className="flex items-start gap-3 mt-6 text-[#31463F]">
-            <MapPin size={20} className="text-[#0E3B36] mt-0.5 shrink-0" strokeWidth={1.8} />
+            <MapPin size={20} className="text-[#1B4332] mt-0.5 shrink-0" strokeWidth={1.8} />
             <p className="leading-relaxed">
               Market Square, Ezendioma, Asa Ukwa West LGA, Abia State.
               <br />
@@ -137,7 +137,7 @@ function Location() {
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 mt-7 rounded-full border border-[#0E3B36]/25 text-[#0E3B36] px-6 py-3 text-[15px] hover:border-[#0E3B36]/60 transition-colors"
+            className="inline-flex items-center gap-2 mt-7 rounded-full border border-[#1B4332]/25 text-[#1B4332] px-6 py-3 text-[15px] hover:border-[#1B4332]/60 transition-colors"
           >
             <MessageCircle size={18} strokeWidth={2} />
             0911 538 0670

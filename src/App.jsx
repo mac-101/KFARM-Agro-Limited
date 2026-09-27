@@ -57,7 +57,7 @@ function AppContent() {
 
       {assistantOpen && (
         <div
-          className="fixed inset-0 z-[90] flex items-end justify-center bg-[#071D1A]/30 p-4 backdrop-blur-[2px] md:items-center"
+          className="fixed inset-0 z-[90] flex items-end justify-center bg-[#0B2B22]/30 p-4 backdrop-blur-[2px] md:items-center"
           role="presentation"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) closeAssistant();
@@ -67,7 +67,7 @@ function AppContent() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="assistant-title"
-            className="w-full max-w-md rounded-3xl bg-[#F6F2E9] p-6 text-[#6CA085] shadow-2xl md:p-8"
+            className="w-full max-w-md rounded-3xl bg-[#F6F2E9] p-6 text-[#1B4332] shadow-2xl md:p-8"
           >
             <div className="flex items-start justify-between gap-6">
               <div>
@@ -84,7 +84,7 @@ function AppContent() {
                 type="button"
                 onClick={closeAssistant}
                 aria-label="Close KFARM assistant"
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#0E3B36]/15 text-[#0E3B36] transition-colors hover:bg-[#0E3B36] hover:text-[#F6F2E9]"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#1B4332]/15 text-[#1B4332] transition-colors hover:bg-[#1B4332] hover:text-[#F6F2E9]"
               >
                 <X size={17} />
               </button>
@@ -94,8 +94,8 @@ function AppContent() {
               Order fresh fish directly from us or learn the practical skills to grow your own.
             </p>
 
-            <div className="mt-6 border-t border-[#0E3B36]/15 pt-4">
-              <p className="text-sm font-medium text-[#6CA085]">Order fresh fish</p>
+            <div className="mt-6 border-t border-[#1B4332]/15 pt-4">
+              <p className="text-sm font-medium text-[#1B4332]">Order fresh fish</p>
               <div className="mt-3 grid grid-cols-3 gap-2">
                 {["Catfish", "Tilapia", "Both"].map((fish) => (
                   <button
@@ -104,8 +104,8 @@ function AppContent() {
                     onClick={() => setSelectedFish(fish)}
                     className={`rounded-xl border px-3 py-3 text-sm transition-colors ${
                       selectedFish === fish
-                        ? "border-[#0E3B36] bg-[#0E3B36] text-[#F6F2E9]"
-                        : "border-[#0E3B36]/15 text-[#0E3B36] hover:border-[#0E3B36]/50"
+                        ? "border-[#1B4332] bg-[#1B4332] text-[#F6F2E9]"
+                        : "border-[#1B4332]/15 text-[#1B4332] hover:border-[#1B4332]/50"
                     }`}
                   >
                     {fish}
@@ -124,8 +124,8 @@ function AppContent() {
               </a>
             </div>
 
-            <div className="mt-6 border-t border-[#0E3B36]/15 pt-4">
-              <p className="text-sm font-medium text-[#6CA085]">Learn fishery</p>
+            <div className="mt-6 border-t border-[#1B4332]/15 pt-4">
+              <p className="text-sm font-medium text-[#1B4332]">Learn fishery</p>
               <p className="mt-2 text-sm leading-relaxed text-[#31463F]/75">
                 Explore practical courses covering feeding, growing, water management, and harvesting.
               </p>
@@ -133,7 +133,7 @@ function AppContent() {
                 <a
                   href="/learn-fishery"
                   onClick={closeAssistant}
-                  className="inline-flex flex-1 items-center justify-center rounded-full bg-[#0E3B36] px-5 py-3.5 text-[15px] text-[#F6F2E9] transition-colors hover:bg-[#134943]"
+                  className="inline-flex flex-1 items-center justify-center rounded-full bg-[#1B4332] px-5 py-3.5 text-[15px] text-[#F6F2E9] transition-colors hover:bg-[#12281F]"
                 >
                   Explore courses
                 </a>
@@ -142,7 +142,7 @@ function AppContent() {
                   target="_blank"
                   rel="noreferrer"
                   onClick={closeAssistant}
-                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-[#0E3B36]/20 px-5 py-3.5 text-[15px] text-[#0E3B36] transition-colors hover:border-[#0E3B36]/50"
+                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-[#1B4332]/20 px-5 py-3.5 text-[15px] text-[#1B4332] transition-colors hover:border-[#1B4332]/50"
                 >
                   <MessageCircle size={18} />
                   Ask on WhatsApp
@@ -157,7 +157,7 @@ function AppContent() {
         <a
           href="tel:+2349115380670"
           aria-label="Call KFARM Agro Limited"
-          className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#0E3B36] text-[#F6F2E9] shadow-lg transition-transform hover:scale-105"
+          className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#1B4332] text-[#F6F2E9] shadow-lg transition-transform hover:scale-105"
         >
           <Phone size={24} strokeWidth={2} />
         </a>

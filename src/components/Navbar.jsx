@@ -63,10 +63,10 @@ function Navbar() {
     ];
 
     return (
-        <header ref={navbarRef} className="sticky top-0 z-50 bg-[#FEFCFF]/90 backdrop-blur border-b border-[#0E3B36]/10">
+        <header ref={navbarRef} className="sticky top-0 z-50 bg-[#FEFCFF]/90 backdrop-blur border-b border-[#1B4332]/10">
             <div
                 aria-hidden={!showRibbon}
-                className={`overflow-hidden bg-[#6CA085] text-white transition-[max-height,opacity] duration-500 ease-out ${
+                className={`overflow-hidden bg-[#1B4332] text-white transition-[max-height,opacity] duration-500 ease-out ${
                     showRibbon ? "max-h-12 opacity-100" : "pointer-events-none max-h-0 opacity-0"
                 }`}
             >
@@ -86,12 +86,12 @@ function Navbar() {
                     {/* <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
                         <path
                             d="M2 15c5-9 15-9 20-4l6-4-2 8 2 8-6-4c-5 5-15 5-20-4Z"
-                            fill="#0E3B36"
+                            fill="#1B4332"
                         />
                         <circle cx="9" cy="14" r="1.4" fill="#F6F2E9" />
                     </svg>
                     <span
-                        className="text-xl tracking-tight text-[#0E3B36]"
+                        className="text-xl tracking-tight text-[#1B4332]"
                         style={{ fontFamily: "Fraunces, serif", fontWeight: 600 }}
                     >
                         KFARM Agro Limited
@@ -107,7 +107,7 @@ function Navbar() {
                         <a
                             key={l.link}
                             href={l.link}
-                            className="text-[15px] text-[#0E3B36]/80 hover:text-[#0E3B36] transition-colors"
+                            className="text-[15px] text-[#1B4332]/80 hover:text-[#1B4332] transition-colors"
                         >
                             {l.text}
                         </a>
@@ -117,7 +117,7 @@ function Navbar() {
                 {/* Desktop CTA Button */}
                 <a
                     href="/contact"
-                    className="hidden md:inline-flex items-center rounded-full bg-[#0E3B36] text-[#F6F2E9] px-5 py-2.5 text-[15px] hover:bg-[#134943] transition-colors"
+                    className="hidden md:inline-flex items-center rounded-full bg-[#1B4332] text-[#F6F2E9] px-5 py-2.5 text-[15px] hover:bg-[#12281F] transition-colors"
                 >
                     Order now
                 </a>
@@ -125,7 +125,7 @@ function Navbar() {
                 {/* Mobile Menu Toggle Button */}
                 <button
                     onClick={() => setOpen((v) => !v)}
-                    className="md:hidden text-[#0E3B36] p-2 -mr-2 focus:outline-none"
+                    className="md:hidden text-[#1B4332] p-2 -mr-2 focus:outline-none"
                     aria-label="Toggle menu"
                     aria-expanded={open}
                     aria-controls="mobile-navigation"
@@ -145,7 +145,7 @@ function Navbar() {
             <div
                 id="mobile-navigation"
                 aria-hidden={!open}
-                className={`absolute left-0 right-0 top-full md:hidden overflow-hidden border-t border-[#0E3B36]/10 bg-[#F6F2E9] px-6 shadow-lg transition-[max-height,opacity,padding] duration-300 ease-out ${
+                className={`absolute left-0 right-0 top-full md:hidden overflow-hidden border-t border-[#1B4332]/10 bg-[#F6F2E9] px-6 shadow-lg transition-[max-height,opacity,padding] duration-300 ease-out ${
                     open
                         ? "max-h-96 py-6 opacity-100"
                         : "pointer-events-none max-h-0 py-0 opacity-0"
@@ -158,7 +158,7 @@ function Navbar() {
                             href={l.link}
                             onClick={() => setOpen(false)}
                             tabIndex={open ? 0 : -1}
-                            className={`text-[#0E3B36]/80 hover:text-[#0E3B36] text-[16px] py-1 font-medium transition-[opacity,transform,color] duration-300 ${
+                            className={`text-[#1B4332]/80 hover:text-[#1B4332] text-[16px] py-1 font-medium transition-[opacity,transform,color] duration-300 ${
                                 open ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
                             }`}
                         >
@@ -169,7 +169,7 @@ function Navbar() {
                         href="/contact"
                         onClick={() => setOpen(false)}
                         tabIndex={open ? 0 : -1}
-                        className={`inline-flex justify-center items-center rounded-full bg-[#0E3B36] text-[#F6F2E9] px-5 py-3 text-[15px] mt-2 font-medium hover:bg-[#134943] transition-[opacity,transform,background-color] duration-300 ${
+                        className={`inline-flex justify-center items-center rounded-full bg-[#1B4332] text-[#F6F2E9] px-5 py-3 text-[15px] mt-2 font-medium hover:bg-[#12281F] transition-[opacity,transform,background-color] duration-300 ${
                             open ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
                         }`}
                     >
