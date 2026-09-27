@@ -80,7 +80,7 @@ function Navbar() {
                 </div>
             </div>
 
-            <div className="max-w-6xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
+            <div className="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
                 {/* Brand Logo & Name */}
                 <a href="/" className="flex items-center gap-2 shrink-0">
                     {/* <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
@@ -145,7 +145,7 @@ function Navbar() {
             <div
                 id="mobile-navigation"
                 aria-hidden={!open}
-                className={`absolute left-0 right-0 top-full md:hidden overflow-hidden border-t border-[#1B4332]/10 bg-[#F6F2E9] px-6 shadow-lg transition-[max-height,opacity,padding] duration-300 ease-out ${
+                className={`absolute left-0 right-0 top-full md:hidden overflow-hidden border-t border-[#1B4332]/10 bg-[#FEFCFF] px-6 shadow-lg transition-[max-height,opacity,padding] duration-300 ease-out ${
                     open
                         ? "max-h-96 py-6 opacity-100"
                         : "pointer-events-none max-h-0 py-0 opacity-0"

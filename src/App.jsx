@@ -67,7 +67,7 @@ function AppContent() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="assistant-title"
-            className="w-full max-w-md rounded-3xl bg-[#F6F2E9] p-6 text-[#1B4332] shadow-2xl md:p-8"
+            className="w-full max-w-md rounded-3xl bg-[#FEFCFF] p-6 text-[#1B4332] shadow-2xl md:p-8"
           >
             <div className="flex items-start justify-between gap-6">
               <div>

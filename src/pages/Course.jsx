@@ -81,7 +81,7 @@ function EducationHero() {
         />
         <div className="absolute inset-0 bg-[#1B4332]/70" />
       </div>
-      <div className="relative max-w-6xl mx-auto px-6 md:px-10 pt-28 pb-24 md:pt-36 md:pb-32">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10 pt-28 pb-24 md:pt-36 md:pb-32">
         <p
           className={`${base} text-[#F6F2E9] text-sm mb-4`}
           style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(14px)" }}
@@ -145,8 +145,8 @@ function WhatYoullLearn() {
     { icon: TrendingUp, title: "Business & marketing", copy: "Pricing, finding buyers, and turning a fishery into a steady income." },
   ];
   return (
-    <section id="what-youll-learn" className="py-24 bg-[#F6F2E9]">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+    <section id="what-youll-learn" className="py-24 bg-[#FEFCFF]">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <Reveal>
           <p className="text-[#F6F2E9] text-sm mb-3">What you'll learn</p>
           <h2
@@ -191,7 +191,7 @@ function WhoIsItFor() {
   ];
   return (
     <section id="who-its-for" className="py-24 bg-[#1B4332] text-[#F6F2E9]">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <Reveal>
           <p className="text-[#F6F2E9] text-sm mb-3">Who it's for</p>
           <h2
@@ -225,8 +225,8 @@ function WhoIsItFor() {
 /* ----------------------------------- CTA ------------------------------------ */
 function LearnCTA() {
   return (
-    <section id="contact" className="py-24 bg-[#F6F2E9]">
-      <div className="max-w-6xl mx-auto px-6 md:px-10 text-center">
+    <section id="contact" className="py-24 bg-[#FEFCFF]">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 text-center">
         <Reveal>
           <h2
             className="text-3xl md:text-4xl text-[#1B4332] max-w-xl mx-auto"
@@ -253,7 +253,7 @@ function LearnCTA() {
 /* ----------------------------------- Page ------------------------------------ */
 export default function LearnFisheryPage() {
   return (
-    <div className="bg-[#F6F2E9] min-h-screen">
+    <div className="bg-[#FEFCFF] min-h-screen">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;560;600&family=Inter:wght@400;500&display=swap');
         * { font-family: 'Inter', sans-serif; }

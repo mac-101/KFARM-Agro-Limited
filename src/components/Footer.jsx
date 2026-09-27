@@ -3,7 +3,7 @@ import { MapPin } from "lucide-react";
 function Footer() {
     return (
         <footer id="contact" className="bg-[#FEFCFF] py-14 border-t border-[#1B4332]/10">
-            <div className="max-w-6xl mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between gap-8">
+            <div className="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between gap-8">
                 <div>
                     <span
                         className="text-xl text-[#1B4332]"

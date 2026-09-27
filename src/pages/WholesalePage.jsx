@@ -77,7 +77,7 @@ function OrderHero() {
         />
         <div className="absolute inset-0 bg-[#1B4332]/70" />
       </div>
-      <div className="relative max-w-6xl mx-auto px-6 md:px-10 pt-28 pb-24 md:pt-36 md:pb-32">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10 pt-28 pb-24 md:pt-36 md:pb-32">
         <p
           className={`${base} text-[#F6F2E9] text-sm mb-4`}
           style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(14px)" }}
@@ -140,8 +140,8 @@ function Order() {
     { img: IMG.tilapia, name: "Tilapia", copy: "Sweet, delicate flesh, farmed in clean, well-fed ponds, priced by weight.", cta: "Order tilapia" },
   ];
   return (
-    <section id="order" className="py-24 bg-[#F6F2E9]">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+    <section id="order" className="py-24 bg-[#FEFCFF]">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <Reveal>
           <p className="text-[#F6F2E9] text-sm mb-3">Order for yourself</p>
           <h2
@@ -204,7 +204,7 @@ function OrderForm() {
 
   return (
     <section id="order-form" className="py-24 bg-[#1B4332] text-[#F6F2E9]">
-      <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-[0.85fr_1.15fr] gap-12 items-start">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 grid md:grid-cols-[0.85fr_1.15fr] gap-12 items-start">
         <Reveal>
           <p className="text-[#F6F2E9] text-sm mb-3">Ready to order?</p>
           <h2 className="text-3xl md:text-4xl max-w-md" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
@@ -281,7 +281,7 @@ function Segments() {
   ];
   return (
     <section id="segments" className="py-24 bg-[#1B4332] text-[#F6F2E9]">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <Reveal>
           <p className="text-[#F6F2E9] text-sm mb-3">Need it in larger quantity?</p>
           <h2
@@ -317,8 +317,8 @@ function HowWholesaleWorks() {
     { n: "04", title: "Reorder with ease", copy: "Once we know your pattern, repeat orders take minutes to confirm." },
   ];
   return (
-    <section className="py-24 bg-[#F6F2E9]">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+    <section className="py-24 bg-[#FEFCFF]">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <Reveal>
           <h2
             className="text-3xl md:text-4xl text-[#1B4332] max-w-lg"
@@ -348,7 +348,7 @@ function HowWholesaleWorks() {
 function Location() {
   return (
     <section className="py-24 bg-[#1B4332] text-[#F6F2E9]">
-      <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-12 items-center">
         <Reveal>
           <p className="text-[#F6F2E9] text-sm mb-3">Where we are</p>
           <h2
@@ -385,8 +385,8 @@ function Location() {
 /* ----------------------------------- CTA ------------------------------------ */
 function QuoteCTA() {
   return (
-    <section id="quote" className="py-24 bg-[#F6F2E9]">
-      <div className="max-w-6xl mx-auto px-6 md:px-10 text-center">
+    <section id="quote" className="py-24 bg-[#FEFCFF]">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 text-center">
         <Reveal>
           <h2
             className="text-3xl md:text-4xl text-[#1B4332] max-w-xl mx-auto"
@@ -413,7 +413,7 @@ function QuoteCTA() {
 /* ----------------------------------- Page ------------------------------------ */
 export default function WholesalePage() {
   return (
-    <div className="bg-[#F6F2E9] min-h-screen">
+    <div className="bg-[#FEFCFF] min-h-screen">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;560;600&family=Inter:wght@400;500&display=swap');
         * { font-family: 'Inter', sans-serif; }

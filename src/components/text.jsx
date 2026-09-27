@@ -91,7 +91,7 @@ function Hero() {
     ];
 
     return (
-        <section id="top" className="max-w-6xl mx-auto px-6 md:px-10 pt-16 md:pt-28 pb-24">
+        <section id="top" className="max-w-7xl mx-auto px-6 md:px-10 pt-16 md:pt-28 pb-24">
             <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
 
                 {/* Left: text */}
@@ -179,9 +179,10 @@ function Hero() {
                 </div>
 
                 {/* Right: structured image collage — one wide, two stacked below */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-4 ">
+                    <div/>
                     <div
-                        className="col-span-2 rounded-2xl overflow-hidden h-56 md:h-64 transition-all duration-700"
+                        className="col-span-3 rounded-t-2xl overflow-hidden h-56 md:h-64 transition-all duration-700"
                         style={{
                             opacity: shown ? 1 : 0,
                             transform: shown ? "translateY(0)" : "translateY(24px)",
@@ -191,7 +192,7 @@ function Hero() {
                         <img src={collage[0].img} alt={collage[0].alt} className="w-full h-full object-cover" />
                     </div>
                     <div
-                        className="rounded-2xl overflow-hidden h-40 md:h-48 transition-all duration-700"
+                        className="rounded-l-2xl col-span-2 overflow-hidden h-40 md:h-48 transition-all duration-700"
                         style={{
                             opacity: shown ? 1 : 0,
                             transform: shown ? "translateY(0)" : "translateY(24px)",
@@ -201,7 +202,7 @@ function Hero() {
                         <img src={collage[1].img} alt={collage[1].alt} className="w-full h-full object-cover" />
                     </div>
                     <div
-                        className="rounded-2xl overflow-hidden h-40 md:h-48 transition-all duration-700"
+                        className="rounded-br-2xl col-span-2 overflow-hidden h-40 md:h-48 transition-all duration-700"
                         style={{
                             opacity: shown ? 1 : 0,
                             transform: shown ? "translateY(0)" : "translateY(24px)",
@@ -543,7 +544,7 @@ export function Varieties() {
                     </div>
 
                     {/* Cards Stack */}
-                    <div className="relative h-[65vh] w-[88vw] md:w-[80vw] max-w-6xl overflow-hidden rounded-2xl md:rounded-3xl bg-[#1B4332] shadow-2xl">
+                    <div className="relative h-[65vh] w-[88vw] md:w-[80vw] max-w-7xl overflow-hidden rounded-2xl md:rounded-3xl bg-[#1B4332] shadow-2xl">
 
                         {/* --- CARD 1: CATFISH --- */}
                         <div
@@ -609,7 +610,7 @@ export function Varieties() {
 
             {/* --- How It Works Section --- */}
             <section ref={howItWorksRef} className="bg-[#1B4332] text-[#F6F2E9] py-24 md:py-28">
-                <div className="max-w-6xl mx-auto px-6 md:px-10">
+                <div className="max-w-7xl mx-auto px-6 md:px-10">
                     <Reveal>
                         <h2 className="text-3xl md:text-4xl max-w-lg mb-16" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
                             Getting fresh fish is simple.
@@ -679,7 +680,7 @@ export function BulkSupply() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B2B22] via-[#0B2B22]/70 to-[#0B2B22]/40" />
             </div>
 
-            <div className="relative max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
+            <div className="relative max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
                     {/* LEFT COLUMN: Direct bulk buyers */}
@@ -875,7 +876,7 @@ function FisheryJourney() {
 
     return (
         <section id="learn-fishery" className="py-24 md:py-28 bg-[#F6F2E9] text-[#1B4332]">
-            <div className="max-w-6xl mx-auto px-6 md:px-10">
+            <div className="max-w-7xl mx-auto px-6 md:px-10">
                 <Reveal>
                     <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
                         <div>
@@ -952,7 +953,7 @@ function ClosingBanner() {
         <section className="relative h-[420px] md:h-[480px] overflow-hidden">
             <img src={IMG.closing} alt="Full-size aerial view of a fish farm" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-[#0B2B22]/55" />
-            <div className="relative h-full max-w-6xl mx-auto px-6 md:px-10 flex items-center">
+            <div className="relative h-full max-w-7xl mx-auto px-6 md:px-10 flex items-center">
                 <Reveal>
                     <h2 className="text-[#F6F2E9] text-4xl md:text-5xl max-w-xl leading-tight" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
                         Good fish shouldn't be complicated.

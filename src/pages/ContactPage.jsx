@@ -57,7 +57,7 @@ function ContactHero() {
   const base = "transition-all duration-[900ms]";
   return (
     <section className="bg-[#1B4332] text-[#F6F2E9]" ref={ref}>
-      <div className="max-w-6xl mx-auto px-6 md:px-10 pt-28 pb-24 md:pt-36 md:pb-28 text-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 pt-28 pb-24 md:pt-36 md:pb-28 text-center">
         <p
           className={`${base} text-[#F6F2E9] text-sm mb-4`}
           style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(14px)" }}
@@ -114,8 +114,8 @@ function ContactHero() {
 /* ---------------------------------- Location -------------------------------- */
 function Location() {
   return (
-    <section className="py-24 bg-[#F6F2E9]">
-      <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-12 items-center">
+    <section className="py-24 bg-[#FEFCFF]">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-12 items-center">
         <Reveal>
           <p className="text-[#F6F2E9] text-sm mb-3">Where we are</p>
           <h2
