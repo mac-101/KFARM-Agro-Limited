@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import referImg from "../assets/slazzer-preview-74wu0.png"
+import fisheryimage from "../assets/image-removebg-preview.png"
 
 const WHATSAPP_NUMBER = "2349115380670"; // 09115380670, with Nigeria country code, no leading 0
 const DEFAULT_ORDER_MESSAGE =
@@ -136,15 +137,15 @@ function Hero() {
                         transitionDelay: "260ms",
                     }}
                 >
-                    
-                     <a   id="order"
+
+                    <a id="order"
                         href={WHATSAPP_LINK("I'd like to place an order.")}
                         className="rounded-full bg-[#F6F2E9] text-[#1B4332] px-8 py-3.5 text-[15px] font-medium hover:bg-[#E9E4D5] transition-all"
                     >
                         Order fresh fish
                     </a>
-                    
-                    <a    href="#varieties"
+
+                    <a href="#varieties"
                         className="rounded-full border border-[#F6F2E9]/35 text-[#F6F2E9] px-8 py-3.5 text-[15px] font-medium hover:border-[#F6F2E9]/70 transition-all"
                     >
                         Our varieties
@@ -177,7 +178,7 @@ function Hero() {
             </div>
         </section>
     );
- }
+}
 
 // add to your existing IMG object:
 
@@ -227,7 +228,7 @@ function About() {
                             No order is too small or too large
                         </div>
                     </div>
-                        
+
                 </Reveal>
             </div>
         </section>
@@ -826,85 +827,100 @@ function DiscountTag({ compact = false, dark = false }) {
     );
 }
 
+
 function FisheryJourney() {
-    const pillars = [
-        { icon: Fish, title: "Farm Production", copy: "Catfish and tilapia rearing, from stocking to grow-out." },
-        { icon: Droplets, title: "Care & Environment", copy: "Feeding, water quality, and fish health." },
-        { icon: TrendingUp, title: "Business & Growth", copy: "Pricing, marketing, and running it as real income." },
-    ];
-    const mechanic = [
-        { step: "Order fish", copy: "Place any order with us, big or small." },
-        { step: "Enroll in training", copy: "Sign up for our fishery course afterward." },
-        { step: "Save 50%", copy: "Your training fee is automatically halved.", tag: true },
+    const stages = [
+        { type: "pillar", title: "Farm Production", copy: "Catfish and tilapia rearing, from stocking to grow-out." },
+        { type: "pillar", title: "Care & Environment", copy: "Feeding, water quality, and fish health." },
+        { type: "pillar", title: "Business & Growth", copy: "Pricing, marketing, and running it as real income." },
+        { type: "divider" },
+        { type: "step", title: "Order fish", copy: "Place any order with us, big or small." },
+        { type: "step", title: "Enroll in training", copy: "Sign up for our fishery course afterward." },
+        { type: "step", title: "Save 50%", copy: "Your training fee is automatically halved.", tag: true },
     ];
 
+    const [ref, shown] = useReveal();
+
     return (
-        <section id="learn-fishery" className="py-24 md:py-28 bg-[#F6F2E9] text-[#1B4332]">
-            <div className="max-w-7xl mx-auto px-6 md:px-10">
+        <section id="learn-fishery" className="py-24 md:py-28  text-[#1B4332]">
+            <div className="max-w-5xl mx-auto px-6 md:px-10">
                 <Reveal>
-                    <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-                        <div>
+                    <div className="flex flex-col sm:flex-row sm:items-end gap-8 sm:gap-10">
+                        <div className="flex-1">
                             <h2 className="text-3xl md:text-4xl" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
                                 There's more to fish than buying it.
                             </h2>
                             <p className="text-[#31463F]/80 mt-4 max-w-md leading-relaxed">
                                 Behind every order is a full fishery training program
-                                covering production, pond management, fish health, and
-                                the business side of running a farm, taught by people
-                                who do it daily.
+                                covering production, care, and the business side of
+                                running a farm, taught by people who do it daily.
                             </p>
                         </div>
-                        <div className="rounded-2xl overflow-hidden h-72 md:h-96">
+                        {/* <div className="w-full sm:w-40 h-28 sm:h-32 rounded-2xl overflow-hidden shrink-0">
                             <img src={IMG.growing} alt="Fishery training in progress" className="w-full h-full object-cover" />
+                        </div> */}
+                    </div>
+                </Reveal>
+                <div className=" md:flex justify-between items-end">
+                    <div ref={ref} className="relative mt-16 pl-8 md:pl-10">
+                        <div className="absolute left-[3px] top-1 bottom-1 w-[2px] bg-[#1B4332]/12">
+                            <div
+                                className="w-full bg-[#1B4332] origin-top transition-transform duration-[1400ms] ease-out"
+                                style={{ height: "100%", transform: shown ? "scaleY(1)" : "scaleY(0)" }}
+                            />
+                        </div>
+
+                        <div className="space-y-10">
+                            {stages.map((s, i) => {
+                                if (s.type === "divider") {
+                                    return (
+                                        <div key={`div-${i}`} className="relative py-1">
+                                            <span className="absolute -left-8 md:-left-10 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#1B4332]/30" />
+                                            <p className="text-[#1B4332]/45 text-xs uppercase tracking-wide">Then, ordering with us</p>
+                                        </div>
+                                    );
+                                }
+                                return (
+                                    <Reveal key={s.title} delay={i * 70} className="relative">
+                                        <span
+                                            className="absolute -left-8 md:-left-10 top-1.5 w-2.5 h-2.5 rounded-full bg-[#1B4332]"
+                                            style={s.tag ? { animation: "nodePulse 2s ease-out infinite" } : undefined}
+                                        />
+                                        <div className="flex items-start gap-5">
+                                            <div className="flex-1">
+                                                <h3 className="text-lg md:text-xl">{s.title}</h3>
+                                                <p className="text-[#31463F]/70 text-sm md:text-base mt-1 leading-relaxed max-w-md">{s.copy}</p>
+                                            </div>
+                                            {s.tag && <DiscountTag compact dark />}
+                                        </div>
+                                    </Reveal>
+                                );
+                            })}
                         </div>
                     </div>
-                </Reveal>
 
-                <Reveal delay={100}>
-                    <div className="grid sm:grid-cols-3 gap-10 sm:gap-8 mt-16 border-t border-[#1B4332]/12 pt-10">
-                        {pillars.map((p) => (
-                            <div key={p.title}>
-                                <div className="w-11 h-11 rounded-full border border-[#1B4332]/25 flex items-center justify-center">
-                                    <p.icon size={18} className="text-[#1B4332]" strokeWidth={1.6} />
-                                </div>
-                                <h3 className="text-base md:text-lg mt-4 mb-1.5">{p.title}</h3>
-                                <p className="text-[#31463F]/75 text-sm leading-relaxed">{p.copy}</p>
-                            </div>
-                        ))}
+                    <div className="w-100 hidden md:block rounded-2xl overflow-hidden shrink-0">
+                        <img src={fisheryimage} alt="Fishery training in progress" className="w-full h-full object-cover" />
                     </div>
-                    <a href="/learn" className="inline-flex items-center gap-1.5 mt-8 text-[#1B4332] text-sm font-medium hover:gap-2.5 transition-all">
-                        See the full curriculum →
-                    </a>
-                </Reveal>
+                </div>
 
-                <Reveal delay={200}>
-                    <div className="mt-16 md:mt-20 border-t border-[#1B4332]/12 pt-10">
-                        <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-4">
-                            {mechanic.map((m, i) => (
-                                <React.Fragment key={m.step}>
-                                    <div className="flex items-start gap-4 md:flex-1">
-                                        {m.tag ? <DiscountTag compact dark /> : <span className="w-2 h-2 rounded-full bg-[#1B4332] mt-2 shrink-0" />}
-                                        <div>
-                                            <h3 className="text-base md:text-lg">{m.step}</h3>
-                                            <p className="text-[#31463F]/70 text-sm mt-1 leading-relaxed max-w-[220px]">{m.copy}</p>
-                                        </div>
-                                    </div>
-                                    {i < mechanic.length - 1 && (
-                                        <div className="hidden md:flex items-center justify-center pt-3">
-                                            <ChevronRight size={18} className="text-[#1B4332]/40" style={{ animation: "flowNudge 1.6s ease-in-out infinite" }} />
-                                        </div>
-                                    )}
-                                </React.Fragment>
-                            ))}
-                        </div>
+                <style>{`
+                    @keyframes nodePulse {
+                        0% { box-shadow: 0 0 0 0 rgba(27,67,50,0.35); }
+                        70% { box-shadow: 0 0 0 10px rgba(27,67,50,0); }
+                        100% { box-shadow: 0 0 0 0 rgba(27,67,50,0); }
+                    }
+                `}</style>
+
+                <Reveal delay={550}>
+                    <div className="flex flex-wrap items-center gap-6 mt-14 pl-8 md:pl-10">
+                        <a href="/learn" className="rounded-full bg-[#1B4332] text-[#F6F2E9] px-7 py-3.5 text-[15px] hover:bg-[#12281F] transition-colors">
+                            Explore fishery courses
+                        </a>
+                        <a href="/learn" className="inline-flex items-center gap-1.5 text-[#1B4332] text-sm font-medium hover:gap-2.5 transition-all">
+                            See the full curriculum →
+                        </a>
                     </div>
-                    <style>{`@keyframes flowNudge { 0%, 100% { transform: translateX(0); opacity: 0.5; } 50% { transform: translateX(4px); opacity: 1; } }`}</style>
-                </Reveal>
-
-                <Reveal delay={320}>
-                    <a href="/learn" className="inline-flex mt-12 rounded-full bg-[#1B4332] text-[#F6F2E9] px-7 py-3.5 text-[15px] hover:bg-[#12281F] transition-colors">
-                        Explore fishery courses
-                    </a>
                 </Reveal>
             </div>
         </section>
