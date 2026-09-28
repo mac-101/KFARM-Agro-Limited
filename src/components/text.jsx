@@ -987,42 +987,67 @@ function ReferAndEarn() {
 
 function Testimonials() {
     const quotes = [
-        {
-            text: "PLACEHOLDER — replace with a real customer quote. Keep it short, specific, and in their own words.",
-            name: "Customer name",
-            detail: "Where they're from / what they ordered",
-        },
-        {
-            text: "PLACEHOLDER — replace with a real customer quote.",
-            name: "Customer name",
-            detail: "Where they're from / what they ordered",
-        },
-        {
-            text: "PLACEHOLDER — replace with a real customer quote.",
-            name: "Customer name",
-            detail: "Where they're from / what they ordered",
-        },
+        { text: "PLACEHOLDER — replace with a real customer quote. Keep it short and in their own words.", name: "Customer name", detail: "Where they're from / what they ordered" },
+        { text: "PLACEHOLDER — replace with a real customer quote.", name: "Customer name", detail: "Where they're from / what they ordered" },
+        { text: "PLACEHOLDER — replace with a real customer quote.", name: "Customer name", detail: "Where they're from / what they ordered" },
     ];
 
+    const [active, setActive] = useState(0);
+    const touchStartX = useRef(null);
+
+    const goTo = (i) => setActive((i + quotes.length) % quotes.length);
+
+    const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+    const onTouchEnd = (e) => {
+        if (touchStartX.current === null) return;
+        const delta = e.changedTouches[0].clientX - touchStartX.current;
+        if (Math.abs(delta) > 50) goTo(active + (delta < 0 ? 1 : -1));
+        touchStartX.current = null;
+    };
+
     return (
-        <section className="bg-[#1B4332] text-[#F6F2E9] py-24 md:py-28">
-            <div className="max-w-6xl mx-auto px-6 md:px-10">
+        <section className="bg-[#F6F2E9] py-24 md:py-28">
+            <div className="max-w-2xl mx-auto px-6 md:px-10">
                 <Reveal>
-                    <h2 className="text-3xl md:text-4xl max-w-lg" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
+                    <h2 className="text-3xl md:text-4xl text-[#1B4332] text-center" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
                         What people say after ordering.
                     </h2>
                 </Reveal>
 
-                <div className="grid md:grid-cols-3 gap-10 md:gap-8 mt-14">
-                    {quotes.map((q, i) => (
-                        <Reveal key={i} delay={i * 100}>
-                            <div className="border-t border-[#F6F2E9]/15 pt-6">
-                                <p className="text-[#F6F2E9]/85 text-base leading-relaxed" style={{ fontFamily: "Fraunces, serif", fontWeight: 400 }}>
-                                    "{q.text}"
-                                </p>
-                                <p className="text-[#F6F2E9]/50 text-sm mt-5">{q.name} — {q.detail}</p>
-                            </div>
-                        </Reveal>
+                <div
+                    className="mt-12 relative"
+                    onTouchStart={onTouchStart}
+                    onTouchEnd={onTouchEnd}
+                >
+                    <div className="rounded-3xl bg-white shadow-[0_12px_40px_rgba(27,67,50,0.1)] p-10 md:p-14 text-center min-h-[280px] flex flex-col items-center justify-center">
+                        <span className="text-[#1B4332]/15 text-6xl leading-none" style={{ fontFamily: "Fraunces, serif" }}>"</span>
+                        <p
+                            key={active}
+                            className="text-[#1B4332] text-lg md:text-xl leading-relaxed mt-2 max-w-md transition-opacity duration-500"
+                            style={{ fontFamily: "Fraunces, serif", fontWeight: 400 }}
+                        >
+                            {quotes[active].text}
+                        </p>
+                        <div className="mt-7">
+                            <p className="text-[#1B4332] text-sm font-medium">{quotes[active].name}</p>
+                            <p className="text-[#31463F]/60 text-xs mt-0.5">{quotes[active].detail}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex justify-center gap-2.5 mt-7">
+                    {quotes.map((_, i) => (
+                        <button
+                            key={i}
+                            onClick={() => goTo(i)}
+                            aria-label={`Show testimonial ${i + 1}`}
+                            className="rounded-full transition-all duration-300"
+                            style={{
+                                width: active === i ? "22px" : "8px",
+                                height: "8px",
+                                backgroundColor: active === i ? "#1B4332" : "rgba(27,67,50,0.2)",
+                            }}
+                        />
                     ))}
                 </div>
             </div>
