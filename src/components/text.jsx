@@ -985,6 +985,51 @@ function ReferAndEarn() {
     );
 }
 
+function Testimonials() {
+    const quotes = [
+        {
+            text: "PLACEHOLDER — replace with a real customer quote. Keep it short, specific, and in their own words.",
+            name: "Customer name",
+            detail: "Where they're from / what they ordered",
+        },
+        {
+            text: "PLACEHOLDER — replace with a real customer quote.",
+            name: "Customer name",
+            detail: "Where they're from / what they ordered",
+        },
+        {
+            text: "PLACEHOLDER — replace with a real customer quote.",
+            name: "Customer name",
+            detail: "Where they're from / what they ordered",
+        },
+    ];
+
+    return (
+        <section className="bg-[#1B4332] text-[#F6F2E9] py-24 md:py-28">
+            <div className="max-w-6xl mx-auto px-6 md:px-10">
+                <Reveal>
+                    <h2 className="text-3xl md:text-4xl max-w-lg" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
+                        What people say after ordering.
+                    </h2>
+                </Reveal>
+
+                <div className="grid md:grid-cols-3 gap-10 md:gap-8 mt-14">
+                    {quotes.map((q, i) => (
+                        <Reveal key={i} delay={i * 100}>
+                            <div className="border-t border-[#F6F2E9]/15 pt-6">
+                                <p className="text-[#F6F2E9]/85 text-base leading-relaxed" style={{ fontFamily: "Fraunces, serif", fontWeight: 400 }}>
+                                    "{q.text}"
+                                </p>
+                                <p className="text-[#F6F2E9]/50 text-sm mt-5">{q.name} — {q.detail}</p>
+                            </div>
+                        </Reveal>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
 /* ---------------------------------- Footer ---------------------------------- */
 
 
@@ -1004,6 +1049,7 @@ export default function Home() {
             <BulkSupply />
             <FisheryJourney />
             <ReferAndEarn />
+            <Testimonials/>
             <ClosingBanner />
             <FAQ />
         </div>
