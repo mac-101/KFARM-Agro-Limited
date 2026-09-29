@@ -138,8 +138,8 @@ function OrderHero() {
 /* -------------------------------- Order / varieties ------------------------------ */
 function Order() {
   const cards = [
-    { img: img3, name: "Catfish", copy: "Firm, mild, and versatile, sold live or freshly dressed, priced by weight.", cta: "Order catfish" },
-    { img: img14, name: "Tilapia", copy: "Sweet, delicate flesh, farmed in clean, well-fed ponds, priced by weight.", cta: "Order tilapia" },
+    { img: img14, name: "Catfish", copy: "Firm, mild, and versatile, sold live or freshly dressed, priced by weight.", cta: "Order catfish" },
+    { img: img3, name: "Tilapia", copy: "Sweet, delicate flesh, farmed in clean, well-fed ponds, priced by weight.", cta: "Order tilapia" },
   ];
   return (
     <section id="order" className="py-24 bg-[#FEFCFF]">
