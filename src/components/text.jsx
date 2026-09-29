@@ -1,6 +1,29 @@
 import React, { useEffect, useRef, useState } from "react";
 import referImg from "../assets/slazzer-preview-74wu0.png"
 import fisheryimage from "../assets/image-removebg-preview.png"
+import bg from "../assets/bg.jpg"
+import img1 from "../assets/IMG-20260928-WA0182.jpg" 
+import img2 from "../assets/IMG-20260928-WA0183.jpg" 
+import img3 from "../assets/IMG-20260928-WA0184.jpg" 
+import img4 from "../assets/IMG-20260928-WA0185.jpg" 
+import img5 from "../assets/IMG-20260928-WA0186.jpg" 
+import img6 from "../assets/IMG-20260928-WA0187.jpg" 
+import img7 from "../assets/IMG-20260928-WA0188.jpg" 
+import img8 from "../assets/IMG-20260928-WA0189.jpg" 
+import img9 from "../assets/IMG-20260928-WA0190.jpg" 
+import img10 from "../assets/IMG-20260928-WA0191.jpg" 
+import img11 from "../assets/IMG-20260928-WA0192(1).jpg" 
+import img12 from "../assets/IMG-20260928-WA0193.jpg" 
+import img13 from "../assets/IMG-20260928-WA0194.jpg" 
+import img14 from "../assets/IMG-20260928-WA0195.jpg" 
+import img15 from "../assets/IMG-20260928-WA0199.jpg" 
+import img16 from "../assets/IMG-20260928-WA0200.jpg" 
+import img17 from "../assets/IMG-20260928-WA0201.jpg" 
+
+const gallerry = [
+    img1, img2, img3, img7, img5, img11, img4, img8, img9, img10, img6, img12, img13, img14, img15, img16, img17,
+]
+
 
 const WHATSAPP_NUMBER = "2349115380670"; // 09115380670, with Nigeria country code, no leading 0
 const DEFAULT_ORDER_MESSAGE =
@@ -11,7 +34,7 @@ const WHATSAPP_LINK = (message = DEFAULT_ORDER_MESSAGE) =>
 
 
 const IMG = {
-    about: "https://images.pexels.com/photos/7509424/pexels-photo-7509424.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    about: img5,
     hero: "https://images.pexels.com/photos/15059730/pexels-photo-15059730.jpeg?auto=compress&cs=tinysrgb&w=1200",
     heroSmall1:
         "https://images.pexels.com/photos/32243187/pexels-photo-32243187.jpeg?auto=compress&cs=tinysrgb&w=800",
@@ -34,9 +57,6 @@ const IMG = {
     wholesale: "https://images.pexels.com/photos/7509417/pexels-photo-7509417.jpeg?auto=compress&cs=tinysrgb&w=1400",
 };
 
-const galleryImage = {
-
-}
 
 /* ---------------------------- scroll reveal --------------------------- */
 function useReveal() {
@@ -90,13 +110,13 @@ function Hero() {
     return (
         <section id="top" className="relative h-[92vh] min-h-[640px] overflow-hidden">
             <img
-                src={IMG.hero}
+                src={bg}
                 alt="Fish farm at KFARM"
                 className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B2B22] via-[#0B2B22]/55 to-[#0B2B22]/15" />
 
-            <div ref={ref} className="relative h-full max-w-6xl mx-auto px-6 md:px-10 flex flex-col justify-end pb-16 md:pb-20">
+            <div ref={ref} className="relative h-full max-w-6xl mx-auto px-6 md:px-10 flex flex-col justify-center pb-16 md:pb-20">
                 <p
                     className={`${base} text-[#F6F2E9]/80 text-sm md:text-base font-medium tracking-wide uppercase mb-4`}
                     style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(14px)" }}
@@ -163,7 +183,7 @@ function Hero() {
                         transitionDelay: "420ms",
                     }}
                 >
-                    <img src={IMG.heroSmall1} alt="Fresh catfish" className="w-full h-full object-cover" />
+                    <img src={img3} alt="Fresh catfish" className="w-full h-full object-cover" />
                 </div>
                 <div
                     className="w-28 h-36 lg:w-32 lg:h-40 rounded-2xl overflow-hidden shadow-lg mt-8 transition-all duration-700"
@@ -173,7 +193,7 @@ function Hero() {
                         transitionDelay: "520ms",
                     }}
                 >
-                    <img src={IMG.heroSmall2} alt="Fresh tilapia" className="w-full h-full object-cover" />
+                    <img src={img14} alt="Fresh tilapia" className="w-full h-full object-cover" />
                 </div>
             </div>
         </section>
@@ -189,48 +209,47 @@ function About() {
 
     return (
         <section id="about" className="py-16 md:py-24  text-[#1B4332]">
-            <div className="max-w-4xl mx-auto px-6 text-center">
-                <Reveal>
-                    {/* Subtle Label */}
-                    {/* <p className="text-[#1B4332] text-xs font-bold tracking-widest uppercase mb-3">
-            Welcome to KFARM
-          </p> */}
+            <Reveal>
+                <div className="max-w-7xl items-center grid md:grid-cols-2 mx-auto px-6 text-center md:text-left">
+
 
                     {/* Simple, Warm Headline */}
-                    <h2
-                        className="text-3xl sm:text-4xl md:text-5xl leading-tight text-[#1B4332]"
-                        style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
-                    >
-                        The home of healthy fish. Fresh or dried, in any quantity you need.
-                    </h2>
+                    <div>
+                        <h2
+                            className="text-3xl sm:text-4xl md:text-5xl leading-tight text-[#1B4332]"
+                            style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
+                        >
+                            The home of healthy fish. Fresh or dried, in any quantity you need.
+                        </h2>
 
-                    <p className="text-[#31463F]/80 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
-                        Straight from clean farm waters to your kitchen. We handle single home orders and bulk wholesale with the exact same care.
-                    </p>
+                        <p className="text-[#31463F]/80 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
+                            Straight from clean farm waters to your kitchen. We handle single home orders and bulk wholesale with the exact same care.
+                        </p>
+                        {/* 2 Quick Simple Highlights */}
+                        <div className="flex flex-wrap justify-center gap-8 mt-8 text-sm font-medium text-[#31463F]">
+                            <div className="flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-[#1B4332]" />
+                                Fresh live harvest or smoked dried
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-[#1B4332]" />
+                                No order is too small or too large
+                            </div>
+                        </div>
+                    </div>
 
                     {/* Single Simple Image Showcase */}
                     <div className="mt-10 rounded-2xl overflow-hidden shadow-lg max-w-2xl mx-auto aspect-[16/9]">
                         <img
                             src={IMG.about}
                             alt="Healthy farm fresh fish"
-                            className="w-full h-full object-cover"
+                            className="w-full h-full "
                         />
                     </div>
 
-                    {/* 2 Quick Simple Highlights */}
-                    <div className="flex flex-wrap justify-center gap-8 mt-8 text-sm font-medium text-[#31463F]">
-                        <div className="flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-[#1B4332]" />
-                            Fresh live harvest or smoked dried
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-[#1B4332]" />
-                            No order is too small or too large
-                        </div>
-                    </div>
 
-                </Reveal>
-            </div>
+                </div>
+            </Reveal>
         </section>
     );
 }
@@ -239,70 +258,9 @@ function About() {
 // Assumed Reveal component exists in your workspace
 
 export function FarmGallery() {
-    const baseImages = [
-        {
-            src: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQiE7diwDoU3KcvRPtM_KF695Djh_03Dtg-7KZ6NXdTuLLbxZHEMGNqKtP0gCjSJTOHJO_J4SWUGTd85qQ",
-            alt: "Harvested African Catfish cluster",
-            title: "Catfish Harvest",
-            category: "Catfish"
-        },
-        {
-            src: "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRwD1x6-YZ-z_SfdZfjQ4ZGbSQ65uxHoGjB55TWYlsFxDnXmkIfTw37Nc0WbLhWXhrs43-Ngxbwtg-N6qA",
-            alt: "Farmer holding fresh tilapia",
-            title: "Fresh Tilapia Catch",
-            category: "Tilapia"
-        },
-        {
-            src: "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTqVAcqLb6znzlgLu115LtZvfMph2X8o-nBALknUnUjA0BVoIU_rMaEsPkO6HGF914yXQGBgDgxL2sE7ds",
-            alt: "Large catfish underwater in farm tank",
-            title: "Healthy Stock",
-            category: "Catfish"
-        },
-        {
-            src: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQzLqe71uaqjZ2jiOIIOacPdRS6eElO92qxoPw_tpWgRCc74XE3sBfbhnPk2jkEB5YvKPbv8XvDY4vodw8",
-            alt: "Live tilapia fish in harvest net",
-            title: "Harvest Net",
-            category: "Tilapia"
-        },
-        {
-            src: "https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcQrT_hz-BSRjl2ptC3SA2IarX2bzOHo6PeCx_xKP2YA3ikEfNAjKswcbdbjtPCCPAzhWA1VKdC502scqx8",
-            alt: "Catfish feeding splash on water surface",
-            title: "Feeding Activity",
-            category: "Pond Activity"
-        },
-        {
-            src: "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRdVZASPU1WuLbzj4QXrK6MKIBAZ4vJm7TaklSUOBsCOoDCvnlnR-JZrTM6thr1moPD1kJ78rfTXVt8Lac",
-            alt: "Freshly harvested catfish packed in crates",
-            title: "Ready for Delivery",
-            category: "Wholesale"
-        },
-        {
-            src: "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRPlSfcFoCO8ejE74lMh46L54OeCe5hVca-1WhK4b9VZwYbxAJSOnCge6bWSL27tZerjZOVpNUQG1U2-tU",
-            alt: "Tilapia school swimming underwater",
-            title: "Active Tilapia Pond",
-            category: "Tilapia"
-        },
-        {
-            src: "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQFHrJDhgR18Y_glCQGB5zwRpEj6sWBzVOm-zVvy4VehV0woTW61FALYVH4rOzaS7dNUMSi5GZY2wm9_5U",
-            alt: "Concrete holding tanks for fish cultivation",
-            title: "Culturing Tanks",
-            category: "Farm Setup"
-        },
-        {
-            src: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQiE7diwDoU3KcvRPtM_KF695Djh_03Dtg-7KZ6NXdTuLLbxZHEMGNqKtP0gCjSJTOHJO_J4SWUGTd85qQ",
-            alt: "Cluster of live adult catfish",
-            title: "Prime Adult Stock",
-            category: "Catfish"
-        },
-        {
-            src: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQzLqe71uaqjZ2jiOIIOacPdRS6eElO92qxoPw_tpWgRCc74XE3sBfbhnPk2jkEB5YvKPbv8XvDY4vodw8",
-            alt: "Sorted fresh tilapia catch",
-            title: "Market Ready Tilapia",
-            category: "Tilapia"
-        }
-    ];
+   
 
-    const images = [...baseImages, ...baseImages];
+    // const images = [...baseImages, ...baseImages];
     const scrollerRef = useRef(null);
 
     useEffect(() => {
@@ -351,13 +309,13 @@ export function FarmGallery() {
                     className="flex gap-0 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none]"
                     style={{ scrollbarWidth: "none" }}
                 >
-                    {images.map((image, index) => (
+                    {gallerry.map((image, i) => (
                         <div
-                            key={`${image.alt}-${index}`}
+                            key={`${image.alt}-${i}`}
                             className="shrink-0 w-[75vw] sm:w-[45vw] lg:w-[28vw] relative h-[360px] group overflow-hidden bg-[#1B4332]"
                         >
                             <img
-                                src={image.src}
+                                src={image}
                                 alt={image.alt}
                                 loading="lazy"
                                 decoding="async"
@@ -365,14 +323,14 @@ export function FarmGallery() {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0B2B22]/85 via-[#0B2B22]/20 to-transparent" />
 
-                            <div className="absolute bottom-0 left-0 right-0 p-6 text-[#F6F2E9]">
+                            {/* <div className="absolute bottom-0 left-0 right-0 p-6 text-[#F6F2E9]">
                                 <p className="text-[10px] uppercase tracking-[0.2em] text-[#F6F2E9]">
                                     {image.category}
                                 </p>
                                 <h3 className="mt-2 text-xl" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
                                     {image.title}
                                 </h3>
-                            </div>
+                            </div> */}
                         </div>
                     ))}
                 </div>
@@ -384,14 +342,14 @@ export function FarmGallery() {
 export function Varieties() {
     const cards = [
         {
-            img: IMG.catfish,
+            img: img14,
             name: "Catfish",
             copy: "Firm, meaty, and endlessly versatile, catfish is a dependable choice for home meals, bulk orders, and restaurant supply.",
             supporting: "Best for soups, pepper soup, frying, grilling, and dependable daily cooking.",
             cta: "Order catfish",
         },
         {
-            img: IMG.tilapia,
+            img: img3,
             name: "Tilapia",
             copy: "Tilapia offers a tender texture and clean taste that works beautifully for quick meals, family dishes, and repeat customer orders.",
             supporting: "Loved for its mild flavour, easy prep, and strong appeal across retail and home use.",
@@ -1074,7 +1032,7 @@ export default function Home() {
             <BulkSupply />
             <FisheryJourney />
             <ReferAndEarn />
-            <Testimonials/>
+            <Testimonials />
             <ClosingBanner />
             <FAQ />
         </div>

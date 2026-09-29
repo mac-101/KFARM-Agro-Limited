@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { UtensilsCrossed, Store, Building2, MapPin, MessageCircle } from "lucide-react";
+import img3 from "../assets/IMG-20260928-WA0184.jpg" 
+import img14 from "../assets/IMG-20260928-WA0195.jpg" 
 
 /* ------------------------------------------------------------------ */
 /*  KFARM Agro Limited, Order + Wholesale page                              */
@@ -136,8 +138,8 @@ function OrderHero() {
 /* -------------------------------- Order / varieties ------------------------------ */
 function Order() {
   const cards = [
-    { img: IMG.catfish, name: "Catfish", copy: "Firm, mild, and versatile, sold live or freshly dressed, priced by weight.", cta: "Order catfish" },
-    { img: IMG.tilapia, name: "Tilapia", copy: "Sweet, delicate flesh, farmed in clean, well-fed ponds, priced by weight.", cta: "Order tilapia" },
+    { img: img3, name: "Catfish", copy: "Firm, mild, and versatile, sold live or freshly dressed, priced by weight.", cta: "Order catfish" },
+    { img: img14, name: "Tilapia", copy: "Sweet, delicate flesh, farmed in clean, well-fed ponds, priced by weight.", cta: "Order tilapia" },
   ];
   return (
     <section id="order" className="py-24 bg-[#FEFCFF]">
