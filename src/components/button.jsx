@@ -15,19 +15,34 @@ const BUTTON_VARIANTS = {
     },
 };
 
-export default function Button({ text, color = "dark", href = "#", width, className = "" }) {
+export default function Button({
+    text,
+    color = "dark",
+    href = "#",
+    width,
+    className = "",
+    ariaLabel = text,
+    iconOnly = false,
+}) {
     const variant = BUTTON_VARIANTS[color] || BUTTON_VARIANTS.dark;
 
     return (
         <a
             href={href}
+            aria-label={ariaLabel}
             style={width ? { width } : undefined}
-            className={`inline-flex items-center justify-between gap-4 rounded-full pl-6 pr-1.5 py-1.5 text-[15px] font-semibold transition-all ${variant.base} ${className}`}
+            className={`inline-flex items-center ${iconOnly ? "justify-center w-11 h-11 p-0" : "justify-between gap-4 rounded-full pl-6 pr-1.5 py-1.5"} text-[15px] font-semibold transition-all ${variant.base} ${className}`}
         >
-            <span>{text}</span>
-            <span className={`inline-flex items-center justify-center w-9 h-9 rounded-full shrink-0 ${variant.badge}`}>
-                <ChevronRight size={16} />
-            </span>
+            {iconOnly ? (
+                <ChevronRight size={18} className={color === "light" ? "text-[#13231B]" : "text-white"} />
+            ) : (
+                <>
+                    <span>{text}</span>
+                    <span className={`inline-flex items-center justify-center w-9 h-9 rounded-full shrink-0 ${variant.badge}`}>
+                        <ChevronRight size={16} />
+                    </span>
+                </>
+            )}
         </a>
     );
 }

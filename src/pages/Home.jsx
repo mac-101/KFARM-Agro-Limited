@@ -11,11 +11,13 @@ import {
 import Button from "../components/button";
 import heroImage from "../assets/IMG-20260928-WA0192(1).jpg";
 import aboutImage from "../assets/IMG-20260928-WA0186.jpg";
-import catfishImage from "../assets/IMG-20260928-WA0185.jpg";
-import tilapiaImage from "../assets/IMG-20260928-WA0200.jpg";
+import catfishImage from "../assets/IMG-20260928-WA0189.jpg";
+import tilapiaImage from "../assets/IMG-20260928-WA0184.jpg";
 import dryFishImage from "../assets/IMG-20260928-WA0193.jpg";
 import packagedFishImage from "../assets/IMG-20260928-WA0183.jpg";
-import harvestedFishImage from "../assets/IMG-20260928-WA0188.jpg";
+import pondImage from "../assets/IMG-20260928-WA0190.jpg"; 
+import fishTraining from "../assets/IMG-20260928-WA0195.jpg";
+import harvestedFishImage from "../assets/IMG-20260928-WA0194.jpg";
 import closingImage from "../assets/bg.jpg";
 
 /* ------------------------------------------------------------------ */
@@ -47,8 +49,10 @@ const IMG = {
   about: aboutImage,
   catfish: catfishImage,
   tilapia: tilapiaImage,
+  fishTraining: fishTraining,
   dryFish: dryFishImage,
   pond: heroImage,
+  dryCatfish: pondImage,
   growing: heroImage,
   feeding: packagedFishImage,
   harvesting: harvestedFishImage,
@@ -407,7 +411,7 @@ function BrandStory() {
       <div className="max-w-6xl flex flex-col gap-5 mx-auto px-6 md:px-10">
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           <Reveal>
-            <div className="rounded-2xl overflow-hidden ">
+            <div className="rounded-2xl h-80 md:h-[480px] overflow-hidden ">
               <img src={IMG.feeding} alt="KFARM at work" className="w-full h-full object-cover" />
             </div>
           </Reveal>
@@ -448,7 +452,7 @@ function BrandStory() {
 
           <Reveal>
             <div className="rounded-2xl overflow-hidden h-80 md:h-[480px]">
-              <img src={IMG.feeding} alt="KFARM at work" className="w-full h-full object-cover" />
+              <img src={IMG.dryCatfish} alt="KFARM at work" className="w-full h-full object-cover" />
             </div>
           </Reveal>
         </div>
@@ -492,7 +496,7 @@ function VisualShowcase() {
       descPosition: "bottom",
     },
     {
-      img: IMG.harvesting,
+      img: IMG.fishTraining,
       label: "Fishery Training",
       description: "Practical fishery knowledge for people ready to learn and grow.",
       descPosition: "top",

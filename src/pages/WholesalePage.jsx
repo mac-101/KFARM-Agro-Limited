@@ -1,5 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ChevronRight, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
+import heroImage from "../assets/IMG-20260928-WA0192(1).jpg";
+import catfishImage from "../assets/IMG-20260928-WA0195.jpg";
+import tilapiaImage from "../assets/IMG-20260928-WA0184.jpg";
+import dryFishImage from "../assets/IMG-20260928-WA0193.jpg";
+import pondImage from "../assets/IMG-20260928-WA0190.jpg";
+import dryTilapiaImage from "../assets/IMG-20260928-WA0185.jpg";
+import closingImage from "../assets/IMG-20260928-WA0186.jpg";
+import Button from "../components/button";
 
 /* ------------------------------------------------------------------ */
 /*  KFARM AGRO LIMITED — Fish / Buy page, v2                           */
@@ -23,12 +31,13 @@ const WHATSAPP_LINK = (message) =>
     `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
 const IMG = {
-    hero: "https://images.pexels.com/photos/15059730/pexels-photo-15059730.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    catfish: "https://images.pexels.com/photos/32243187/pexels-photo-32243187.jpeg?auto=compress&cs=tinysrgb&w=1000",
-    tilapia: "https://images.pexels.com/photos/8352786/pexels-photo-8352786.jpeg?auto=compress&cs=tinysrgb&w=1000",
-    dryFish: "https://images.pexels.com/photos/11229839/pexels-photo-11229839.jpeg?auto=compress&cs=tinysrgb&w=1000",
-    pond: "https://images.pexels.com/photos/7509417/pexels-photo-7509417.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    closing: "https://images.pexels.com/photos/18640095/pexels-photo-18640095.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    hero: heroImage,
+    catfish: catfishImage,
+    tilapia: tilapiaImage,
+    dryFish: dryFishImage,
+    dryTilapia: dryTilapiaImage,
+    pond: pondImage,
+    closing: closingImage,
 };
 
 /* ---------------------------- scroll reveal --------------------------- */
@@ -106,7 +115,7 @@ function Varieties() {
         ],
         dry: [
             { name: "Dry Catfish", img: IMG.dryFish, copy: "Smoked and dried for a longer-lasting option, same firm texture." },
-            { name: "Dry Tilapia", img: IMG.dryFish, copy: "Smoked and dried, ready for soups and stews whenever you need it." },
+            { name: "Dry Tilapia", img: IMG.dryTilapia, copy: "Smoked and dried, ready for soups and stews whenever you need it." },
         ],
     };
 
@@ -143,12 +152,14 @@ function Varieties() {
                             <div className="relative bg-white rounded-2xl -mt-8 mx-4 p-6 shadow-[0_8px_30px_rgba(19,35,27,0.08)]">
                                 <h3 className="text-[#13231B] text-lg font-semibold">{v.name}</h3>
                                 <p className="text-[#5C6760] text-sm mt-2 leading-relaxed pr-8">{v.copy}</p>
-                                <a
+                                <Button
+                                    text={`Order ${v.name}`}
+                                    ariaLabel={`Order ${v.name}`}
+                                    iconOnly
+                                    color="light"
                                     href={WHATSAPP_LINK(`I'd like to order ${v.name}.`)}
-                                    className="absolute -top-5 right-5 inline-flex items-center justify-center w-11 h-11 rounded-full bg-[#A6D83B] shadow-md group-hover:scale-105 transition-transform"
-                                >
-                                    <ChevronRight size={18} className="text-[#13231B]" />
-                                </a>
+                                    className="absolute -top-5 right-5 shadow-md group-hover:scale-105"
+                                />
                             </div>
                         </div>
                     ))}
@@ -193,12 +204,12 @@ function BulkSupply() {
                                 </span>
                             ))}
                         </div>
-                        <a
+                        <Button
+                            text="Talk to us about wholesale"
+                            color="dark"
                             href={WHATSAPP_LINK("I'd like to talk about a wholesale order.")}
-                            className="inline-flex items-center gap-2 mt-8 rounded-full bg-[#13231B] text-white px-6 py-3 text-sm font-semibold hover:bg-[#1E3A2C] transition-colors"
-                        >
-                            Talk to us about wholesale <ChevronRight size={15} />
-                        </a>
+                            className="mt-8"
+                        />
                     </Reveal>
                 </div>
 
@@ -212,12 +223,12 @@ function BulkSupply() {
                                 to KFARM and earn commission on what they order.
                             </p>
                         </div>
-                        <a
+                        <Button
+                            text="Become a partner"
+                            color="dark"
                             href={WHATSAPP_LINK("Hello, I'd like to become a partner and refer a buyer.")}
-                            className="inline-flex items-center justify-center rounded-full border border-[#13231B]/20 text-[#13231B] px-6 py-3 text-sm font-medium hover:border-[#13231B]/50 transition-colors w-fit shrink-0"
-                        >
-                            Become a partner
-                        </a>
+                            className="w-fit shrink-0"
+                        />
                     </div>
                 </Reveal>
             </div>
@@ -297,12 +308,12 @@ function FinalCTA() {
             <div className="relative h-full max-w-2xl mx-auto px-6 md:px-10 flex flex-col items-center justify-center text-center">
                 <Reveal>
                     <h2 className="text-white text-3xl md:text-4xl font-bold leading-tight">Ready to order?</h2>
-                    <a
+                    <Button
+                        text="Order on WhatsApp"
+                        color="light"
                         href={WHATSAPP_LINK("Hi, I'd like to place an order.")}
-                        className="inline-flex items-center gap-2 mt-7 rounded-full bg-[#A6D83B] text-[#13231B] px-8 py-3.5 text-[15px] font-semibold hover:brightness-95 transition-all"
-                    >
-                        Order on WhatsApp <ChevronRight size={16} />
-                    </a>
+                        className="mt-7"
+                    />
                 </Reveal>
             </div>
         </section>
