@@ -1,432 +1,328 @@
 import React, { useEffect, useRef, useState } from "react";
-import { UtensilsCrossed, Store, Building2, MapPin, MessageCircle } from "lucide-react";
-import img3 from "../assets/IMG-20260928-WA0184.jpg" 
-import img14 from "../assets/IMG-20260928-WA0195.jpg" 
+import { ChevronRight, MapPin } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  KFARM Agro Limited, Order + Wholesale page                              */
-/*  Covers both: (1) retail ordering of catfish & tilapia, and         */
-/*  (2) wholesale for restaurants/retailers/businesses.                */
-/*  Same design system as the rest of the site: deep teal + harvest    */
-/*  gold on soft paper cream, Fraunces headlines + Inter body.         */
+/*  KFARM AGRO LIMITED — Fish / Buy page, v2                           */
+/*  Reworked to actually match Home's visual language instead of       */
+/*  introducing its own: full-bleed photo Hero (same pattern as Home's */
+/*  Hero), light card-based Varieties (same photo-top/white-content    */
+/*  pattern as Home's Offerings), and a light, card-based Wholesale    */
+/*  section instead of the old dark full-bleed banner. Dropped the     */
+/*  standalone photo marquee — it read as a second, competing "wow"    */
+/*  moment instead of reinforcing Home's look.                        */
+/*                                                                      */
+/*  Fresh/Dry toggle + hover-zoom on the variety cards kept, since      */
+/*  those weren't flagged — only the hero and wholesale vibe were.     */
+/*                                                                      */
+/*  Same palette as Home: white / #13231B ink / #A6D83B lime,          */
+/*  Plus Jakarta Sans throughout.                                      */
 /* ------------------------------------------------------------------ */
-const WHATSAPP_NUMBER = "2349115380670"; // 09115380670, with Nigeria country code, no leading 0
-const DEFAULT_ORDER_MESSAGE =
-  import.meta.env.VITE_WHOLESALE_ORDER_MESSAGE ||
-  "KFARM Agro Limited, I'd like to place an order.";
-const WHATSAPP_LINK = (message = DEFAULT_ORDER_MESSAGE) =>
-  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+const WHATSAPP_NUMBER = "2349115380670";
+const WHATSAPP_LINK = (message) =>
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
 const IMG = {
-  hero:
-    "https://images.pexels.com/photos/14993421/pexels-photo-14993421.jpeg?auto=compress&cs=tinysrgb&w=1400",
-  catfish:
-    "https://images.pexels.com/photos/32243187/pexels-photo-32243187.jpeg?auto=compress&cs=tinysrgb&w=1000",
-  tilapia:
-    "https://images.pexels.com/photos/8352786/pexels-photo-8352786.jpeg?auto=compress&cs=tinysrgb&w=1000",
+    hero: "https://images.pexels.com/photos/15059730/pexels-photo-15059730.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    catfish: "https://images.pexels.com/photos/32243187/pexels-photo-32243187.jpeg?auto=compress&cs=tinysrgb&w=1000",
+    tilapia: "https://images.pexels.com/photos/8352786/pexels-photo-8352786.jpeg?auto=compress&cs=tinysrgb&w=1000",
+    dryFish: "https://images.pexels.com/photos/11229839/pexels-photo-11229839.jpeg?auto=compress&cs=tinysrgb&w=1000",
+    pond: "https://images.pexels.com/photos/7509417/pexels-photo-7509417.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    closing: "https://images.pexels.com/photos/18640095/pexels-photo-18640095.jpeg?auto=compress&cs=tinysrgb&w=1600",
 };
 
 /* ---------------------------- scroll reveal --------------------------- */
 function useReveal() {
-  const ref = useRef(null);
-  const [shown, setShown] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShown(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.18 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return [ref, shown];
+    const ref = useRef(null);
+    const [shown, setShown] = useState(false);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setShown(true);
+                    obs.disconnect();
+                }
+            },
+            { threshold: 0.18 }
+        );
+        obs.observe(el);
+        return () => obs.disconnect();
+    }, []);
+    return [ref, shown];
 }
 
 function Reveal({ children, delay = 0, className = "" }) {
-  const [ref, shown] = useReveal();
-  return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        transition: `opacity 700ms cubic-bezier(.2,.7,.2,1) ${delay}ms, transform 700ms cubic-bezier(.2,.7,.2,1) ${delay}ms`,
-        opacity: shown ? 1 : 0,
-        transform: shown ? "translateY(0)" : "translateY(24px)",
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-/* --------------------------------- Hero -------------------------------- */
-function OrderHero() {
-  const [ref, shown] = useReveal();
-  const base = "transition-all duration-[900ms]";
-  return (
-    <section className="relative overflow-hidden" ref={ref}>
-      <div className="absolute inset-0">
-        <img
-          src={IMG.hero}
-          alt="Large-scale fish farm, aerial view"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-[#1B4332]/70" />
-      </div>
-      <div className="relative max-w-7xl mx-auto px-6 md:px-10 pt-28 pb-24 md:pt-36 md:pb-32">
-        <p
-          className={`${base} text-[#F6F2E9] text-sm mb-4`}
-          style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(14px)" }}
-        >
-          Order &amp; wholesale
-        </p>
-        <h1
-          className={`${base} text-[#F6F2E9] text-[38px] leading-[1.12] sm:text-5xl md:text-[56px] max-w-2xl`}
-          style={{
-            fontFamily: "Fraunces, serif",
-            fontWeight: 560,
-            opacity: shown ? 1 : 0,
-            transform: shown ? "translateY(0)" : "translateY(22px)",
-            transitionDelay: "80ms",
-          }}
-        >
-          Fresh fish, from a single order to full-scale supply.
-        </h1>
-        <p
-          className={`${base} text-[#F6F2E9]/75 text-lg mt-6 max-w-lg leading-relaxed`}
-          style={{
-            opacity: shown ? 1 : 0,
-            transform: shown ? "translateY(0)" : "translateY(18px)",
-            transitionDelay: "180ms",
-          }}
-        >
-          Order catfish or tilapia for your kitchen or your table, or set
-          up a standing supply for your restaurant, shop, or business.
-        </p>
+    const [ref, shown] = useReveal();
+    return (
         <div
-          className={`${base} flex flex-wrap gap-4 mt-9`}
-          style={{
-            opacity: shown ? 1 : 0,
-            transform: shown ? "translateY(0)" : "translateY(18px)",
-            transitionDelay: "280ms",
-          }}
+            ref={ref}
+            className={className}
+            style={{
+                transition: `opacity 700ms cubic-bezier(.2,.7,.2,1) ${delay}ms, transform 700ms cubic-bezier(.2,.7,.2,1) ${delay}ms`,
+                opacity: shown ? 1 : 0,
+                transform: shown ? "translateY(0)" : "translateY(24px)",
+            }}
         >
-          <a
-            href={WHATSAPP_LINK("I'd like to order fish for my kitchen or table.")}
-            className="rounded-full bg-[#F6F2E9] text-[#1B4332] px-7 py-3.5 text-[15px] hover:bg-[#E9E4D5] transition-colors"
-          >
-            Order fish
-          </a>
-          <a
-            href="#quote"
-            className="rounded-full border border-[#F6F2E9]/30 text-[#F6F2E9] px-7 py-3.5 text-[15px] hover:border-[#F6F2E9]/70 transition-colors"
-          >
-            Request a wholesale quote
-          </a>
+            {children}
         </div>
-      </div>
-    </section>
-  );
+    );
 }
 
-/* -------------------------------- Order / varieties ------------------------------ */
-function Order() {
-  const cards = [
-    { img: img3, name: "Catfish", copy: "Firm, mild, and versatile, sold live or freshly dressed, priced by weight.", cta: "Order catfish" },
-    { img: img14, name: "Tilapia", copy: "Sweet, delicate flesh, farmed in clean, well-fed ponds, priced by weight.", cta: "Order tilapia" },
-  ];
-  return (
-    <section id="order" className="py-24 bg-[#FEFCFF]">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <Reveal>
-          <p className="text-[#F6F2E9] text-sm mb-3">Order for yourself</p>
-          <h2
-            className="text-3xl md:text-4xl text-[#1B4332] max-w-lg"
-            style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
-          >
-            Two fish, always fresh.
-          </h2>
-        </Reveal>
+/* --------------------------- 1. Hero — same pattern as Home's Hero --------------------------- */
+function Hero() {
+    const [ref, shown] = useReveal();
+    const base = "transition-all duration-[900ms]";
+    return (
+        <section className="relative h-[60vh] min-h-[420px] overflow-hidden">
+            <img src={IMG.hero} alt="KFARM fish farm" className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#13231B]/80 via-[#13231B]/35 to-transparent" />
 
-        <div className="grid md:grid-cols-2 gap-10 md:gap-14 mt-14">
-          {cards.map((c, i) => (
-            <Reveal key={c.name} delay={i * 120}>
-              <div className="group">
-                <div className="h-[420px] md:h-[500px] rounded-2xl overflow-hidden">
-                  <img
-                    src={c.img}
-                    alt={c.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
+            <div ref={ref} className="relative h-full max-w-6xl mx-auto px-6 md:px-10 flex flex-col justify-center">
+                <p
+                    className={`${base} text-white/85 text-sm font-semibold tracking-[0.15em] uppercase mb-4`}
+                    style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(14px)" }}
+                >
+                    Our Fish
+                </p>
+                <h1
+                    className={`${base} text-white text-[32px] leading-[1.14] sm:text-4xl md:text-5xl font-bold max-w-xl`}
+                    style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(22px)", transitionDelay: "100ms" }}
+                >
+                    Fresh or dried. Catfish or tilapia. Order directly, no middleman.
+                </h1>
+            </div>
+        </section>
+    );
+}
+
+/* --------------------------- 2. Varieties — same card pattern as Home's Offerings --------------------------- */
+function Varieties() {
+    const varieties = {
+        fresh: [
+            { name: "Fresh Catfish", img: IMG.catfish, copy: "Firm, meaty, and versatile — sold live or freshly dressed." },
+            { name: "Fresh Tilapia", img: IMG.tilapia, copy: "Tender and mild-tasting, straight from clean, well-fed ponds." },
+        ],
+        dry: [
+            { name: "Dry Catfish", img: IMG.dryFish, copy: "Smoked and dried for a longer-lasting option, same firm texture." },
+            { name: "Dry Tilapia", img: IMG.dryFish, copy: "Smoked and dried, ready for soups and stews whenever you need it." },
+        ],
+    };
+
+    const [tab, setTab] = useState("fresh");
+
+    return (
+        <section id="varieties" className="py-24 md:py-28 bg-[#FAFAF7]">
+            <div className="max-w-6xl mx-auto px-6 md:px-10">
+                <Reveal>
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+                        <h2 className="text-[#13231B] text-3xl md:text-4xl font-bold">Pick what you need.</h2>
+                        <div className="inline-flex bg-white border border-[#13231B]/10 rounded-full p-1 w-fit">
+                            {["fresh", "dry"].map((t) => (
+                                <button
+                                    key={t}
+                                    onClick={() => setTab(t)}
+                                    className="relative px-6 py-2.5 text-sm font-semibold rounded-full transition-colors duration-300"
+                                    style={{ color: tab === t ? "#13231B" : "#5C6760" }}
+                                >
+                                    {tab === t && <span className="absolute inset-0 rounded-full bg-[#A6D83B]" />}
+                                    <span className="relative capitalize">{t}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </Reveal>
+
+                <div key={tab} className="grid sm:grid-cols-2 gap-6 mt-12" style={{ animation: "fadeSlideIn 450ms ease-out" }}>
+                    {varieties[tab].map((v) => (
+                        <div key={v.name} className="group">
+                            <div className="rounded-2xl overflow-hidden h-64 md:h-72">
+                                <img src={v.img} alt={v.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                            </div>
+                            <div className="relative bg-white rounded-2xl -mt-8 mx-4 p-6 shadow-[0_8px_30px_rgba(19,35,27,0.08)]">
+                                <h3 className="text-[#13231B] text-lg font-semibold">{v.name}</h3>
+                                <p className="text-[#5C6760] text-sm mt-2 leading-relaxed pr-8">{v.copy}</p>
+                                <a
+                                    href={WHATSAPP_LINK(`I'd like to order ${v.name}.`)}
+                                    className="absolute -top-5 right-5 inline-flex items-center justify-center w-11 h-11 rounded-full bg-[#A6D83B] shadow-md group-hover:scale-105 transition-transform"
+                                >
+                                    <ChevronRight size={18} className="text-[#13231B]" />
+                                </a>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-                <h3
-                  className="text-2xl text-[#1B4332] mt-6"
-                  style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
-                >
-                  {c.name}
-                </h3>
-                <p className="text-[#31463F]/80 mt-2 mb-5 text-[15px] max-w-sm">{c.copy}</p>
-                <a
-                  href={WHATSAPP_LINK(`I'd like to order ${c.name}.`)}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center rounded-full border border-[#1B4332]/25 text-[#1B4332] px-5 py-2.5 text-sm hover:border-[#1B4332]/60 transition-colors"
-                >
-                  {c.cta}
-                </a>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+            </div>
+            <style>{`
+                @keyframes fadeSlideIn {
+                    from { opacity: 0; transform: translateY(14px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `}</style>
+        </section>
+    );
 }
 
-function OrderForm() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const message = [
-      "KFARM Agro Limited, I'd like to place an order.",
-      `Fish: ${formData.get("fish")}`,
-      `Quantity: ${formData.get("quantity")}`,
-      `Order type: ${formData.get("orderType")}`,
-      `Pickup or delivery: ${formData.get("fulfilment")}`,
-      `Notes: ${formData.get("notes") || "None"}`,
-    ].join("\n");
-    window.open(WHATSAPP_LINK(message), "_blank", "noopener,noreferrer");
-  };
+/* --------------------------- 3. Wholesale — light, card-based, matching Home's About/BrandStory --------------------------- */
+function BulkSupply() {
+    const wholesaleTags = ["For restaurants", "For retailers", "For hotels & caterers"];
+    return (
+        <section id="wholesale" className="py-24 md:py-28 bg-white">
+            <div className="max-w-6xl mx-auto px-6 md:px-10">
+                <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+                    <Reveal>
+                        <div className="rounded-2xl overflow-hidden h-72 md:h-96">
+                            <img src={IMG.pond} alt="Fish in a working pond" className="w-full h-full object-cover" />
+                        </div>
+                    </Reveal>
+                    <Reveal delay={100}>
+                        <p className="text-[#5C6760] text-sm font-semibold tracking-[0.15em] uppercase mb-3">Wholesale</p>
+                        <h2 className="text-[#13231B] text-3xl md:text-4xl font-bold leading-tight">
+                            Need fish in larger quantity?
+                        </h2>
+                        <p className="text-[#5C6760] mt-5 leading-relaxed max-w-md">
+                            Whether you're running a restaurant, managing a retail
+                            shop, or catering events, we supply fresh stock on a
+                            reliable schedule tailored to your volume.
+                        </p>
+                        <div className="flex flex-wrap gap-2.5 mt-6">
+                            {wholesaleTags.map((t) => (
+                                <span key={t} className="rounded-full border border-[#13231B]/15 text-[#13231B]/75 px-4 py-1.5 text-xs font-medium">
+                                    {t}
+                                </span>
+                            ))}
+                        </div>
+                        <a
+                            href={WHATSAPP_LINK("I'd like to talk about a wholesale order.")}
+                            className="inline-flex items-center gap-2 mt-8 rounded-full bg-[#13231B] text-white px-6 py-3 text-sm font-semibold hover:bg-[#1E3A2C] transition-colors"
+                        >
+                            Talk to us about wholesale <ChevronRight size={15} />
+                        </a>
+                    </Reveal>
+                </div>
 
-  return (
-    <section id="order-form" className="py-24 bg-[#1B4332] text-[#F6F2E9]">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 grid md:grid-cols-[0.85fr_1.15fr] gap-12 items-start">
-        <Reveal>
-          <p className="text-[#F6F2E9] text-sm mb-3">Ready to order?</p>
-          <h2 className="text-3xl md:text-4xl max-w-md" style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}>
-            Send us the details and we&apos;ll take it from there.
-          </h2>
-          <p className="text-[#F6F2E9]/70 mt-5 max-w-md leading-relaxed">
-            Complete the short form and it will open WhatsApp with your order already written out.
-          </p>
-        </Reveal>
-
-        <Reveal delay={120}>
-          <form onSubmit={handleSubmit} className="grid sm:grid-cols-2 gap-5">
-            <label className="text-sm">
-              Fish
-              <select name="fish" required className="mt-2 w-full rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9]">
-                <option>Catfish</option>
-                <option>Tilapia</option>
-                <option>Catfish and tilapia</option>
-              </select>
-            </label>
-            <label className="text-sm">
-              Quantity
-              <input name="quantity" required placeholder="e.g. 10 kg or 1 crate" className="mt-2 w-full rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9] placeholder:text-[#F6F2E9]/45" />
-            </label>
-            <label className="text-sm">
-              Order type
-              <select name="orderType" className="mt-2 w-full rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9]">
-                <option>One-time order</option>
-                <option>Regular supply</option>
-                <option>Wholesale order</option>
-              </select>
-            </label>
-            <label className="text-sm">
-              Pickup or delivery
-              <select name="fulfilment" className="mt-2 w-full rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9]">
-                <option>Pickup</option>
-                <option>Delivery</option>
-                <option>Not sure yet</option>
-              </select>
-            </label>
-            <label className="text-sm sm:col-span-2">
-              Extra details
-              <textarea name="notes" rows="3" placeholder="Preferred date, location, or anything else we should know" className="mt-2 w-full resize-y rounded-lg border border-[#F6F2E9]/20 bg-[#123832] px-4 py-3 text-[#F6F2E9] placeholder:text-[#F6F2E9]/45" />
-            </label>
-            <button type="submit" className="sm:col-span-2 inline-flex w-fit items-center gap-2 rounded-full bg-[#F6F2E9] px-7 py-3.5 text-[15px] text-[#1B4332] hover:bg-[#E9E4D5] transition-colors">
-              <MessageCircle size={18} />
-              Continue on WhatsApp
-            </button>
-          </form>
-        </Reveal>
-      </div>
-    </section>
-  );
+                {/* partner/commission — same bordered-card treatment as Home's About points row */}
+                <Reveal delay={180}>
+                    <div className="rounded-2xl bg-[#FAFAF7] border border-[#13231B]/8 p-7 md:p-10 mt-14 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                        <div>
+                            <h3 className="text-[#13231B] text-xl font-semibold">Bring us buyers, earn commission.</h3>
+                            <p className="text-[#5C6760] text-sm mt-2 leading-relaxed max-w-md">
+                                Know a restaurant, hotel, or bulk buyer? Connect them
+                                to KFARM and earn commission on what they order.
+                            </p>
+                        </div>
+                        <a
+                            href={WHATSAPP_LINK("Hello, I'd like to become a partner and refer a buyer.")}
+                            className="inline-flex items-center justify-center rounded-full border border-[#13231B]/20 text-[#13231B] px-6 py-3 text-sm font-medium hover:border-[#13231B]/50 transition-colors w-fit shrink-0"
+                        >
+                            Become a partner
+                        </a>
+                    </div>
+                </Reveal>
+            </div>
+        </section>
+    );
 }
 
-/* -------------------------------- Segments -------------------------------- */
-function Segments() {
-  const segments = [
-    {
-      icon: UtensilsCrossed,
-      title: "For restaurants",
-      copy: "A steady supply of fresh catfish and tilapia, sized and timed to your menu.",
-    },
-    {
-      icon: Store,
-      title: "For retailers",
-      copy: "Stock your counter with fish you can vouch for, delivered on a schedule you can plan around.",
-    },
-    {
-      icon: Building2,
-      title: "For businesses",
-      copy: "Catering, processing, or anything in between, tell us your volume and we'll work it out.",
-    },
-  ];
-  return (
-    <section id="segments" className="py-24 bg-[#1B4332] text-[#F6F2E9]">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <Reveal>
-          <p className="text-[#F6F2E9] text-sm mb-3">Need it in larger quantity?</p>
-          <h2
-            className="text-3xl md:text-4xl max-w-lg"
-            style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
-          >
-            Built for buyers who need more than a single order.
-          </h2>
-        </Reveal>
-
-        <div className="grid md:grid-cols-3 gap-10 md:gap-8 mt-16">
-          {segments.map((s, i) => (
-            <Reveal key={s.title} delay={i * 120}>
-              <div className="border-t border-[#F6F2E9]/20 pt-6">
-                <s.icon size={24} className="text-[#F6F2E9]" strokeWidth={1.6} />
-                <h3 className="text-xl mt-4 mb-2">{s.title}</h3>
-                <p className="text-[#F6F2E9]/70 leading-relaxed">{s.copy}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+/* --------------------------- 4. How ordering works — bordered icon-cards like Home's About --------------------------- */
+function HowItWorks() {
+    const steps = [
+        { title: "Message us", copy: "Tell us what fish, fresh or dry, and how much." },
+        { title: "We confirm", copy: "We confirm price and the earliest we can supply it." },
+        { title: "You receive it", copy: "Pick up at Market Square, or ask about delivery." },
+    ];
+    return (
+        <section className="py-24 md:py-28 bg-[#FAFAF7]">
+            <div className="max-w-6xl mx-auto px-6 md:px-10">
+                <Reveal>
+                    <h2 className="text-[#13231B] text-3xl md:text-4xl font-bold">How ordering works.</h2>
+                </Reveal>
+                <div className="grid sm:grid-cols-3 gap-5 mt-12">
+                    {steps.map((s, i) => (
+                        <Reveal key={s.title} delay={i * 90}>
+                            <div className="rounded-2xl bg-white border border-[#13231B]/8 p-7">
+                                <div className="w-11 h-11 rounded-full bg-[#A6D83B]/20 flex items-center justify-center">
+                                    <span className="text-[#13231B] text-sm font-bold">{i + 1}</span>
+                                </div>
+                                <h3 className="text-[#13231B] text-base font-semibold mt-5 mb-1.5">{s.title}</h3>
+                                <p className="text-[#5C6760] text-sm leading-relaxed">{s.copy}</p>
+                            </div>
+                        </Reveal>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
 }
 
-/* ------------------------------- How wholesale works ------------------------------ */
-function HowWholesaleWorks() {
-  const steps = [
-    { n: "01", title: "Tell us what you need", copy: "Fish type, rough quantity, and how often, no minimum, no set tiers." },
-    { n: "02", title: "Get a quote", copy: "We come back with pricing and the earliest we can supply it." },
-    { n: "03", title: "Schedule delivery", copy: "Agree on a pickup or delivery time that fits your operation." },
-    { n: "04", title: "Reorder with ease", copy: "Once we know your pattern, repeat orders take minutes to confirm." },
-  ];
-  return (
-    <section className="py-24 bg-[#FEFCFF]">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <Reveal>
-          <h2
-            className="text-3xl md:text-4xl text-[#1B4332] max-w-lg"
-            style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
-          >
-            How wholesale works.
-          </h2>
-        </Reveal>
-
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 mt-16">
-          {steps.map((s, i) => (
-            <Reveal key={s.n} delay={i * 90}>
-              <div className="border-t border-[#1B4332]/15 pt-5">
-                <span className="text-[#F6F2E9] text-sm">{s.n}</span>
-                <h3 className="text-lg text-[#1B4332] mt-3 mb-2">{s.title}</h3>
-                <p className="text-[#31463F]/75 text-sm leading-relaxed">{s.copy}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------------------------- Location -------------------------------- */
+/* --------------------------- 5. Pickup / Location --------------------------- */
 function Location() {
-  return (
-    <section className="py-24 bg-[#1B4332] text-[#F6F2E9]">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-12 items-center">
-        <Reveal>
-          <p className="text-[#F6F2E9] text-sm mb-3">Where we are</p>
-          <h2
-            className="text-3xl md:text-4xl"
-            style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
-          >
-            Find us at Market Square.
-          </h2>
-          <div className="flex items-start gap-3 mt-6 text-[#F6F2E9]/75">
-            <MapPin size={20} className="text-[#F6F2E9] mt-0.5 shrink-0" strokeWidth={1.8} />
-            <p className="leading-relaxed">
-              Market Square, Ezendioma, Asa Ukwa West LGA, Abia State.
-              <br />
-              Pickup available on-site, or ask us about delivery to your
-              location.
-            </p>
-          </div>
-        </Reveal>
-        <Reveal delay={120}>
-          <div className="rounded-2xl overflow-hidden h-64 md:h-80">
-            <iframe
-              title="KFARM Agro Limited location map"
-              className="w-full h-full border-0"
-              loading="lazy"
-              src="https://www.google.com/maps?q=Market+Square+Ezendioma+Asa+Ukwa+West+Abia+State&output=embed"
-            />
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
+    return (
+        <section className="py-24 md:py-28 bg-white">
+            <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-12 items-center">
+                <Reveal>
+                    <p className="text-[#5C6760] text-sm font-semibold tracking-[0.15em] uppercase mb-3">Where to find us</p>
+                    <h2 className="text-[#13231B] text-3xl md:text-4xl font-bold">Pickup at Market Square.</h2>
+                    <div className="flex items-start gap-3 mt-6 text-[#5C6760]">
+                        <MapPin size={20} className="text-[#13231B] mt-0.5 shrink-0" strokeWidth={1.8} />
+                        <p className="leading-relaxed">
+                            Marketsquare, Ezendioma, Asa Ukwa West LGA, Abia State.
+                            <br />
+                            Ask us on WhatsApp about delivery to your location.
+                        </p>
+                    </div>
+                </Reveal>
+                <Reveal delay={120}>
+                    <div className="rounded-2xl overflow-hidden h-64 md:h-80">
+                        <iframe
+                            title="KFARM location map"
+                            className="w-full h-full border-0"
+                            loading="lazy"
+                            src="https://www.google.com/maps?q=Market+Square+Ezendioma+Asa+Ukwa+West+Abia+State&output=embed"
+                        />
+                    </div>
+                </Reveal>
+            </div>
+        </section>
+    );
 }
 
-/* ----------------------------------- CTA ------------------------------------ */
-function QuoteCTA() {
-  return (
-    <section id="quote" className="py-24 bg-[#FEFCFF]">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 text-center">
-        <Reveal>
-          <h2
-            className="text-3xl md:text-4xl text-[#1B4332] max-w-xl mx-auto"
-            style={{ fontFamily: "Fraunces, serif", fontWeight: 560 }}
-          >
-            Tell us what you need, we'll work out the rest.
-          </h2>
-          <p className="text-[#31463F]/80 mt-4 max-w-md mx-auto">
-            No fixed minimum, no rigid tiers. Reach out with your fish type
-            and rough quantity and we'll send a quote.
-          </p>
-          <a
-            href="mailto:hello@blueharvest.example"
-            className="inline-flex mt-8 rounded-full bg-[#1B4332] text-[#F6F2E9] px-7 py-3.5 text-[15px] hover:bg-[#12281F] transition-colors"
-          >
-            Request a quote
-          </a>
-        </Reveal>
-      </div>
-    </section>
-  );
+/* --------------------------- 6. Final CTA — same pattern as Home's FinalCTA --------------------------- */
+function FinalCTA() {
+    return (
+        <section className="relative h-[380px] md:h-[440px] overflow-hidden">
+            <img src={IMG.closing} alt="KFARM fish farm" className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-[#13231B]/70" />
+            <div className="relative h-full max-w-2xl mx-auto px-6 md:px-10 flex flex-col items-center justify-center text-center">
+                <Reveal>
+                    <h2 className="text-white text-3xl md:text-4xl font-bold leading-tight">Ready to order?</h2>
+                    <a
+                        href={WHATSAPP_LINK("Hi, I'd like to place an order.")}
+                        className="inline-flex items-center gap-2 mt-7 rounded-full bg-[#A6D83B] text-[#13231B] px-8 py-3.5 text-[15px] font-semibold hover:brightness-95 transition-all"
+                    >
+                        Order on WhatsApp <ChevronRight size={16} />
+                    </a>
+                </Reveal>
+            </div>
+        </section>
+    );
 }
 
 /* ----------------------------------- Page ------------------------------------ */
 export default function WholesalePage() {
-  return (
-    <div className="bg-[#FEFCFF] min-h-screen">
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;560;600&family=Inter:wght@400;500&display=swap');
-        * { font-family: 'Inter', sans-serif; }
-      `}</style>
-      <OrderHero />
-      <Order />
-      <OrderForm />
-      <Segments />
-      <HowWholesaleWorks />
-      <Location />
-      <QuoteCTA />
-    </div>
-  );
+    return (
+        <div className="bg-white min-h-screen">
+            <style>{`
+                @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+                * { font-family: 'Plus Jakarta Sans', sans-serif; }
+            `}</style>
+            <Hero />
+            <Varieties />
+            <BulkSupply />
+            <HowItWorks />
+            <Location />
+            <FinalCTA />
+        </div>
+    );
 }
