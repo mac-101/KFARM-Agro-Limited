@@ -587,47 +587,136 @@ function VisualShowcase() {
     </section>
   );
 }
-/* --------------------------- 6. Testimonials (CONDITIONAL) --------------------------- */
-/* Only include this section if there are REAL customer quotes. If KFARM
-   has no real testimonials yet, delete this entire function and its call
-   in Home() below — do not ship placeholder/fake quotes. */
+/* --------------------------- 6. Visitor reviews --------------------------- */
+// These are sample display cards. Replace them with approved quotes when available.
+const SAMPLE_TESTIMONIALS = [
+  {
+    quote: "KFARM made it easy for us to get the fish we needed. The process was straightforward and the quality was good.",
+    name: "Customer Name",
+    role: "KFARM Customer",
+  },
+  {
+    quote: "The training helped me understand fish farming in a much more practical way. I could actually relate what I learned to the work.",
+    name: "Learner Name",
+    role: "Fishery Learner",
+  },
+  {
+    quote: "What I like about KFARM is that they actually listen to what you need instead of making the process complicated.",
+    name: "Customer Name",
+    role: "KFARM Customer",
+  },
+  {
+    quote: "The practical knowledge I got from KFARM gave me a clearer understanding of what fish farming involves.",
+    name: "Learner Name",
+    role: "Fishery Learner",
+  },
+];
+const sampleTestimonials =
+  typeof SAMPLE_TESTIMONIALS === "undefined" ? [] : SAMPLE_TESTIMONIALS;
+
+const REVIEWS_STORAGE_KEY = "kfarm-reviews";
+
+function getSavedReviews() {
+  try {
+    const savedReviews = window.localStorage.getItem(REVIEWS_STORAGE_KEY);
+    if (!savedReviews) return { reviews: [], error: "" };
+
+    const parsedReviews = JSON.parse(savedReviews);
+    if (
+      !Array.isArray(parsedReviews) ||
+      !parsedReviews.every(
+        (review) =>
+          typeof review?.quote === "string" &&
+          typeof review?.name === "string" &&
+          typeof review?.role === "string"
+      )
+    ) {
+      return {
+        reviews: [],
+        error: "Saved reviews could not be read because their data is invalid.",
+      };
+    }
+
+    return { reviews: parsedReviews, error: "" };
+  } catch (error) {
+    return {
+      reviews: [],
+      error:
+        error instanceof SyntaxError
+          ? "Saved reviews could not be read because their data is invalid."
+          : "Saved reviews could not be loaded from this browser.",
+    };
+  }
+}
 
 function Testimonials() {
-  const testimonials = [
-    {
-      quote: "KFARM made it easy for us to get the fish we needed. The process was straightforward and the quality was good.",
-      name: "Customer Name",
-      role: "KFARM Customer",
-    },
-    {
-      quote: "The training helped me understand fish farming in a much more practical way. I could actually relate what I learned to the work.",
-      name: "Learner Name",
-      role: "Fishery Learner",
-    },
-    {
-      quote: "What I like about KFARM is that they actually listen to what you need instead of making the process complicated.",
-      name: "Customer Name",
-      role: "KFARM Customer",
-    },
-    {
-      quote: "The practical knowledge I got from KFARM gave me a clearer understanding of what fish farming involves.",
-      name: "Learner Name",
-      role: "Fishery Learner",
-    },
-  ];
-
+  const [initialReviewData] = useState(getSavedReviews);
+  const [reviews, setReviews] = useState(initialReviewData.reviews);
   const [current, setCurrent] = useState(0);
+  const [reviewFormOpen, setReviewFormOpen] = useState(false);
+  const [reviewName, setReviewName] = useState("");
+  const [reviewRole, setReviewRole] = useState("KFARM Customer");
+  const [reviewText, setReviewText] = useState("");
+  const [reviewMessage, setReviewMessage] = useState("");
+  const [reviewError, setReviewError] = useState(initialReviewData.error);
+  const testimonials = [...reviews, ...sampleTestimonials];
+
+  const submitReview = (event) => {
+    event.preventDefault();
+    const name = reviewName.trim();
+    const quote = reviewText.trim();
+    if (!name || !quote) {
+      setReviewError("Please enter your name and review.");
+      return;
+    }
+
+    const review = { quote, name, role: reviewRole };
+    const updatedReviews = [review, ...reviews];
+    try {
+      window.localStorage.setItem(
+        REVIEWS_STORAGE_KEY,
+        JSON.stringify(updatedReviews)
+      );
+    } catch {
+      setReviewError("Your review could not be saved in this browser.");
+      return;
+    }
+
+    setReviews(updatedReviews);
+    setCurrent(0);
+    setReviewFormOpen(false);
+    setReviewName("");
+    setReviewText("");
+    setReviewError("");
+    setReviewMessage(
+      "Thanks! Your review is saved on this device. WhatsApp will open so you can send it to KFARM."
+    );
+
+    const whatsappMessage = [
+      "Hello KFARM Agro Limited, I'd like to leave a review.",
+      `Name: ${name}`,
+      `Review type: ${reviewRole}`,
+      `Review: ${quote}`,
+    ].join("\n");
+    try {
+      const whatsappWindow = window.open(WHATSAPP_LINK(whatsappMessage), "_blank");
+      if (whatsappWindow) whatsappWindow.opener = null;
+      else throw new Error("The browser blocked the WhatsApp window.");
+    } catch {
+      setReviewMessage(
+        "Your review is saved on this device, but WhatsApp could not be opened. Please allow popups and try again."
+      );
+    }
+  };
 
   const next = () => {
-    setCurrent((prev) =>
-      prev >= testimonials.length - 2 ? 0 : prev + 1
-    );
+    const lastStart = Math.max(testimonials.length - 2, 0);
+    setCurrent((prev) => (prev >= lastStart ? 0 : prev + 1));
   };
 
   const previous = () => {
-    setCurrent((prev) =>
-      prev === 0 ? testimonials.length - 2 : prev - 1
-    );
+    const lastStart = Math.max(testimonials.length - 2, 0);
+    setCurrent((prev) => (prev === 0 ? lastStart : prev - 1));
   };
 
   return (
@@ -650,9 +739,7 @@ function Testimonials() {
               </h2>
 
               <p className="text-[#5C6760] text-base md:text-lg leading-relaxed mt-6 max-w-md">
-                From buying fish to learning about fishery,
-                here's what people who have experienced KFARM
-                have to say.
+                Read reviews shared by KFARM customers and learners, or tell us about your experience.
               </p>
             </div>
           </Reveal>
@@ -674,66 +761,152 @@ function Testimonials() {
         </div>
 
         {/* TESTIMONIAL CAROUSEL */}
-        <div className="relative z-10 grid grid-cols-3 -mt-6 md:-mt-10 lg:-mt-20">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 -mt-6 md:-mt-10 lg:-mt-20">
 
-          <div className="col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-
-            {testimonials
-              .slice(current, current + 2)
-              .map((testimonial, i) => (
-                // <Reveal
-                //   key={`${testimonial.name}-${current}-${i}`}
-                //   delay={i * 80}
-                // >
-                  <article className="bg-[#F1F0EA] min-h-[250px] md:min-h-[280px] p-7 md:p-9 flex flex-col justify-between">
-
-                    <div>
-                      <Quote
-                        size={28}
-                        strokeWidth={1.3}
-                        className="text-[#D9A441] mb-6"
-                      />
-
-                      <p className="text-[#13231B] text-lg md:text-xl leading-relaxed max-w-lg">
-                        “{testimonial.quote}”
-                      </p>
-                    </div>
-
-                    <div className="mt-8">
-                      <p className="text-[#13231B] text-sm font-semibold">
-                        {testimonial.name}
-                      </p>
-
-                      <p className="text-[#7A817B] text-xs mt-1">
-                        {testimonial.role}
-                      </p>
-                    </div>
-
+          {reviewFormOpen ? (
+            <form
+              onSubmit={submitReview}
+              className="col-span-1 rounded-2xl bg-[#F1F0EA] p-6 md:col-span-2 md:p-8"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="text-[#13231B] text-xl font-semibold">Share your experience</h3>
+                  <p className="mt-1 text-sm text-[#5C6760]">Your review will be saved on this device and sent to KFARM through WhatsApp.</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setReviewFormOpen(false)}
+                  className="shrink-0 text-sm font-semibold text-[#5C6760] underline underline-offset-4 hover:text-[#13231B]"
+                >
+                  Back to reviews
+                </button>
+              </div>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                <label className="grid gap-1.5 text-sm font-medium text-[#13231B]">
+                  Your name
+                  <input
+                    required
+                    maxLength={80}
+                    value={reviewName}
+                    onChange={(event) => setReviewName(event.target.value)}
+                    className="rounded-xl border border-[#13231B]/15 bg-white px-4 py-3 font-normal outline-none focus:border-[#13231B]/50"
+                    placeholder="Name"
+                  />
+                </label>
+                <label className="grid gap-1.5 text-sm font-medium text-[#13231B]">
+                  I am a
+                  <select
+                    value={reviewRole}
+                    onChange={(event) => setReviewRole(event.target.value)}
+                    className="rounded-xl border border-[#13231B]/15 bg-white px-4 py-3 font-normal outline-none focus:border-[#13231B]/50"
+                  >
+                    <option>KFARM Customer</option>
+                    <option>Fishery Learner</option>
+                  </select>
+                </label>
+                <label className="grid gap-1.5 text-sm font-medium text-[#13231B] sm:col-span-2">
+                  Your review
+                  <textarea
+                    required
+                    maxLength={500}
+                    rows={4}
+                    value={reviewText}
+                    onChange={(event) => setReviewText(event.target.value)}
+                    className="resize-y rounded-xl border border-[#13231B]/15 bg-white px-4 py-3 font-normal outline-none focus:border-[#13231B]/50"
+                    placeholder="Tell us about your experience with KFARM..."
+                  />
+                </label>
+              </div>
+              {reviewError && (
+                <p role="alert" className="mt-3 text-sm text-red-700">{reviewError}</p>
+              )}
+              <button
+                type="submit"
+                className="mt-5 inline-flex items-center justify-center rounded-full bg-[#13231B] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1E3A2C]"
+              >
+                Save and send review
+              </button>
+            </form>
+          ) : (
+            <>
+              <div className="col-span-1 grid grid-cols-1 gap-4 md:col-span-2 md:grid-cols-2 md:gap-5">
+                {testimonials.length === 0 ? (
+                  <article className="col-span-full flex min-h-[220px] flex-col justify-center rounded-2xl bg-[#F1F0EA] p-7 md:min-h-[280px] md:p-9">
+                    <h3 className="text-[#13231B] text-xl font-semibold">No reviews yet</h3>
+                    <p className="mt-2 max-w-md text-sm leading-relaxed text-[#5C6760]">
+                      Be the first to share your experience with KFARM.
+                    </p>
                   </article>
-                // </Reveal>
-              ))}
-
-          </div>
-          <div className="flex flex-col md:flex-row justify-center-safe items-center gap-2 mt-5">
-            <button
-              type="button"
-              onClick={previous}
-              aria-label="Previous testimonial"
-              className="w-11 h-11 rotate-90 md:rotate-0 rounded-full border bg-[#A6D83B] text-[#13231B]x border-[#D5D7D0] flex items-center justify-center text-[#13231B] hover:bg-[#13231B] hover:text-white transition-colors duration-300"
-            >
-              <ArrowLeft size={17} strokeWidth={1.6} />
-            </button>
-
-            <button
-              type="button"
-              onClick={next}
-              aria-label="Next testimonial"
-              className="w-11 h-11 rotate-90 md:rotate-0 rounded-full border border-[#D5D7D0] flex items-center justify-center text-[#13231B] hover:bg-[#13231B] hover:text-white transition-colors duration-300"
-            >
-              <ArrowRight size={17} strokeWidth={1.6} />
-            </button>
-          </div>
+                ) : (
+                  testimonials.slice(current, current + 2).map((testimonial, index) => (
+                    <article
+                      key={`${testimonial.name}-${testimonial.quote}-${index}`}
+                      className={`bg-[#F1F0EA] min-h-[250px] p-7 md:min-h-[280px] md:p-9 flex flex-col justify-between ${testimonials.length === 1 ? "md:col-span-2" : ""}`}
+                    >
+                      <div>
+                        <Quote
+                          size={28}
+                          strokeWidth={1.3}
+                          className="text-[#D9A441] mb-6"
+                        />
+                        <p className="text-[#13231B] text-lg md:text-xl leading-relaxed max-w-lg">
+                          “{testimonial.quote}”
+                        </p>
+                      </div>
+                      <div className="mt-8">
+                        <p className="text-[#13231B] text-sm font-semibold">
+                          {testimonial.name}
+                        </p>
+                        <p className="text-[#7A817B] text-xs mt-1">
+                          {testimonial.role}
+                        </p>
+                      </div>
+                    </article>
+                  ))
+                )}
+              </div>
+              <div className="col-span-1 mt-5 flex flex-col items-center gap-3 md:mt-5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setReviewFormOpen(true);
+                    setReviewMessage("");
+                    setReviewError("");
+                  }}
+                  className="inline-flex items-center justify-center rounded-full bg-[#A6D83B] px-6 py-3 text-sm font-semibold text-[#13231B] transition-colors hover:brightness-95"
+                >
+                  Leave a review
+                </button>
+                {testimonials.length > 2 && (
+                  <div className="flex flex-col items-center gap-2 md:flex-row">
+                  <button
+                    type="button"
+                    onClick={previous}
+                    aria-label="Previous testimonial"
+                    className="w-11 h-11 rotate-90 md:rotate-0 rounded-full border bg-[#A6D83B] border-[#D5D7D0] flex items-center justify-center text-[#13231B] hover:bg-[#13231B] hover:text-white transition-colors duration-300"
+                  >
+                    <ArrowLeft size={17} strokeWidth={1.6} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={next}
+                    aria-label="Next testimonial"
+                    className="w-11 h-11 rotate-90 md:rotate-0 rounded-full border border-[#D5D7D0] flex items-center justify-center text-[#13231B] hover:bg-[#13231B] hover:text-white transition-colors duration-300"
+                  >
+                    <ArrowRight size={17} strokeWidth={1.6} />
+                  </button>
+                  </div>
+                )}
+              </div>
+            </>
+          )}
         </div>
+        {reviewMessage && (
+          <p role="status" className="mt-4 text-sm text-[#5C6760]">{reviewMessage}</p>
+        )}
+        {reviewError && !reviewFormOpen && (
+          <p role="alert" className="mt-4 text-sm text-red-700">{reviewError}</p>
+        )}
 
       </div>
     </section>
