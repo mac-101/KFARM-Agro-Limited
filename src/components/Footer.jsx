@@ -29,14 +29,14 @@ function Footer() {
                     </div>
                     <div className="flex flex-col gap-2 text-[#1B4332]/80">
                         <span className="text-[#1B4332] mb-1">Shop</span>
-                        <a href="#varieties" className="hover:text-[#1B4332]">Catfish</a>
-                        <a href="#varieties" className="hover:text-[#1B4332]">Tilapia</a>
-                        <a href="#wholesale" className="hover:text-[#1B4332]">Wholesale</a>
+                        <a href="/varieties-wholesale#varieties" className="hover:text-[#1B4332]">Catfish</a>
+                        <a href="/varieties-wholesale#varieties" className="hover:text-[#1B4332]">Tilapia</a>
+                        <a href="/varieties-wholesale#wholesale" className="hover:text-[#1B4332]">Wholesale</a>
                     </div>
                     <div className="flex flex-col gap-2 text-[#1B4332]/80">
                         <span className="text-[#1B4332] mb-1">Learn</span>
-                        <a href="#learn-fishery" className="hover:text-[#1B4332]">Fishery courses</a>
-                        <a href="#how-it-works" className="hover:text-[#1B4332]">How it works</a>
+                        <a href="/learn-fishery" className="hover:text-[#1B4332]">Fishery courses</a>
+                        <a href="/varieties-wholesale" className="hover:text-[#1B4332]">How ordering works</a>
                     </div>
                 </div>
             </div>

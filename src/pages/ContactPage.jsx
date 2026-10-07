@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MessageCircle, MapPin, Fish, GraduationCap, Package } from "lucide-react";
+import heroImage from "../assets/IMG-20260928-WA0190.jpg";
 
 /* ------------------------------------------------------------------ */
 /*  KFARM AGRO LIMITED — Contact page                                  */
@@ -13,7 +14,7 @@ const WHATSAPP_LINK = (message) =>
     `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
 const IMG = {
-    hero: "https://images.pexels.com/photos/15059730/pexels-photo-15059730.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    hero: heroImage,
 };
 
 /* ---------------------------- scroll reveal --------------------------- */
@@ -61,7 +62,7 @@ function Hero() {
     const base = "transition-all duration-[900ms]";
     return (
         <section className="relative h-[62vh] min-h-[440px] overflow-hidden">
-            <img src={IMG.hero} alt="KFARM fish farm" className="absolute inset-0 w-full h-full object-cover" />
+            <img src={IMG.hero} alt="Live catfish swimming together at KFARM" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-[#13231B]/70" />
 
             <div ref={ref} className="relative h-full max-w-6xl mx-auto px-6 md:px-10 flex flex-col items-center justify-center text-center">

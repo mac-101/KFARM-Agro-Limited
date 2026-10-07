@@ -85,7 +85,7 @@ function Hero() {
     const base = "transition-all duration-[900ms]";
     return (
         <section className="relative h-[60vh] min-h-[420px] overflow-hidden">
-            <img src={IMG.hero} alt="KFARM fish farm" className="absolute inset-0 w-full h-full object-cover" />
+            <img src={IMG.hero} alt="Fresh catfish gathered after harvest at KFARM Agro Limited" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#13231B]/80 via-[#13231B]/35 to-transparent" />
 
             <div ref={ref} className="relative h-full max-w-6xl mx-auto px-6 md:px-10 flex flex-col justify-center">
@@ -147,7 +147,7 @@ function Varieties() {
                     {varieties[tab].map((v) => (
                         <div key={v.name} className="group">
                             <div className="rounded-2xl overflow-hidden h-64 md:h-72">
-                                <img src={v.img} alt={v.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                <img src={v.img} alt={`${v.name} supplied by KFARM Agro Limited`} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                             </div>
                             <div className="relative bg-white rounded-2xl -mt-8 mx-4 p-6 shadow-[0_8px_30px_rgba(19,35,27,0.08)]">
                                 <h3 className="text-[#13231B] text-lg font-semibold">{v.name}</h3>
@@ -184,7 +184,7 @@ function BulkSupply() {
                 <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
                     <Reveal>
                         <div className="rounded-2xl overflow-hidden h-72 md:h-96">
-                            <img src={IMG.pond} alt="Fish in a working pond" className="w-full h-full object-cover" />
+                            <img src={IMG.pond} alt="Live catfish swimming together at KFARM" loading="lazy" className="w-full h-full object-cover" />
                         </div>
                     </Reveal>
                     <Reveal delay={100}>
@@ -303,7 +303,7 @@ function Location() {
 function FinalCTA() {
     return (
         <section className="relative h-[380px] md:h-[440px] overflow-hidden">
-            <img src={IMG.closing} alt="KFARM fish farm" className="absolute inset-0 w-full h-full object-cover" />
+            <img src={IMG.closing} alt="Fresh fish available to order from KFARM Agro Limited" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-[#13231B]/70" />
             <div className="relative h-full max-w-2xl mx-auto px-6 md:px-10 flex flex-col items-center justify-center text-center">
                 <Reveal>

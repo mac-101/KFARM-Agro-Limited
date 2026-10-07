@@ -19,7 +19,6 @@ import ownerImage from "../assets/owner.jpg";
 import pondImage from "../assets/IMG-20260928-WA0190.jpg"; 
 import fishTraining from "../assets/IMG-20260928-WA0195.jpg";
 import harvestedFishImage from "../assets/IMG-20260928-WA0194.jpg";
-import closingImage from "../assets/bg.jpg";
 
 /* ------------------------------------------------------------------ */
 /*  KFARM AGRO LIMITED — Home page, v2                                 */
@@ -57,7 +56,7 @@ const IMG = {
   growing: heroImage,
   feeding: packagedFishImage,
   harvesting: harvestedFishImage,
-  closing: closingImage,
+  closing: pondImage,
 };
 
 /* ---------------------------- scroll reveal --------------------------- */
@@ -220,7 +219,7 @@ function Hero() {
   const base = "transition-all duration-[900ms]";
   return (
     <section className="relative h-[88vh] min-h-[580px] overflow-hidden">
-      <img src={IMG.hero} alt="KFARM fish farm" className="absolute inset-0 w-full h-full object-cover" />
+      <img src={IMG.hero} alt="Fresh catfish gathered after harvest at KFARM Agro Limited" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#13231B]/80 via-[#13231B]/35 to-transparent" />
 
       <div ref={ref} className="relative h-full max-w-6xl mx-auto px-6 md:px-10 flex flex-col justify-center">
@@ -274,7 +273,7 @@ function AboutKfarm() {
           <Reveal>
             <p className="text-[#5C6760] text-sm font-semibold tracking-[0.15em] flex uppercase items-center gap-1 mb-3"> <div className="h-2 w-2 rounded-full bg-[#A6D83B]"></div> About KFARM</p>
             <div className="rounded-2xl overflow-hidden h-64 md:h-40">
-              <img src={IMG.about} alt="KFARM fish pond" className="w-full h-full object-cover" />
+              <img src={IMG.about} alt="Fresh fish prepared for KFARM customers" className="w-full h-full object-cover" />
             </div>
           </Reveal>
 
@@ -369,7 +368,7 @@ function Offerings() {
             <Reveal key={o.title} delay={i * 110} className="snap-start shrink-0 w-[82vw] sm:w-[340px] md:w-auto">
               <a href={o.href} className="group block">
                 <div className="rounded-2xl overflow-hidden h-56">
-                  <img src={o.img} alt={o.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <img src={o.img} alt={`${o.title} from KFARM Agro Limited`} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 </div>
                 <div className="relative bg-white rounded-2xl -mt-8 mx-4 p-6 shadow-[0_8px_30px_rgba(19,35,27,0.08)]">
                   <h3 className="text-[#13231B] text-lg font-semibold">{o.title}</h3>
@@ -413,16 +412,19 @@ function BrandStory() {
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           <Reveal>
             <div className="rounded-2xl h-80 md:h-[480px] overflow-hidden ">
-              <img src={ownerImage} alt="KFARM at work" className="w-full h-full object-cover object-top" />
+              <img src={ownerImage} alt="KFARM founder Miss Nwogu Kamsirochi Anastesia holding a catfish" loading="lazy" className="w-full h-full object-cover object-top" />
             </div>
           </Reveal>
 
           <Reveal delay={120}>
             <p className="text-[#5C6760] text-sm font-semibold tracking-[0.15em] flex uppercase items-center gap-1 mb-3"> <div className="h-2 w-2 rounded-full bg-[#A6D83B]"></div> MEET THE FOUNDER</p>
             <h2 className="text-[#13231B] text-3xl md:text-4xl font-bold leading-tight">
-              “Whether you're here to buy fish or learn fishery, we want you to leave with quality, knowledge, and confidence.”
+              Meet the founder of KFARM Agro Limited
             </h2>
-            <p className="text-[#5C6760] mt-5 leading-relaxed">
+            <blockquote className="text-[#5C6760] mt-5 leading-relaxed">
+              “Whether you're here to buy fish or learn fishery, we want you to leave with quality, knowledge, and confidence.”
+            </blockquote>
+            <p className="text-[#13231B] mt-4 font-semibold">
               Miss Nwogu Kamsirochi Anastesia
             </p>
 
@@ -448,7 +450,7 @@ function BrandStory() {
 
           <Reveal>
             <div className="rounded-2xl overflow-hidden h-80 md:h-[480px]">
-              <img src={IMG.dryCatfish} alt="KFARM at work" className="w-full h-full object-cover" />
+              <img src={IMG.dryCatfish} alt="Live catfish gathered in water during harvest" loading="lazy" className="w-full h-full object-cover" />
             </div>
           </Reveal>
         </div>
@@ -543,7 +545,8 @@ function VisualShowcase() {
               <div className="relative overflow-hidden rounded-2xl aspect-[4/5] bg-[#E8E8E2] group">
                 <img
                   src={item.img}
-                  alt={item.label}
+                  alt={`${item.label} at KFARM Agro Limited. ${item.description}`}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
@@ -750,7 +753,7 @@ function Testimonials() {
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                 <img
                   src={IMG.harvesting}
-                  alt="KFARM customer"
+                  alt="Freshly harvested fish from KFARM Agro Limited"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -917,7 +920,7 @@ function Testimonials() {
 function FinalCTA() {
   return (
     <section className="relative h-[420px] md:h-[480px] overflow-hidden">
-      <img src={IMG.closing} alt="KFARM fish farm" className="absolute inset-0 w-full h-full object-cover" />
+      <img src={IMG.closing} alt="Live catfish swimming at KFARM Agro Limited" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 bg-[#13231B]/70" />
       <div className="relative h-full max-w-3xl mx-auto px-6 md:px-10 flex flex-col items-center justify-center text-center">
         <Reveal>

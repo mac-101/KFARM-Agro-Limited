@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Fish, Droplets, Waves, UtensilsCrossed, Sprout, HeartPulse, TrendingUp, GraduationCap } from "lucide-react";
-import heroImage from "../assets/IMG-20260928-WA0192(1).jpg";
+import heroImage from "../assets/IMG-20260928-WA0190.jpg";
 import anouncementImage from "../assets/slazzer-preview-74wu0.png";
 import Button from "../components/button";
 
@@ -69,7 +69,7 @@ function Hero() {
   const base = "transition-all duration-[900ms]";
   return (
     <section className="relative h-[70vh] min-h-[460px] overflow-hidden">
-      <img src={IMG.hero} alt="Hands-on fishery training" className="absolute inset-0 w-full h-full object-cover" />
+      <img src={IMG.hero} alt="Live catfish swimming together at KFARM" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#13231B]/85 via-[#13231B]/40 to-transparent" />
 
       <div ref={ref} className="relative h-full max-w-6xl mx-auto px-6 md:px-10 flex flex-col justify-center">
@@ -189,7 +189,7 @@ function DiscountHighlight() {
             </div>
 
             <div>
-              <img src={anouncementImage} alt="Announcement" srcset="" />
+              <img src={anouncementImage} alt="KFARM fishery training announcement" />
             </div>
           </div>
         </Reveal>

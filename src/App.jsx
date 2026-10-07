@@ -10,6 +10,85 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
 const assistantSeenKey = "kfarm-assistant-seen";
+const PAGE_METADATA = {
+  "/": {
+    title: "Fresh Fish & Practical Fishery Training in Abia | KFARM Agro",
+    description:
+      "Buy fresh catfish and tilapia, enquire about smoked fish and wholesale supply, or learn practical fish farming with KFARM Agro Limited in Abia State, Nigeria.",
+  },
+  "/learn-fishery": {
+    title: "Practical Fish Farming Training in Abia | KFARM Agro",
+    description:
+      "Learn catfish and tilapia farming, feeding, water and pond management, fish health, harvesting, and fishery business skills with KFARM Agro Limited.",
+  },
+  "/varieties-wholesale": {
+    title: "Fresh & Smoked Catfish and Tilapia in Abia | KFARM Agro",
+    description:
+      "Order fresh or smoked catfish and tilapia from KFARM Agro Limited. Ask about retail, wholesale supply, pickup, and delivery in Abia State, Nigeria.",
+  },
+  "/contact": {
+    title: "Contact KFARM Agro | Fish Orders & Fishery Training",
+    description:
+      "Contact KFARM Agro Limited on WhatsApp about fresh or smoked fish orders, wholesale supply, pickup, delivery, and practical fishery training.",
+  },
+};
+
+function PageMetadata() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const metadata = PAGE_METADATA[pathname] ?? PAGE_METADATA["/"];
+    const pageUrl = new URL(pathname, window.location.origin).href;
+    const imageUrl = new URL("/og-kfarm.jpg", window.location.origin).href;
+
+    document.title = metadata.title;
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute("content", metadata.description);
+    document
+      .querySelector('meta[property="og:title"]')
+      ?.setAttribute("content", metadata.title);
+    document
+      .querySelector('meta[property="og:description"]')
+      ?.setAttribute("content", metadata.description);
+    document
+      .querySelector('meta[property="og:url"]')
+      ?.setAttribute("content", pageUrl);
+    document
+      .querySelector('meta[property="og:image"]')
+      ?.setAttribute("content", imageUrl);
+    document
+      .querySelector('meta[name="twitter:title"]')
+      ?.setAttribute("content", metadata.title);
+    document
+      .querySelector('meta[name="twitter:description"]')
+      ?.setAttribute("content", metadata.description);
+    document
+      .querySelector('meta[name="twitter:image"]')
+      ?.setAttribute("content", imageUrl);
+    document
+      .querySelector('link[rel="canonical"]')
+      ?.setAttribute("href", pageUrl);
+
+    const pageStructuredData = document.getElementById("page-structured-data");
+    if (pageStructuredData) {
+      pageStructuredData.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: metadata.title,
+        description: metadata.description,
+        url: pageUrl,
+        isPartOf: {
+          "@type": "WebSite",
+          name: "KFARM Agro Limited",
+          url: new URL("/", window.location.origin).href,
+        },
+      });
+    }
+  }, [pathname]);
+
+  return null;
+}
 
 function AppContent() {
   const location = useLocation();
@@ -46,13 +125,22 @@ function AppContent() {
 
   return (
     <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-5 focus:py-3 focus:text-[#13231B] focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="learn-fishery" element={<LearnFisheryPage />} />
-        <Route path="varieties-wholesale" element={<WholesalePage />} />
-        <Route path="contact" element={<ContactPage />} />
-      </Routes>
+      <PageMetadata />
+      <main id="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="learn-fishery" element={<LearnFisheryPage />} />
+          <Route path="varieties-wholesale" element={<WholesalePage />} />
+          <Route path="contact" element={<ContactPage />} />
+        </Routes>
+      </main>
       <Footer />
 
       {assistantOpen && (
@@ -124,7 +212,7 @@ function AppContent() {
               </p>
               <div className="mt-4 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href="/learn-fishery-fishery"
+                  href="/learn-fishery"
                   onClick={closeAssistant}
                   className="inline-flex flex-1 items-center justify-center rounded-full bg-[#13231B] px-5 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-[#1E3A2C]"
                 >

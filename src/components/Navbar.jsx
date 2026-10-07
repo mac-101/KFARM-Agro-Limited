@@ -54,7 +54,7 @@ function Navbar() {
         },
         {
             text: "Learn Fishery",
-            link: "/learn-fishery-fishery"
+            link: "/learn-fishery"
         },
         {
             text: "Contact",
@@ -83,8 +83,7 @@ function Navbar() {
                         KFARM Agro Limited
                     </span> */}
 
-                    <img src={Logo} 
-                    className="h-12"/>
+                    <img src={Logo} alt="KFARM Agro Limited home" className="h-12" />
                 </a>
 
                 {/* Desktop Navigation Links */}
