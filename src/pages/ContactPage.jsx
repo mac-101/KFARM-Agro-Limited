@@ -3,7 +3,7 @@ import { MessageCircle, MapPin, Fish, GraduationCap, Package } from "lucide-reac
 
 /* ------------------------------------------------------------------ */
 /*  KFARM AGRO LIMITED — Contact page                                  */
-/*  Same visual language as Home/Fish/Learn: full-bleed photo Hero,    */
+/*  Same visual language as Home/varieties-wholesale/learn-fishery: full-bleed photo Hero,    */
 /*  light card-based sections, Plus Jakarta Sans, white / #13231B ink  */
 /*  / #A6D83B lime. WhatsApp is the one real contact channel.          */
 /* ------------------------------------------------------------------ */
@@ -105,9 +105,9 @@ function Hero() {
 /* --------------------------- 2. Quick links --------------------------- */
 function QuickLinks() {
     const links = [
-        { icon: Fish, title: "Browse our fish", copy: "Fresh or dried catfish and tilapia, ready to order.", href: "/fish" },
-        { icon: Package, title: "Talk wholesale", copy: "Supplying restaurants, retailers, and bulk buyers.", href: "/fish#wholesale" },
-        { icon: GraduationCap, title: "Learn fishery", copy: "Practical training, from beginner to existing farmer.", href: "/learn" },
+        { icon: Fish, title: "Browse our fish", copy: "Fresh or dried catfish and tilapia, ready to order.", href: "/varieties-wholesale" },
+        { icon: Package, title: "Talk wholesale", copy: "Supplying restaurants, retailers, and bulk buyers.", href: "/varieties-wholesale" },
+        { icon: GraduationCap, title: "Learn fishery", copy: "Practical training, from beginner to existing farmer.", href: "/learn-fishery" },
     ];
     return (
         <section className="py-20 md:py-24 bg-[#FAFAF7]">

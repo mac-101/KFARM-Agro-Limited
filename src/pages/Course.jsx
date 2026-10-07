@@ -63,7 +63,7 @@ function Reveal({ children, delay = 0, className = "" }) {
   );
 }
 
-/* --------------------------- 1. Hero — same pattern as Home/Fish --------------------------- */
+/* --------------------------- 1. Hero — same pattern as Home/varieties-wholesale --------------------------- */
 function Hero() {
   const [ref, shown] = useReveal();
   const base = "transition-all duration-[900ms]";

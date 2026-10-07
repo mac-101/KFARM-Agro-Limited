@@ -54,7 +54,7 @@ function Navbar() {
         },
         {
             text: "Learn Fishery",
-            link: "/learn-fishery"
+            link: "/learn-fishery-fishery"
         },
         {
             text: "Contact",

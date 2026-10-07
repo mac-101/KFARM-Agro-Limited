@@ -70,8 +70,8 @@ function Reveal({ children, delay = 0, className = "" }) {
 function Navbar() {
     const [open, setOpen] = useState(false);
     const links = [
-        { label: "Fish", href: "/fish" },
-        { label: "Learn Fishery", href: "/learn" },
+        { label: "Fish", href: "/varieties-wholesale" },
+        { label: "Learn Fishery", href: "/learn-fishery" },
     ];
     return (
         <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-[#13231B]/8">
@@ -158,10 +158,10 @@ function Hero() {
                     className={`${base} flex flex-wrap gap-4 mt-9`}
                     style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(18px)", transitionDelay: "260ms" }}
                 >
-                    <a href="/fish" className="inline-flex items-center gap-2 rounded-full bg-[#A6D83B] text-[#13231B] px-7 py-3.5 text-[15px] font-semibold hover:brightness-95 transition-all">
+                    <a href="/varieties-wholesale" className="inline-flex items-center gap-2 rounded-full bg-[#A6D83B] text-[#13231B] px-7 py-3.5 text-[15px] font-semibold hover:brightness-95 transition-all">
                         Explore Our Fish <ChevronRight size={16} />
                     </a>
-                    <a href="/learn" className="inline-flex items-center gap-2 rounded-full border border-white/35 text-white px-7 py-3.5 text-[15px] font-semibold hover:border-white/70 transition-all">
+                    <a href="/learn-fishery" className="inline-flex items-center gap-2 rounded-full border border-white/35 text-white px-7 py-3.5 text-[15px] font-semibold hover:border-white/70 transition-all">
                         Learn Fishery <ChevronRight size={16} />
                     </a>
                 </div>
@@ -224,9 +224,9 @@ function AboutKfarm() {
 /* --------------------------- 3. What KFARM Offers --------------------------- */
 function Offerings() {
     const offers = [
-        { img: IMG.catfish, title: "Fresh Fish", copy: "Looking for fish for your home, business, or other needs? Explore what's available at KFARM.", href: "/fish" },
-        { img: IMG.dryFish, title: "Dry Fish", copy: "Prefer your fish dried? We also make dry fish available for customers who need it.", href: "/fish" },
-        { img: IMG.growing, title: "Fishery Training", copy: "Want to learn how fish farming works? Our training focuses on the practical side of fishery.", href: "/learn" },
+        { img: IMG.catfish, title: "Fresh Fish", copy: "Looking for fish for your home, business, or other needs? Explore what's available at KFARM.", href: "/varieties-wholesale" },
+        { img: IMG.dryFish, title: "Dry Fish", copy: "Prefer your fish dried? We also make dry fish available for customers who need it.", href: "/varieties-wholesale" },
+        { img: IMG.growing, title: "Fishery Training", copy: "Want to learn how fish farming works? Our training focuses on the practical side of fishery.", href: "/learn-fishery" },
     ];
     return (
         <section className="py-24 md:py-28 bg-[#FAFAF7]">
@@ -439,8 +439,8 @@ function Footer() {
                     </div>
                     <div className="flex flex-col gap-2 text-sm">
                         <a href="/" className="hover:text-white transition-colors">Home</a>
-                        <a href="/fish" className="hover:text-white transition-colors">Fish</a>
-                        <a href="/learn" className="hover:text-white transition-colors">Learn Fishery</a>
+                        <a href="/varieties-wholesale" className="hover:text-white transition-colors">Fish</a>
+                        <a href="/learn-fishery" className="hover:text-white transition-colors">Learn Fishery</a>
                     </div>
                     <div className="flex flex-col gap-2 text-sm">
                         <a href={WHATSAPP_LINK("Hi, I'd like to talk to KFARM.")} className="hover:text-white transition-colors">WhatsApp: 0911 538 0670</a>

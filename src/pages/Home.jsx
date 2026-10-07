@@ -15,6 +15,7 @@ import catfishImage from "../assets/IMG-20260928-WA0189.jpg";
 import tilapiaImage from "../assets/IMG-20260928-WA0184.jpg";
 import dryFishImage from "../assets/IMG-20260928-WA0193.jpg";
 import packagedFishImage from "../assets/IMG-20260928-WA0183.jpg";
+import ownerImage from "../assets/owner.jpg";
 import pondImage from "../assets/IMG-20260928-WA0190.jpg"; 
 import fishTraining from "../assets/IMG-20260928-WA0195.jpg";
 import harvestedFishImage from "../assets/IMG-20260928-WA0194.jpg";
@@ -102,8 +103,8 @@ function Reveal({ children, delay = 0, className = "" }) {
 function Navbar() {
   const [open, setOpen] = useState(false);
   const links = [
-    { label: "Fish", href: "/fish" },
-    { label: "Learn Fishery", href: "/learn" },
+    { label: "Fish", href: "/varieties-wholesale" },
+    { label: "Learn Fishery", href: "/learn-fishery" },
   ];
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-[#13231B]/8">
@@ -251,8 +252,8 @@ function Hero() {
           className={`${base} flex flex-wrap gap-4 mt-9`}
           style={{ opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(18px)", transitionDelay: "260ms" }}
         >
-          <Button text="Explore Our Fish" color="light" href="/fish" />
-          <Button text="Learn Fishery" color="outline" href="/learn" />
+          <Button text="Explore Our Fish" color="light" href="/varieties-wholesale" />
+          <Button text="Learn Fishery" color="outline" href="/learn-fishery" />
         </div>
       </div>
     </section>
@@ -313,9 +314,9 @@ function AboutKfarm() {
 /* --------------------------- 3. What KFARM Offers --------------------------- */
 function Offerings() {
   const offers = [
-    { img: IMG.catfish, title: "Fresh Fish", copy: "Looking for fish for your home, business, or other needs? Explore what's available at KFARM.", href: "/fish" },
-    { img: IMG.dryFish, title: "Dry Fish", copy: "Prefer your fish dried? We also make dry fish available for customers who need it.", href: "/fish" },
-    { img: IMG.growing, title: "Fishery Training", copy: "Want to learn how fish farming works? Our training focuses on the practical side of fishery.", href: "/learn" },
+    { img: IMG.catfish, title: "Fresh Fish", copy: "Looking for fish for your home, business, or other needs? Explore what's available at KFARM.", href: "/varieties-wholesale" },
+    { img: IMG.dryFish, title: "Dry Fish", copy: "Prefer your fish dried? We also make dry fish available for customers who need it.", href: "/varieties-wholesale" },
+    { img: IMG.growing, title: "Fishery Training", copy: "Want to learn how fish farming works? Our training focuses on the practical side of fishery.", href: "/learn-fishery" },
   ];
 
   const scrollerRef = useRef(null);
@@ -412,23 +413,18 @@ function BrandStory() {
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           <Reveal>
             <div className="rounded-2xl h-80 md:h-[480px] overflow-hidden ">
-              <img src={IMG.feeding} alt="KFARM at work" className="w-full h-full object-cover" />
+              <img src={ownerImage} alt="KFARM at work" className="w-full h-full object-cover object-top" />
             </div>
           </Reveal>
 
           <Reveal delay={120}>
-            <p className="text-[#5C6760] text-sm font-semibold tracking-[0.15em] flex uppercase items-center gap-1 mb-3"> <div className="h-2 w-2 rounded-full bg-[#A6D83B]"></div> The KFARM approach</p>
+            <p className="text-[#5C6760] text-sm font-semibold tracking-[0.15em] flex uppercase items-center gap-1 mb-3"> <div className="h-2 w-2 rounded-full bg-[#A6D83B]"></div> MEET THE FOUNDER</p>
             <h2 className="text-[#13231B] text-3xl md:text-4xl font-bold leading-tight">
-              We believe you should know what you're getting.
+              “Whether you're here to buy fish or learn fishery, we want you to leave with quality, knowledge, and confidence.”
             </h2>
             <p className="text-[#5C6760] mt-5 leading-relaxed">
-              Fish is more than something we sell. There is work
-              behind every fish that gets to the table, and there is
-              knowledge behind every successful fish farm.
+              Miss Nwogu Kamsirochi Anastesia
             </p>
-
-
-
 
             <Button className="mt-9" text="Get in Touch" color="dark" href={WHATSAPP_LINK("Hi, I'd like to know more about KFARM.")} />
 
@@ -857,8 +853,8 @@ function FAQ() {
 //           </div>
 //           <div className="flex flex-col gap-2 text-sm">
 //             <a href="/" className="hover:text-white transition-colors">Home</a>
-//             <a href="/fish" className="hover:text-white transition-colors">Fish</a>
-//             <a href="/learn" className="hover:text-white transition-colors">Learn Fishery</a>
+//             <a href="/varieties-wholesale" className="hover:text-white transition-colors">Fish</a>
+//             <a href="/learn-fishery" className="hover:text-white transition-colors">Learn Fishery</a>
 //           </div>
 //           <div className="flex flex-col gap-2 text-sm">
 //             <a href={WHATSAPP_LINK("Hi, I'd like to talk to KFARM.")} className="hover:text-white transition-colors">WhatsApp: 0911 538 0670</a>
