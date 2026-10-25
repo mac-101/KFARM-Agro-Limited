@@ -37,6 +37,6 @@ React and Tailwind CSS
 
 ## Status
 
-["Live at kfarm-agro-limited.vercel.app]
+**Live at** [KFARM Agro Limited](https://kfarm-agro-limited.vercel.app)
 
 Developed by MacAnthony for KFARM Agro Limited.
